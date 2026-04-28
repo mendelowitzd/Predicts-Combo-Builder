@@ -186,10 +186,10 @@ select.form-input{cursor:pointer}
 .divider{height:1px;background:#30363d;margin:16px 0}
 
 /* ERROR BANNER */
-.sp-error-banner{background:#2a0d0d;border:1px solid #da363366;border-radius:8px;
+.gh-error-banner{background:#2a0d0d;border:1px solid #da363366;border-radius:8px;
   padding:14px 16px;margin-bottom:0;font-size:12px;line-height:1.7;color:#f0a0a0}
-.sp-error-banner strong{color:#f85149;display:block;margin-bottom:4px;font-size:13px}
-.sp-error-banner code{background:#1a0808;padding:2px 6px;border-radius:3px;font-size:11px;color:#fca5a5}
+.gh-error-banner strong{color:#f85149;display:block;margin-bottom:4px;font-size:13px}
+.gh-error-banner code{background:#1a0808;padding:2px 6px;border-radius:3px;font-size:11px;color:#fca5a5}
 
 /* SPINNER */
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid #30363d;
@@ -261,10 +261,10 @@ select.form-input{cursor:pointer}
     </div>
     <div class="saved-col">
       <div class="saved-head">
-        <div class="panel-title" style="margin:0">Saved Combos <span style="font-weight:400;font-size:10px;color:#484f58;text-transform:none;letter-spacing:0">— shared via SharePoint</span></div>
+        <div class="panel-title" style="margin:0">Saved Combos <span style="font-weight:400;font-size:10px;color:#484f58;text-transform:none;letter-spacing:0">— shared via GitHub</span></div>
         <span class="saved-badge" id="saved-badge">0 / 25</span>
       </div>
-      <div id="saved-list"><div class="no-combos">Connecting to SharePoint…</div></div>
+      <div id="saved-list"><div class="no-combos">Connecting to GitHub…</div></div>
     </div>
   </div>
 </div>
@@ -273,10 +273,10 @@ select.form-input{cursor:pointer}
 <div class="overlay" id="overlay-settings">
   <div class="modal modal-md">
     <h2>⚙ Settings</h2>
-    <p class="modal-sub">API key and bookmaker preference are stored locally in your browser. The SharePoint site is where shared combos are stored — all team members should use the same site URL.</p>
-    <label class="form-label">SharePoint Site URL</label>
-    <input class="form-input" id="s-spsite" type="text" placeholder="https://fanduelgroup.sharepoint.com">
-    <p class="form-hint">Root site or a subsite, e.g. <code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:10px">/sites/MerchOps</code>. Must match for all users.</p>
+    <p class="modal-sub">Combos are stored in the shared GitHub repo — everyone on the team sees the same list. A GitHub token is required to save or delete combos. Each person sets their own Odds API key.</p>
+    <label class="form-label">GitHub Personal Access Token</label>
+    <input class="form-input" id="s-ghtoken" type="password" placeholder="github_pat_xxxxxxxxxxxx…">
+    <p class="form-hint">Go to <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> → <strong>Tokens (classic)</strong> → check the <strong>repo</strong> scope → generate. Required to save or delete combos. Read-only works without a token.</p>
     <div class="divider"></div>
     <label class="form-label">The Odds API Key</label>
     <input class="form-input" id="s-apikey" type="text" placeholder="e.g. cdbe810e1a60c836228777892b7295e5">
@@ -379,100 +379,53 @@ function demoGames(sportKey) {
   return (sets[sportKey]||[]).map(g=>({...g,...estimateOdds(g.home,g.away,sport),isEst:false}));
 }
 
-// ─── SHAREPOINT API ───────────────────────────────────────────────────────────
-const SP = {
-  LIST_NAME: 'Predicts Combos',
-  _digest: null,
-  _digestExpiry: 0,
-  _entityType: null,
+// ─── GITHUB API ───────────────────────────────────────────────────────────────
+const GH = {
+  OWNER: 'mendelowitzd',
+  REPO:  'Predicts-Combo-Builder',
+  FILE:  'combos.json',
+  _sha:  null,
 
-  site() { return (localStorage.getItem('fd_spsite')||'https://fanduelgroup.sharepoint.com').replace(/\/+$/,''); },
+  token() { return localStorage.getItem('fd_ghtoken') || ''; },
+  url()   { return `https://api.github.com/repos/${this.OWNER}/${this.REPO}/contents/${this.FILE}`; },
 
-  async getDigest() {
-    if (this._digest && this._digestExpiry > Date.now()) return this._digest;
-    const resp = await fetch(`${this.site()}/_api/contextinfo`, {
-      method:'POST',
-      headers:{'Accept':'application/json;odata=verbose'},
-      credentials:'include'
-    });
-    if (!resp.ok) throw new Error(`Auth failed (${resp.status}) — are you signed into SharePoint?`);
+  async load() {
+    const headers = { 'Accept': 'application/vnd.github+json' };
+    if (this.token()) headers['Authorization'] = `Bearer ${this.token()}`;
+    const resp = await fetch(this.url(), { headers });
+    if (resp.status === 404) { this._sha = null; return []; }
+    if (resp.status === 401 || resp.status === 403) throw new Error('Invalid or expired GitHub token — update it in ⚙ Settings');
+    if (!resp.ok) throw new Error(`GitHub error (${resp.status}) — check your connection`);
     const data = await resp.json();
-    this._digest = data.d.GetContextWebInformation.FormDigestValue;
-    this._digestExpiry = Date.now() + 25*60*1000;
-    return this._digest;
+    this._sha = data.sha;
+    try {
+      return JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,'')))));
+    } catch(e) { return []; }
   },
 
-  async getEntityType() {
-    if (this._entityType) return this._entityType;
-    const resp = await fetch(
-      `${this.site()}/_api/web/lists/getbytitle('${encodeURIComponent(this.LIST_NAME)}')?$select=ListItemEntityTypeFullName`,
-      { headers:{'Accept':'application/json;odata=verbose'}, credentials:'include' }
-    );
-    if (!resp.ok) throw new Error(`List "${this.LIST_NAME}" not found — please create it first (see setup instructions)`);
-    const data = await resp.json();
-    this._entityType = data.d.ListItemEntityTypeFullName;
-    return this._entityType;
-  },
-
-  async loadCombos() {
-    const resp = await fetch(
-      `${this.site()}/_api/web/lists/getbytitle('${encodeURIComponent(this.LIST_NAME)}')/items?$select=Id,ComboId,ComboData,Created&$orderby=Created asc&$top=25`,
-      { headers:{'Accept':'application/json;odata=verbose'}, credentials:'include' }
-    );
-    if (!resp.ok) throw new Error(`Could not load combos (${resp.status})`);
-    const data = await resp.json();
-    return data.d.results.map(item => {
-      try {
-        const combo = JSON.parse(item.ComboData);
-        combo._spId = item.Id; // store SharePoint item ID for deletion
-        return combo;
-      } catch(e) { return null; }
-    }).filter(Boolean);
-  },
-
-  async saveCombo(combo) {
-    const [digest, entityType] = await Promise.all([this.getDigest(), this.getEntityType()]);
-    const body = {
-      '__metadata': { 'type': entityType },
-      'Title':     combo.name,
-      'ComboId':   combo.id,
-      'ComboData': JSON.stringify(combo)
+  async save(combos) {
+    if (!this.token()) throw new Error('GitHub token required to save — add one in ⚙ Settings');
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(combos, null, 2))));
+    const body = { message:`Update combos ${new Date().toISOString()}`, content };
+    if (this._sha) body.sha = this._sha;
+    const headers = {
+      'Authorization': `Bearer ${this.token()}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
     };
-    const resp = await fetch(
-      `${this.site()}/_api/web/lists/getbytitle('${encodeURIComponent(this.LIST_NAME)}')/items`,
-      {
-        method:'POST',
-        headers:{
-          'Accept':'application/json;odata=verbose',
-          'Content-Type':'application/json;odata=verbose',
-          'X-RequestDigest': digest
-        },
-        credentials:'include',
-        body: JSON.stringify(body)
-      }
-    );
+    let resp = await fetch(this.url(), { method:'PUT', headers, body:JSON.stringify(body) });
+    // On SHA conflict, reload SHA and retry once
+    if (resp.status === 409 || resp.status === 422) {
+      await this.load();
+      body.sha = this._sha;
+      resp = await fetch(this.url(), { method:'PUT', headers, body:JSON.stringify(body) });
+    }
     if (!resp.ok) {
       const err = await resp.json().catch(()=>({}));
-      throw new Error(err?.error?.message?.value || `Save failed (${resp.status})`);
+      throw new Error(err.message || `Save failed (${resp.status})`);
     }
-  },
-
-  async deleteCombo(spId) {
-    const digest = await this.getDigest();
-    const resp = await fetch(
-      `${this.site()}/_api/web/lists/getbytitle('${encodeURIComponent(this.LIST_NAME)}')/items(${spId})`,
-      {
-        method:'POST',
-        headers:{
-          'Accept':'application/json;odata=verbose',
-          'X-RequestDigest': digest,
-          'X-HTTP-Method': 'DELETE',
-          'IF-MATCH': '*'
-        },
-        credentials:'include'
-      }
-    );
-    if (!resp.ok) throw new Error(`Delete failed (${resp.status})`);
+    const result = await resp.json();
+    if (result.content?.sha) this._sha = result.content.sha;
   }
 };
 
@@ -526,32 +479,34 @@ const App = (()=>{
     renderGames();
     renderBuilder();
 
-    // Load shared combos from SharePoint
+    // Load shared combos from GitHub
     await syncCombos();
 
     // Poll every 30 seconds for updates from other team members
     S.pollTimer = setInterval(syncCombos, 30000);
 
-    // First run
-    if(!S.apiKey && !ls('fd_seen')) openSettings();
+    // Prompt settings on first run if no token or API key
+    if(!GH.token() && !S.apiKey && !ls('fd_seen')) openSettings();
     if(S.apiKey){
       const stale=!S.loadedAt||(Date.now()-new Date(S.loadedAt).getTime()>4*60*60*1000);
       if(stale||!Object.values(S.liveLoaded).some(Boolean)) fetchAll();
     }
   }
 
-  // ── SHAREPOINT SYNC ────────────────────────────────────────────────────────
+  // ── GITHUB SYNC ────────────────────────────────────────────────────────────
   async function syncCombos() {
     setSyncStatus('syncing');
     try {
-      S.savedCombos = await SP.loadCombos();
+      const prevSha = GH._sha;
+      const combos = await GH.load();
+      S.savedCombos = combos;
       setSyncStatus('live');
+      // Only re-render if data actually changed
       renderSaved();
     } catch(e) {
-      console.warn('SP sync error:', e.message);
+      console.warn('GH sync error:', e.message);
       setSyncStatus('error', e.message);
-      // Only show the error panel if saved list is empty (first load failure)
-      if(!S.savedCombos.length) showSPError(e.message);
+      if(!S.savedCombos.length) showGHError(e.message);
     }
   }
 
@@ -559,22 +514,25 @@ const App = (()=>{
     const pill  = document.getElementById('sync-pill');
     const label = document.getElementById('sync-label');
     const now   = new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
-    if(state==='live')       { pill.className='sync-pill live';    label.textContent=`Synced · ${now}`; }
+    if(state==='live')        { pill.className='sync-pill live';    label.textContent=`Synced · ${now}`; }
     else if(state==='syncing'){ pill.className='sync-pill syncing'; label.textContent='Syncing…'; }
-    else if(state==='error') { pill.className='sync-pill error';   label.textContent='Sync error'; }
-    else                     { pill.className='sync-pill offline'; label.textContent='Offline'; }
+    else if(state==='error')  { pill.className='sync-pill error';   label.textContent='Sync error'; }
+    else                      { pill.className='sync-pill offline'; label.textContent='Offline'; }
   }
 
-  function showSPError(msg) {
-    const el=document.getElementById('saved-list');
-    const isFileProtocol = location.protocol==='file:';
-    const isCors = msg.toLowerCase().includes('cors')||msg.toLowerCase().includes('fetch')||msg.toLowerCase().includes('failed to fetch');
+  function showGHError(msg) {
+    const el = document.getElementById('saved-list');
+    const noToken = !GH.token();
     let hint = '';
-    if(isFileProtocol || isCors) {
-      hint = `<br><br>⚠️ <strong>Looks like this file is open locally.</strong> For SharePoint sync to work, the file needs to be opened from SharePoint itself — not downloaded to your desktop.<br><br>
-      <strong>Fix:</strong> Upload this file to your SharePoint Documents library, then open it from there using its SharePoint URL.`;
+    if (noToken) {
+      hint = `<br><br>⚠️ <strong>No GitHub token set.</strong> You can view combos without a token (public repo), but to save or delete you'll need one.<br><br>
+      Go to <strong>⚙ Settings</strong> → paste your GitHub Personal Access Token (classic, <code>repo</code> scope).`;
+    } else if (msg.includes('401') || msg.includes('403') || msg.includes('Invalid')) {
+      hint = `<br><br>⚠️ <strong>Token issue.</strong> Your token may have expired or doesn't have <code>repo</code> scope. Go to <strong>⚙ Settings</strong> to update it.`;
+    } else {
+      hint = `<br><br>Check your internet connection and try refreshing.`;
     }
-    el.innerHTML=`<div class="sp-error-banner"><strong>Could not connect to SharePoint</strong>${msg}${hint}</div>`;
+    el.innerHTML=`<div class="gh-error-banner"><strong>Could not connect to GitHub</strong>${msg}${hint}</div>`;
   }
 
   // ── FETCH ODDS ─────────────────────────────────────────────────────────────
@@ -723,15 +681,25 @@ const App = (()=>{
   // ── SAVE / DELETE ──────────────────────────────────────────────────────────
   async function saveCombo(){
     if(S.currentLegs.length<2){toast('⚠️ Add at least 2 legs');return;}
-    if(S.savedCombos.length>=25){toast('⚠️ 25 combo limit — delete one first');return;}
+    if(!GH.token()){toast('⚠️ Add GitHub token in ⚙ Settings to save combos');openSettings();return;}
     const name=document.getElementById('combo-name').value.trim()||autoName();
-    const combo={id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),name,legs:[...S.currentLegs],createdAt:new Date().toISOString(),hasEst:S.currentLegs.some(l=>l.isEst)};
+    const combo={
+      id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),
+      name, legs:[...S.currentLegs],
+      createdAt:new Date().toISOString(),
+      hasEst:S.currentLegs.some(l=>l.isEst)
+    };
     const btn=document.getElementById('save-btn');
     btn.disabled=true;btn.textContent='Saving…';
     try{
-      await SP.saveCombo(combo);
+      // Load fresh state to get latest SHA + current combos
+      const current = await GH.load();
+      if(current.length>=25){toast('⚠️ 25 combo limit — delete one first');return;}
+      current.push(combo);
+      await GH.save(current);
+      S.savedCombos = current;
       clearCombo();
-      await syncCombos();
+      renderSaved();
       toast(`✅ "${name}" saved — visible to all team members`);
     }catch(e){
       toast(`❌ ${e.message}`);
@@ -739,10 +707,17 @@ const App = (()=>{
     }finally{btn.disabled=S.currentLegs.length<2;btn.textContent='Save Combo';}
   }
 
-  async function deleteCombo(spId,name){
+  async function deleteCombo(comboId, name){
     if(!confirm(`Delete "${name}"? This removes it for the whole team.`))return;
-    try{await SP.deleteCombo(spId);await syncCombos();toast('Combo deleted');}
-    catch(e){toast(`❌ ${e.message}`);}
+    if(!GH.token()){toast('⚠️ GitHub token required to delete — add one in ⚙ Settings');return;}
+    try{
+      const current = await GH.load();
+      const filtered = current.filter(c=>c.id!==comboId);
+      await GH.save(filtered);
+      S.savedCombos = filtered;
+      renderSaved();
+      toast('Combo deleted');
+    }catch(e){toast(`❌ ${e.message}`);}
   }
 
   function toggleExpand(id){S.expanded=S.expanded===id?null:id;renderSaved();}
@@ -768,7 +743,8 @@ const App = (()=>{
           <span class="ci-mkt">${l.marketLabel}</span>
         </div>`;
       }).join('');
-      const spId=combo._spId;
+      // Escape combo name for safe use in onclick
+      const safeName = combo.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
       return `<div class="ci ${exp?'open':''}" id="ci-${combo.id}">
         <div class="ci-head" onclick="App.toggleExpand('${combo.id}')">
           <span class="ci-arrow">▶</span>
@@ -776,7 +752,7 @@ const App = (()=>{
           ${combo.hasEst?'<span class="ci-est">~Est</span>':''}
           <span class="ci-n">${combo.legs.length}L</span>
           <button class="btn btn-red btn-xs"
-            onclick="event.stopPropagation();App.deleteCombo(${spId},'${combo.name.replace(/'/g,"\\'")}')">✕</button>
+            onclick="event.stopPropagation();App.deleteCombo('${combo.id}','${safeName}')">✕</button>
         </div>
         <div class="ci-body"><div class="ci-date">Built ${date}</div>${legsH}</div>
       </div>`;
@@ -785,7 +761,7 @@ const App = (()=>{
 
   // ── SETTINGS ───────────────────────────────────────────────────────────────
   function openSettings(){
-    document.getElementById('s-spsite').value   = ls('fd_spsite')||'https://fanduelgroup.sharepoint.com';
+    document.getElementById('s-ghtoken').value   = GH.token();
     document.getElementById('s-apikey').value    = S.apiKey;
     document.getElementById('s-bookmaker').value = S.bookmaker;
     document.getElementById('s-futdays').value   = S.futDays;
@@ -793,12 +769,16 @@ const App = (()=>{
   }
   function closeSettings(){document.getElementById('overlay-settings').classList.remove('open');}
   async function saveSettings(){
-    const spSite=document.getElementById('s-spsite').value.trim().replace(/\/+$/,'');
-    S.apiKey   =document.getElementById('s-apikey').value.trim();
-    S.bookmaker=document.getElementById('s-bookmaker').value.trim();
-    S.futDays  =parseInt(document.getElementById('s-futdays').value);
-    ls('fd_spsite',spSite);ls('fd_apikey',S.apiKey);ls('fd_bookmaker',S.bookmaker);ls('fd_futdays',S.futDays);ls('fd_seen','1');
-    SP._entityType=null;SP._digest=null; // reset cached SP state
+    const ghToken  = document.getElementById('s-ghtoken').value.trim();
+    S.apiKey       = document.getElementById('s-apikey').value.trim();
+    S.bookmaker    = document.getElementById('s-bookmaker').value.trim();
+    S.futDays      = parseInt(document.getElementById('s-futdays').value);
+    ls('fd_ghtoken', ghToken);
+    ls('fd_apikey', S.apiKey);
+    ls('fd_bookmaker', S.bookmaker);
+    ls('fd_futdays', S.futDays);
+    ls('fd_seen', '1');
+    GH._sha = null; // reset cached SHA so next load is fresh
     closeSettings();
     S.games={nba:[],mlb:[],nhl:[]};S.liveLoaded={nba:false,mlb:false,nhl:false};
     Object.keys(SPORTS).forEach(sp=>{S.games[sp]=demoGames(SPORTS[sp].key);});
