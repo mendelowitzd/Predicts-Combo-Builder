@@ -249,5 +249,50 @@
     "createdAt": "2026-04-29T16:35:57.345Z",
     "startTime": "2026-04-29T22:41:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mokajy7ul8p",
+    "name": "totals test",
+    "legs": [
+      {
+        "gameId": "912bee9cc9d36b6017819f012c0c56f1",
+        "market": "spreads",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Orlando Magic @ Detroit Pistons",
+        "marketLabel": "Spread",
+        "pick": "Detroit Pistons -9.5",
+        "odds": -114,
+        "isEst": false,
+        "time": "2026-04-29T23:10:00Z"
+      },
+      {
+        "gameId": "6fa2ebdc614d327bc9a4558541adcd30",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Toronto Raptors @ Cleveland Cavaliers",
+        "marketLabel": "Total",
+        "pick": "Over 217.5",
+        "odds": -110,
+        "isEst": false,
+        "time": "2026-04-29T23:40:00Z"
+      },
+      {
+        "gameId": "0d0aa62d4305ee094389473b308ce0bd",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Houston Rockets @ Los Angeles Lakers",
+        "marketLabel": "Moneyline",
+        "pick": "Houston Rockets",
+        "odds": 148,
+        "isEst": false,
+        "time": "2026-04-30T02:10:00Z"
+      }
+    ],
+    "createdAt": "2026-04-29T16:50:36.666Z",
+    "startTime": "2026-04-29T23:10:00.000Z",
+    "hasEst": false
   }
 ]
