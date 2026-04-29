@@ -162,5 +162,62 @@
     ],
     "createdAt": "2026-04-29T16:53:46.610Z",
     "hasEst": false
+  },
+  {
+    "id": "mokiz07o97k",
+    "name": "West Coast Best Coast",
+    "legs": [
+      {
+        "gameId": "espn_401815170",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Kansas City Royals @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -140,
+        "isEst": true,
+        "time": "2026-05-02T01:45Z"
+      },
+      {
+        "gameId": "espn_401815171",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Angels",
+        "odds": 230,
+        "isEst": true,
+        "time": "2026-05-02T01:38Z"
+      },
+      {
+        "gameId": "espn_401815168",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago White Sox @ San Diego Padres",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -615,
+        "isEst": true,
+        "time": "2026-05-02T01:40Z"
+      },
+      {
+        "gameId": "espn_401815169",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cleveland Guardians @ Athletics",
+        "marketLabel": "Moneyline",
+        "pick": "Athletics",
+        "odds": 155,
+        "isEst": true,
+        "time": "2026-05-02T01:40Z"
+      }
+    ],
+    "createdAt": "2026-04-29T20:46:16.020Z",
+    "startTime": "2026-05-02T01:38:00.000Z",
+    "hasEst": true
   }
 ]
