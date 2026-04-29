@@ -414,7 +414,6 @@ const GH = {
       'Content-Type': 'application/json'
     };
     let resp = await fetch(this.url(), { method:'PUT', headers, body:JSON.stringify(body) });
-    // On SHA conflict, reload SHA and retry once
     if (resp.status === 409 || resp.status === 422) {
       await this.load();
       body.sha = this._sha;
@@ -462,7 +461,6 @@ const App = (()=>{
     pollTimer:null
   };
 
-  // ── INIT ───────────────────────────────────────────────────────────────────
   async function init() {
     S.apiKey    = ls('fd_apikey')    || '';
     S.bookmaker = ls('fd_bookmaker') || '';
@@ -479,13 +477,9 @@ const App = (()=>{
     renderGames();
     renderBuilder();
 
-    // Load shared combos from GitHub
     await syncCombos();
-
-    // Poll every 30 seconds for updates from other team members
     S.pollTimer = setInterval(syncCombos, 30000);
 
-    // Prompt settings on first run if no token or API key
     if(!GH.token() && !S.apiKey && !ls('fd_seen')) openSettings();
     if(S.apiKey){
       const stale=!S.loadedAt||(Date.now()-new Date(S.loadedAt).getTime()>4*60*60*1000);
@@ -493,15 +487,11 @@ const App = (()=>{
     }
   }
 
-  // ── GITHUB SYNC ────────────────────────────────────────────────────────────
   async function syncCombos() {
     setSyncStatus('syncing');
     try {
-      const prevSha = GH._sha;
-      const combos = await GH.load();
-      S.savedCombos = combos;
+      S.savedCombos = await GH.load();
       setSyncStatus('live');
-      // Only re-render if data actually changed
       renderSaved();
     } catch(e) {
       console.warn('GH sync error:', e.message);
@@ -510,7 +500,7 @@ const App = (()=>{
     }
   }
 
-  function setSyncStatus(state, msg) {
+  function setSyncStatus(state) {
     const pill  = document.getElementById('sync-pill');
     const label = document.getElementById('sync-label');
     const now   = new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
@@ -525,17 +515,16 @@ const App = (()=>{
     const noToken = !GH.token();
     let hint = '';
     if (noToken) {
-      hint = `<br><br>⚠️ <strong>No GitHub token set.</strong> You can view combos without a token (public repo), but to save or delete you'll need one.<br><br>
+      hint = `<br><br>⚠️ <strong>No GitHub token set.</strong> You can view combos without a token, but to save or delete you'll need one.<br><br>
       Go to <strong>⚙ Settings</strong> → paste your GitHub Personal Access Token (classic, <code>repo</code> scope).`;
     } else if (msg.includes('401') || msg.includes('403') || msg.includes('Invalid')) {
-      hint = `<br><br>⚠️ <strong>Token issue.</strong> Your token may have expired or doesn't have <code>repo</code> scope. Go to <strong>⚙ Settings</strong> to update it.`;
+      hint = `<br><br>⚠️ <strong>Token issue.</strong> Your token may have expired or lacks <code>repo</code> scope. Go to <strong>⚙ Settings</strong> to update it.`;
     } else {
       hint = `<br><br>Check your internet connection and try refreshing.`;
     }
     el.innerHTML=`<div class="gh-error-banner"><strong>Could not connect to GitHub</strong>${msg}${hint}</div>`;
   }
 
-  // ── FETCH ODDS ─────────────────────────────────────────────────────────────
   async function fetchAll() {
     if(!S.apiKey){openSettings();return;}
     setRefreshBtn(true);
@@ -603,7 +592,6 @@ const App = (()=>{
     rem.textContent=S.apiRemain!==null?`${S.apiRemain} API calls remaining`:'';
   }
 
-  // ── RENDER GAMES ───────────────────────────────────────────────────────────
   function renderGames(){
     const sport=S.sport,cfg=SPORTS[sport];
     document.getElementById('games-title').textContent=`${cfg.icon} ${cfg.label} Games`;
@@ -643,7 +631,6 @@ const App = (()=>{
       </div><div class="markets">${rows}</div></div>`;
   }
 
-  // ── LEGS ───────────────────────────────────────────────────────────────────
   function toggleLeg(gameId,market,outcomeIdx){
     const idx=S.currentLegs.findIndex(l=>l.gameId===gameId&&l.market===market);
     if(idx!==-1){if(S.currentLegs[idx].outcomeIdx===outcomeIdx){S.currentLegs.splice(idx,1);renderGames();renderBuilder();return;}S.currentLegs.splice(idx,1);}
@@ -678,7 +665,6 @@ const App = (()=>{
   function removeLeg(i){S.currentLegs.splice(i,1);renderGames();renderBuilder();}
   function clearCombo(){S.currentLegs=[];document.getElementById('combo-name').value='';renderGames();renderBuilder();}
 
-  // ── SAVE / DELETE ──────────────────────────────────────────────────────────
   async function saveCombo(){
     if(S.currentLegs.length<2){toast('⚠️ Add at least 2 legs');return;}
     if(!GH.token()){toast('⚠️ Add GitHub token in ⚙ Settings to save combos');openSettings();return;}
@@ -692,7 +678,6 @@ const App = (()=>{
     const btn=document.getElementById('save-btn');
     btn.disabled=true;btn.textContent='Saving…';
     try{
-      // Load fresh state to get latest SHA + current combos
       const current = await GH.load();
       if(current.length>=25){toast('⚠️ 25 combo limit — delete one first');return;}
       current.push(combo);
@@ -743,7 +728,6 @@ const App = (()=>{
           <span class="ci-mkt">${l.marketLabel}</span>
         </div>`;
       }).join('');
-      // Escape combo name for safe use in onclick
       const safeName = combo.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
       return `<div class="ci ${exp?'open':''}" id="ci-${combo.id}">
         <div class="ci-head" onclick="App.toggleExpand('${combo.id}')">
@@ -759,7 +743,6 @@ const App = (()=>{
     }).join('');
   }
 
-  // ── SETTINGS ───────────────────────────────────────────────────────────────
   function openSettings(){
     document.getElementById('s-ghtoken').value   = GH.token();
     document.getElementById('s-apikey').value    = S.apiKey;
@@ -778,7 +761,7 @@ const App = (()=>{
     ls('fd_bookmaker', S.bookmaker);
     ls('fd_futdays', S.futDays);
     ls('fd_seen', '1');
-    GH._sha = null; // reset cached SHA so next load is fresh
+    GH._sha = null;
     closeSettings();
     S.games={nba:[],mlb:[],nhl:[]};S.liveLoaded={nba:false,mlb:false,nhl:false};
     Object.keys(SPORTS).forEach(sp=>{S.games[sp]=demoGames(SPORTS[sp].key);});
@@ -786,7 +769,6 @@ const App = (()=>{
     if(S.apiKey)fetchAll();else{updateDataBar();renderGames();}
   }
 
-  // ── EXPORT ─────────────────────────────────────────────────────────────────
   function exportExcel(){
     if(!S.savedCombos.length){toast('⚠️ No combos to export');return;}
     if(typeof XLSX==='undefined'){toast('❌ Excel library not loaded');return;}
@@ -812,7 +794,6 @@ const App = (()=>{
     toast(`✅ Exported ${S.savedCombos.length} combo(s)`);
   }
 
-  // ── MISC ───────────────────────────────────────────────────────────────────
   function switchSport(sport){
     S.sport=sport;
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
