@@ -219,5 +219,62 @@
     "createdAt": "2026-04-29T20:46:16.020Z",
     "startTime": "2026-05-02T01:38:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mokj7ebqo5k",
+    "name": "From Queens to the Crown",
+    "legs": [
+      {
+        "gameId": "espn_401815166",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Toronto Blue Jays @ Minnesota Twins",
+        "marketLabel": "Moneyline",
+        "pick": "Toronto Blue Jays",
+        "odds": 120,
+        "isEst": true,
+        "time": "2026-05-02T00:10Z"
+      },
+      {
+        "gameId": "espn_401815170",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Kansas City Royals @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Kansas City Royals",
+        "odds": 140,
+        "isEst": true,
+        "time": "2026-05-02T01:45Z"
+      },
+      {
+        "gameId": "espn_401815169",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Cleveland Guardians @ Athletics",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Guardians",
+        "odds": -155,
+        "isEst": true,
+        "time": "2026-05-02T01:40Z"
+      },
+      {
+        "gameId": "espn_401815171",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-02T01:38Z"
+      }
+    ],
+    "createdAt": "2026-04-29T20:52:47.558Z",
+    "startTime": "2026-05-02T00:10:00.000Z",
+    "hasEst": true
   }
 ]
