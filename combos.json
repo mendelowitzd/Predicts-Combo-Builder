@@ -1,46 +1,5 @@
 [
   {
-    "id": "mok7ibfx03c",
-    "name": "test",
-    "legs": [
-      {
-        "gameId": "912bee9cc9d36b6017819f012c0c56f1",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Orlando Magic @ Detroit Pistons",
-        "marketLabel": "Moneyline",
-        "pick": "Detroit Pistons",
-        "odds": -375,
-        "isEst": false
-      },
-      {
-        "gameId": "6fa2ebdc614d327bc9a4558541adcd30",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Toronto Raptors @ Cleveland Cavaliers",
-        "marketLabel": "Moneyline",
-        "pick": "Cleveland Cavaliers",
-        "odds": -405,
-        "isEst": false
-      },
-      {
-        "gameId": "0d0aa62d4305ee094389473b308ce0bd",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Houston Rockets @ Los Angeles Lakers",
-        "marketLabel": "Moneyline",
-        "pick": "Houston Rockets",
-        "odds": 150,
-        "isEst": false
-      }
-    ],
-    "createdAt": "2026-04-29T15:25:21.645Z",
-    "hasEst": false
-  },
-  {
     "id": "mok7oivd7df",
     "name": "Steel Card",
     "legs": [
