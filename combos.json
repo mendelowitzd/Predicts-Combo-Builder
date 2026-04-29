@@ -162,5 +162,35 @@
     ],
     "createdAt": "2026-04-29T16:18:45.926Z",
     "hasEst": false
+  },
+  {
+    "id": "mok9x4v3qfk",
+    "name": "Big Shot",
+    "legs": [
+      {
+        "gameId": "912bee9cc9d36b6017819f012c0c56f1",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Orlando Magic @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": -375,
+        "isEst": false
+      },
+      {
+        "gameId": "6fa2ebdc614d327bc9a4558541adcd30",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Toronto Raptors @ Cleveland Cavaliers",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Cavaliers",
+        "odds": -405,
+        "isEst": false
+      }
+    ],
+    "createdAt": "2026-04-29T16:32:52.191Z",
+    "hasEst": false
   }
 ]
