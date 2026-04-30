@@ -460,5 +460,62 @@
     "createdAt": "2026-04-30T16:51:53.938Z",
     "startTime": "2026-05-02T20:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "molqa6nymzc",
+    "name": "City Lights",
+    "legs": [
+      {
+        "gameId": "espn_401815180",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ St. Louis Cardinals",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -440,
+        "isEst": true,
+        "time": "2026-05-02T23:15Z"
+      },
+      {
+        "gameId": "espn_401815177",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Tampa Bay Rays",
+        "marketLabel": "Moneyline",
+        "pick": "San Francisco Giants",
+        "odds": 185,
+        "isEst": true,
+        "time": "2026-05-02T22:10Z"
+      },
+      {
+        "gameId": "espn_401815186",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-03T01:38Z"
+      },
+      {
+        "gameId": "espn_401815185",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Kansas City Royals @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -140,
+        "isEst": true,
+        "time": "2026-05-03T01:40Z"
+      }
+    ],
+    "createdAt": "2026-04-30T16:58:41.086Z",
+    "startTime": "2026-05-02T22:10:00.000Z",
+    "hasEst": true
   }
 ]
