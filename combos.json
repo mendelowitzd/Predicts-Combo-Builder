@@ -688,5 +688,62 @@
     "createdAt": "2026-04-30T17:32:24.249Z",
     "startTime": "2026-05-04T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "molrjwawxc6",
+    "name": "Luke, I Am Your Padre",
+    "legs": [
+      {
+        "gameId": "espn_401815213",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ San Francisco Giants",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -165,
+        "isEst": true,
+        "time": "2026-05-05T01:45Z"
+      },
+      {
+        "gameId": "espn_401815211",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 195,
+        "isEst": true,
+        "time": "2026-05-05T01:40Z"
+      },
+      {
+        "gameId": "espn_401815212",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago White Sox @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Angels",
+        "odds": -185,
+        "isEst": true,
+        "time": "2026-05-05T01:38Z"
+      },
+      {
+        "gameId": "espn_401815210",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-05T00:40Z"
+      }
+    ],
+    "createdAt": "2026-04-30T17:34:13.832Z",
+    "startTime": "2026-05-05T00:40:00.000Z",
+    "hasEst": true
   }
 ]
