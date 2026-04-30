@@ -517,5 +517,62 @@
     "createdAt": "2026-04-30T16:58:41.086Z",
     "startTime": "2026-05-02T22:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "molqg1zsu3j",
+    "name": "The Night Cap",
+    "legs": [
+      {
+        "gameId": "espn_401815182",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -580,
+        "isEst": true,
+        "time": "2026-05-03T00:10Z"
+      },
+      {
+        "gameId": "espn_401815183",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago White Sox @ San Diego Padres",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -615,
+        "isEst": true,
+        "time": "2026-05-03T00:40Z"
+      },
+      {
+        "gameId": "espn_401815186",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Angels",
+        "odds": 230,
+        "isEst": true,
+        "time": "2026-05-03T01:38Z"
+      },
+      {
+        "gameId": "espn_401815185",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Kansas City Royals @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Kansas City Royals",
+        "odds": 140,
+        "isEst": true,
+        "time": "2026-05-03T01:40Z"
+      }
+    ],
+    "createdAt": "2026-04-30T17:03:14.968Z",
+    "startTime": "2026-05-03T00:10:00.000Z",
+    "hasEst": true
   }
 ]
