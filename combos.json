@@ -576,63 +576,6 @@
     "hasEst": true
   },
   {
-    "id": "molrf6s48hr",
-    "name": "May the Four Be With You",
-    "legs": [
-      {
-        "gameId": "espn_401815203",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Boston Red Sox @ Detroit Tigers",
-        "marketLabel": "Moneyline",
-        "pick": "Detroit Tigers",
-        "odds": 130,
-        "isEst": true,
-        "time": "2026-05-04T22:40Z"
-      },
-      {
-        "gameId": "espn_401815205",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Toronto Blue Jays @ Tampa Bay Rays",
-        "marketLabel": "Moneyline",
-        "pick": "Toronto Blue Jays",
-        "odds": 140,
-        "isEst": true,
-        "time": "2026-05-04T22:40Z"
-      },
-      {
-        "gameId": "espn_401815204",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Philadelphia Phillies @ Miami Marlins",
-        "marketLabel": "Moneyline",
-        "pick": "Philadelphia Phillies",
-        "odds": -395,
-        "isEst": true,
-        "time": "2026-05-04T22:40Z"
-      },
-      {
-        "gameId": "espn_401815206",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Cincinnati Reds @ Chicago Cubs",
-        "marketLabel": "Moneyline",
-        "pick": "Chicago Cubs",
-        "odds": -175,
-        "isEst": true,
-        "time": "2026-05-04T23:40Z"
-      }
-    ],
-    "createdAt": "2026-04-30T17:30:34.132Z",
-    "startTime": "2026-05-04T22:40:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "molrhjqxfh8",
     "name": "Join the Dark Side",
     "legs": [
