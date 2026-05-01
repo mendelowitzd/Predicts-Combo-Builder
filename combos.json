@@ -1,50 +1,5 @@
 [
   {
-    "id": "molp3bkxx88",
-    "name": "Wild West",
-    "legs": [
-      {
-        "gameId": "espn_401815200",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Kansas City Royals @ Seattle Mariners",
-        "marketLabel": "Moneyline",
-        "pick": "Seattle Mariners",
-        "odds": -140,
-        "isEst": true,
-        "time": "2026-05-03T20:10Z"
-      },
-      {
-        "gameId": "espn_401815201",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "New York Mets @ Los Angeles Angels",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Angels",
-        "odds": 230,
-        "isEst": true,
-        "time": "2026-05-03T20:07Z"
-      },
-      {
-        "gameId": "espn_401815199",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Cleveland Guardians @ Athletics",
-        "marketLabel": "Moneyline",
-        "pick": "Athletics",
-        "odds": 155,
-        "isEst": true,
-        "time": "2026-05-03T20:05Z"
-      }
-    ],
-    "createdAt": "2026-04-30T16:25:21.249Z",
-    "startTime": "2026-05-03T20:05:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "molp4xlsmsq",
     "name": "Blue & Ivy",
     "legs": [
