@@ -1,38 +1,5 @@
 [
   {
-    "id": "molp4xlsmsq",
-    "name": "Blue & Ivy",
-    "legs": [
-      {
-        "gameId": "espn_401815195",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Los Angeles Dodgers @ St. Louis Cardinals",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Dodgers",
-        "odds": -440,
-        "isEst": true,
-        "time": "2026-05-03T18:15Z"
-      },
-      {
-        "gameId": "espn_401815194",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Arizona Diamondbacks @ Chicago Cubs",
-        "marketLabel": "Moneyline",
-        "pick": "Chicago Cubs",
-        "odds": -100,
-        "isEst": true,
-        "time": "2026-05-03T18:20Z"
-      }
-    ],
-    "createdAt": "2026-04-30T16:26:36.448Z",
-    "startTime": "2026-05-03T18:15:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "molp64ntlrm",
     "name": "The Motley Crew",
     "legs": [
