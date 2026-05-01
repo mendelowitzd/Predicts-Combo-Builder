@@ -1,50 +1,5 @@
 [
   {
-    "id": "molozwh5hh4",
-    "name": "AL Beast",
-    "legs": [
-      {
-        "gameId": "espn_401815189",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Houston Astros @ Boston Red Sox",
-        "marketLabel": "Moneyline",
-        "pick": "Boston Red Sox",
-        "odds": 125,
-        "isEst": true,
-        "time": "2026-05-03T17:35Z"
-      },
-      {
-        "gameId": "espn_401815187",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Baltimore Orioles @ New York Yankees",
-        "marketLabel": "Moneyline",
-        "pick": "New York Yankees",
-        "odds": -270,
-        "isEst": true,
-        "time": "2026-05-03T17:35Z"
-      },
-      {
-        "gameId": "espn_401815192",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "San Francisco Giants @ Tampa Bay Rays",
-        "marketLabel": "Moneyline",
-        "pick": "Tampa Bay Rays",
-        "odds": -185,
-        "isEst": true,
-        "time": "2026-05-03T17:40Z"
-      }
-    ],
-    "createdAt": "2026-04-30T16:22:41.705Z",
-    "startTime": "2026-05-03T17:35:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "molp3bkxx88",
     "name": "Wild West",
     "legs": [
