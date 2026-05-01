@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "id": "momxhtk6gbj",
+    "name": "Buckets & Banners",
+    "legs": [
+      {
+        "gameId": "a37e80a2e3cf3aaa3ae84a9124987058",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ Boston Celtics",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Celtics",
+        "odds": -290,
+        "isEst": false,
+        "time": "2026-05-02T23:40:00Z"
+      },
+      {
+        "gameId": "a37e80a2e3cf3aaa3ae84a9124987058",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ Boston Celtics",
+        "marketLabel": "Total",
+        "pick": "Over 206.5",
+        "odds": -108,
+        "isEst": false,
+        "time": "2026-05-02T23:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-01T13:08:20.838Z",
+    "startTime": "2026-05-02T23:40:00.000Z",
+    "hasEst": false
+  }
+]
