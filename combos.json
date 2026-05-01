@@ -1,50 +1,5 @@
 [
   {
-    "id": "molozol9vuz",
-    "name": "That's A Wrap",
-    "legs": [
-      {
-        "gameId": "88e10294c54deffd6e9e6efcba249d2c",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "nba",
-        "matchup": "Detroit Pistons @ Orlando Magic",
-        "marketLabel": "Moneyline",
-        "pick": "Orlando Magic",
-        "odds": 134,
-        "isEst": false,
-        "time": "2026-05-01T23:10:00Z"
-      },
-      {
-        "gameId": "d1938a9c13602a661e894f996f2680e8",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Cleveland Cavaliers @ Toronto Raptors",
-        "marketLabel": "Moneyline",
-        "pick": "Cleveland Cavaliers",
-        "odds": -178,
-        "isEst": false,
-        "time": "2026-05-01T23:40:00Z"
-      },
-      {
-        "gameId": "c361a0b8c035a055bd9497b52674e3fb",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "nba",
-        "matchup": "Los Angeles Lakers @ Houston Rockets",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Lakers",
-        "odds": 150,
-        "isEst": false,
-        "time": "2026-05-02T01:40:00Z"
-      }
-    ],
-    "createdAt": "2026-04-30T16:22:31.485Z",
-    "startTime": "2026-05-01T23:10:00.000Z",
-    "hasEst": false
-  },
-  {
     "id": "molozwh5hh4",
     "name": "AL Beast",
     "legs": [
