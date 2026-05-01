@@ -1,50 +1,5 @@
 [
   {
-    "id": "molpqoolj7k",
-    "name": "The Opening Act",
-    "legs": [
-      {
-        "gameId": "espn_401815172",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Baltimore Orioles @ New York Yankees",
-        "marketLabel": "Moneyline",
-        "pick": "New York Yankees",
-        "odds": -270,
-        "isEst": true,
-        "time": "2026-05-02T17:35Z"
-      },
-      {
-        "gameId": "espn_401815181",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Toronto Blue Jays @ Minnesota Twins",
-        "marketLabel": "Moneyline",
-        "pick": "Toronto Blue Jays",
-        "odds": 120,
-        "isEst": true,
-        "time": "2026-05-02T18:10Z"
-      },
-      {
-        "gameId": "espn_401815179",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Arizona Diamondbacks @ Chicago Cubs",
-        "marketLabel": "Moneyline",
-        "pick": "Chicago Cubs",
-        "odds": -100,
-        "isEst": true,
-        "time": "2026-05-02T18:20Z"
-      }
-    ],
-    "createdAt": "2026-04-30T16:43:31.317Z",
-    "startTime": "2026-05-02T17:35:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "molq1giauum",
     "name": "The Afternoon Launch",
     "legs": [
