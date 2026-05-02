@@ -130,5 +130,38 @@
     "createdAt": "2026-05-01T13:10:53.579Z",
     "startTime": "2026-05-02T23:40:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mooev4xtvx6",
+    "name": "Survive & Advance",
+    "legs": [
+      {
+        "gameId": "a463f640631f8b0580966b909965de14",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Toronto Raptors @ Cleveland Cavaliers",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Cavaliers",
+        "odds": -310,
+        "isEst": false,
+        "time": "2026-05-03T23:40:00Z"
+      },
+      {
+        "gameId": "be60e6f50fc77fc3a3cf6925472bad91",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Orlando Magic @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": -350,
+        "isEst": false,
+        "time": "2026-05-03T19:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-02T14:02:21.761Z",
+    "startTime": "2026-05-03T19:40:00.000Z",
+    "hasEst": false
   }
 ]
