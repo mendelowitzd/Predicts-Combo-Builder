@@ -196,38 +196,5 @@
     "createdAt": "2026-05-02T14:00:27.470Z",
     "startTime": "2026-05-02T23:40:00.000Z",
     "hasEst": false
-  },
-  {
-    "id": "mooetc8di6h",
-    "name": "Grit & Grind",
-    "legs": [
-      {
-        "gameId": "a37e80a2e3cf3aaa3ae84a9124987058",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "nba",
-        "matchup": "Philadelphia 76ers @ Boston Celtics",
-        "marketLabel": "Moneyline",
-        "pick": "Philadelphia 76ers",
-        "odds": 240,
-        "isEst": false,
-        "time": "2026-05-02T23:40:00Z"
-      },
-      {
-        "gameId": "be60e6f50fc77fc3a3cf6925472bad91",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Orlando Magic @ Detroit Pistons",
-        "marketLabel": "Moneyline",
-        "pick": "Detroit Pistons",
-        "odds": -350,
-        "isEst": false,
-        "time": "2026-05-03T19:40:00Z"
-      }
-    ],
-    "createdAt": "2026-05-02T14:00:57.901Z",
-    "startTime": "2026-05-02T23:40:00.000Z",
-    "hasEst": false
   }
 ]
