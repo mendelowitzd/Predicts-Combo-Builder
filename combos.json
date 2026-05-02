@@ -229,5 +229,38 @@
     "createdAt": "2026-05-02T14:04:01.255Z",
     "startTime": "2026-05-03T19:40:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mooexhbwuyq",
+    "name": "Underdog Special",
+    "legs": [
+      {
+        "gameId": "be60e6f50fc77fc3a3cf6925472bad91",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Orlando Magic @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Orlando Magic",
+        "odds": 280,
+        "isEst": false,
+        "time": "2026-05-03T19:40:00Z"
+      },
+      {
+        "gameId": "a463f640631f8b0580966b909965de14",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Toronto Raptors @ Cleveland Cavaliers",
+        "marketLabel": "Moneyline",
+        "pick": "Toronto Raptors",
+        "odds": 250,
+        "isEst": false,
+        "time": "2026-05-03T23:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-02T14:04:11.132Z",
+    "startTime": "2026-05-03T19:40:00.000Z",
+    "hasEst": false
   }
 ]
