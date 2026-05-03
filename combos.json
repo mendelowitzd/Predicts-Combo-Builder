@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "id": "mopwjdfachw",
+    "name": "Concrete & Cowboys",
+    "legs": [
+      {
+        "gameId": "b11391b35b7a0cf79deeef3bb3eb9009",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ New York Knicks",
+        "marketLabel": "Moneyline",
+        "pick": "New York Knicks",
+        "odds": -295,
+        "isEst": false,
+        "time": "2026-05-05T00:10:00Z"
+      },
+      {
+        "gameId": "219920e3a715ceb3dc69f3638f7571d5",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "San Antonio Spurs",
+        "odds": -800,
+        "isEst": false,
+        "time": "2026-05-05T01:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-03T15:04:52.150Z",
+    "startTime": "2026-05-05T00:10:00.000Z",
+    "hasEst": false
+  }
+]
