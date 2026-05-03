@@ -97,5 +97,38 @@
     "createdAt": "2026-05-03T15:06:43.958Z",
     "startTime": "2026-05-05T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mopwmiqc55t",
+    "name": "Mad Dogs",
+    "legs": [
+      {
+        "gameId": "219920e3a715ceb3dc69f3638f7571d5",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "Minnesota Timberwolves",
+        "odds": 570,
+        "isEst": false,
+        "time": "2026-05-05T01:40:00Z"
+      },
+      {
+        "gameId": "b11391b35b7a0cf79deeef3bb3eb9009",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ New York Knicks",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia 76ers",
+        "odds": 240,
+        "isEst": false,
+        "time": "2026-05-05T00:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-03T15:07:18.996Z",
+    "startTime": "2026-05-05T00:10:00.000Z",
+    "hasEst": false
   }
 ]
