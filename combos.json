@@ -262,50 +262,5 @@
     "createdAt": "2026-05-04T18:22:47.768Z",
     "startTime": "2026-05-05T23:10:00.000Z",
     "hasEst": false
-  },
-  {
-    "id": "morjg3lwodl",
-    "name": "NL Beast",
-    "legs": [
-      {
-        "gameId": "espn_401815214",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Athletics @ Philadelphia Phillies",
-        "marketLabel": "Moneyline",
-        "pick": "Philadelphia Phillies",
-        "odds": -335,
-        "isEst": true,
-        "time": "2026-05-05T22:40Z"
-      },
-      {
-        "gameId": "espn_401815224",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "New York Mets @ Colorado Rockies",
-        "marketLabel": "Moneyline",
-        "pick": "New York Mets",
-        "odds": -300,
-        "isEst": true,
-        "time": "2026-05-06T00:40Z"
-      },
-      {
-        "gameId": "espn_401815225",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Atlanta Braves @ Seattle Mariners",
-        "marketLabel": "Moneyline",
-        "pick": "Atlanta Braves",
-        "odds": -195,
-        "isEst": true,
-        "time": "2026-05-06T01:40Z"
-      }
-    ],
-    "createdAt": "2026-05-04T18:33:56.804Z",
-    "startTime": "2026-05-05T22:40:00.000Z",
-    "hasEst": true
   }
 ]
