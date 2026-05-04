@@ -310,5 +310,38 @@
     "createdAt": "2026-05-04T16:33:07.858Z",
     "startTime": "2026-05-05T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "morj1djw992",
+    "name": "Heartland Hoops",
+    "legs": [
+      {
+        "gameId": "689b4554b0b10e67f46872eb2e74b98d",
+        "market": "spreads",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Los Angeles Lakers @ Oklahoma City Thunder",
+        "marketLabel": "Spread",
+        "pick": "Oklahoma City Thunder -15.5",
+        "odds": -115,
+        "isEst": false,
+        "time": "2026-05-06T01:40:00Z"
+      },
+      {
+        "gameId": "0d7933fbc3dd3e384f9b709cff4e882c",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Cavaliers",
+        "odds": 130,
+        "isEst": false,
+        "time": "2026-05-05T23:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-04T18:22:29.852Z",
+    "startTime": "2026-05-05T23:10:00.000Z",
+    "hasEst": false
   }
 ]
