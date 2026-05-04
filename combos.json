@@ -43,5 +43,50 @@
     "createdAt": "2026-05-04T19:56:29.783Z",
     "startTime": "2026-05-05T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mormecvcl38",
+    "name": "Laser Slate",
+    "legs": [
+      {
+        "gameId": "b11391b35b7a0cf79deeef3bb3eb9009",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ New York Knicks",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia 76ers",
+        "odds": 230,
+        "isEst": false,
+        "time": "2026-05-05T00:10:00Z"
+      },
+      {
+        "gameId": "219920e3a715ceb3dc69f3638f7571d5",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "San Antonio Spurs",
+        "odds": -340,
+        "isEst": false,
+        "time": "2026-05-05T01:40:00Z"
+      },
+      {
+        "gameId": "0d7933fbc3dd3e384f9b709cff4e882c",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": -154,
+        "isEst": false,
+        "time": "2026-05-05T23:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-04T19:56:34.344Z",
+    "startTime": "2026-05-05T00:10:00.000Z",
+    "hasEst": false
   }
 ]
