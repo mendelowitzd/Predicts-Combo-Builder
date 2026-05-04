@@ -409,5 +409,38 @@
     "createdAt": "2026-05-04T18:46:27.397Z",
     "startTime": "2026-05-05T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mork53ey38u",
+    "name": "Rivals United",
+    "legs": [
+      {
+        "gameId": "espn_401815228",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ San Francisco Giants",
+        "marketLabel": "Moneyline",
+        "pick": "San Francisco Giants",
+        "odds": 165,
+        "isEst": true,
+        "time": "2026-05-06T01:45Z"
+      },
+      {
+        "gameId": "espn_401815222",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-06T00:10Z"
+      }
+    ],
+    "createdAt": "2026-05-04T18:53:22.954Z",
+    "startTime": "2026-05-06T00:10:00.000Z",
+    "hasEst": true
   }
 ]
