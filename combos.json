@@ -253,5 +253,62 @@
     "createdAt": "2026-05-04T16:31:45.792Z",
     "startTime": "2026-05-05T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "morf4qaa79i",
+    "name": "Defend the Fort",
+    "legs": [
+      {
+        "gameId": "0d7933fbc3dd3e384f9b709cff4e882c",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": -152,
+        "isEst": false,
+        "time": "2026-05-05T23:10:00Z"
+      },
+      {
+        "gameId": "0d7933fbc3dd3e384f9b709cff4e882c",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Total",
+        "pick": "Over 214.5",
+        "odds": -110,
+        "isEst": false,
+        "time": "2026-05-05T23:10:00Z"
+      },
+      {
+        "gameId": "689b4554b0b10e67f46872eb2e74b98d",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Los Angeles Lakers @ Oklahoma City Thunder",
+        "marketLabel": "Moneyline",
+        "pick": "Oklahoma City Thunder",
+        "odds": -1150,
+        "isEst": false,
+        "time": "2026-05-06T01:40:00Z"
+      },
+      {
+        "gameId": "689b4554b0b10e67f46872eb2e74b98d",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Los Angeles Lakers @ Oklahoma City Thunder",
+        "marketLabel": "Total",
+        "pick": "Over 213.5",
+        "odds": -110,
+        "isEst": false,
+        "time": "2026-05-06T01:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-04T16:33:07.858Z",
+    "startTime": "2026-05-05T23:10:00.000Z",
+    "hasEst": false
   }
 ]
