@@ -262,5 +262,50 @@
     "createdAt": "2026-05-04T18:22:47.768Z",
     "startTime": "2026-05-05T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "morjpujkgxx",
+    "name": "West Coast After Dark",
+    "legs": [
+      {
+        "gameId": "espn_401815225",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 195,
+        "isEst": true,
+        "time": "2026-05-06T01:40Z"
+      },
+      {
+        "gameId": "espn_401815227",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Pittsburgh Pirates @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-06T01:40Z"
+      },
+      {
+        "gameId": "espn_401815228",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ San Francisco Giants",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -165,
+        "isEst": true,
+        "time": "2026-05-06T01:45Z"
+      }
+    ],
+    "createdAt": "2026-05-04T18:41:31.616Z",
+    "startTime": "2026-05-06T01:40:00.000Z",
+    "hasEst": true
   }
 ]
