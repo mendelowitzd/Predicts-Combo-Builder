@@ -409,38 +409,5 @@
     "createdAt": "2026-05-04T18:33:56.804Z",
     "startTime": "2026-05-05T22:40:00.000Z",
     "hasEst": true
-  },
-  {
-    "id": "morjhqk57gn",
-    "name": "Two Cathedrals",
-    "legs": [
-      {
-        "gameId": "espn_401815216",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Boston Red Sox @ Detroit Tigers",
-        "marketLabel": "Moneyline",
-        "pick": "Boston Red Sox",
-        "odds": -130,
-        "isEst": true,
-        "time": "2026-05-05T22:40Z"
-      },
-      {
-        "gameId": "espn_401815220",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Cincinnati Reds @ Chicago Cubs",
-        "marketLabel": "Moneyline",
-        "pick": "Chicago Cubs",
-        "odds": -175,
-        "isEst": true,
-        "time": "2026-05-05T23:40Z"
-      }
-    ],
-    "createdAt": "2026-05-04T18:35:13.205Z",
-    "startTime": "2026-05-05T22:40:00.000Z",
-    "hasEst": true
   }
 ]
