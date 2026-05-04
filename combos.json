@@ -264,51 +264,6 @@
     "hasEst": false
   },
   {
-    "id": "morjcln6sk8",
-    "name": "The Power Trio",
-    "legs": [
-      {
-        "gameId": "espn_401815218",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Texas Rangers @ New York Yankees",
-        "marketLabel": "Moneyline",
-        "pick": "New York Yankees",
-        "odds": -300,
-        "isEst": true,
-        "time": "2026-05-05T23:05Z"
-      },
-      {
-        "gameId": "espn_401815222",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Los Angeles Dodgers @ Houston Astros",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Dodgers",
-        "odds": -195,
-        "isEst": true,
-        "time": "2026-05-06T00:10Z"
-      },
-      {
-        "gameId": "espn_401815224",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "New York Mets @ Colorado Rockies",
-        "marketLabel": "Moneyline",
-        "pick": "New York Mets",
-        "odds": -300,
-        "isEst": true,
-        "time": "2026-05-06T00:40Z"
-      }
-    ],
-    "createdAt": "2026-05-04T18:31:13.554Z",
-    "startTime": "2026-05-05T23:05:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "morjewy94zi",
     "name": "Just Keep Winning",
     "legs": [
