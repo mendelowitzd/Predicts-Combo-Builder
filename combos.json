@@ -97,5 +97,38 @@
     "createdAt": "2026-05-05T13:09:07.035Z",
     "startTime": "2026-05-06T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mosnb2zvc52",
+    "name": "Crying Wolf",
+    "legs": [
+      {
+        "gameId": "246001ab42d44857430f7fe63f423461",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "Minnesota Timberwolves",
+        "odds": 290,
+        "isEst": false,
+        "time": "2026-05-07T01:40:00Z"
+      },
+      {
+        "gameId": "d146e10295545e18ac8915a1f5860317",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ New York Knicks",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia 76ers",
+        "odds": 230,
+        "isEst": false,
+        "time": "2026-05-06T23:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-05T13:09:47.371Z",
+    "startTime": "2026-05-06T23:10:00.000Z",
+    "hasEst": false
   }
 ]
