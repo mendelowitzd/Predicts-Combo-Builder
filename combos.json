@@ -175,5 +175,50 @@
     "createdAt": "2026-05-05T16:36:53.783Z",
     "startTime": "2026-05-06T18:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mosvrxn06ku",
+    "name": "NL Divided & Conquered",
+    "legs": [
+      {
+        "gameId": "espn_401815240",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-06T20:10Z"
+      },
+      {
+        "gameId": "espn_401815235",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ Chicago Cubs",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -175,
+        "isEst": true,
+        "time": "2026-05-06T23:40Z"
+      },
+      {
+        "gameId": "espn_401815242",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Pittsburgh Pirates @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-07T01:40Z"
+      }
+    ],
+    "createdAt": "2026-05-05T17:06:50.508Z",
+    "startTime": "2026-05-06T20:10:00.000Z",
+    "hasEst": true
   }
 ]
