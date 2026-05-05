@@ -64,5 +64,38 @@
     "createdAt": "2026-05-05T13:08:16.920Z",
     "startTime": "2026-05-06T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mosna7vf2y9",
+    "name": "Gridlock & Growl",
+    "legs": [
+      {
+        "gameId": "d146e10295545e18ac8915a1f5860317",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Philadelphia 76ers @ New York Knicks",
+        "marketLabel": "Moneyline",
+        "pick": "New York Knicks",
+        "odds": -280,
+        "isEst": false,
+        "time": "2026-05-06T23:10:00Z"
+      },
+      {
+        "gameId": "246001ab42d44857430f7fe63f423461",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "Minnesota Timberwolves",
+        "odds": 290,
+        "isEst": false,
+        "time": "2026-05-07T01:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-05T13:09:07.035Z",
+    "startTime": "2026-05-06T23:10:00.000Z",
+    "hasEst": false
   }
 ]
