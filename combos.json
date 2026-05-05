@@ -175,5 +175,50 @@
     "createdAt": "2026-05-05T16:36:53.783Z",
     "startTime": "2026-05-06T18:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mosv244qv34",
+    "name": "Three Skylines",
+    "legs": [
+      {
+        "gameId": "espn_401815237",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-06T18:10Z"
+      },
+      {
+        "gameId": "espn_401815235",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ Chicago Cubs",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -175,
+        "isEst": true,
+        "time": "2026-05-06T23:40Z"
+      },
+      {
+        "gameId": "espn_401815239",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-07T01:20Z"
+      }
+    ],
+    "createdAt": "2026-05-05T16:46:45.866Z",
+    "startTime": "2026-05-06T18:10:00.000Z",
+    "hasEst": true
   }
 ]
