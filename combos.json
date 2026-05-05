@@ -220,5 +220,38 @@
     "createdAt": "2026-05-05T17:06:50.508Z",
     "startTime": "2026-05-06T20:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mosvu2eqktn",
+    "name": "Curse Breakers",
+    "legs": [
+      {
+        "gameId": "espn_401815231",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Detroit Tigers",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": -130,
+        "isEst": true,
+        "time": "2026-05-06T22:40Z"
+      },
+      {
+        "gameId": "espn_401815235",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ Chicago Cubs",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -175,
+        "isEst": true,
+        "time": "2026-05-06T23:40Z"
+      }
+    ],
+    "createdAt": "2026-05-05T17:08:30.002Z",
+    "startTime": "2026-05-06T22:40:00.000Z",
+    "hasEst": true
   }
 ]
