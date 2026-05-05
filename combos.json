@@ -253,5 +253,50 @@
     "createdAt": "2026-05-05T17:08:30.002Z",
     "startTime": "2026-05-06T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mosvvxg06a9",
+    "name": "Steel, Concrete & Sand",
+    "legs": [
+      {
+        "gameId": "espn_401815236",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Cleveland Guardians @ Kansas City Royals",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Guardians",
+        "odds": -130,
+        "isEst": true,
+        "time": "2026-05-06T23:40Z"
+      },
+      {
+        "gameId": "espn_401815239",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-07T01:20Z"
+      },
+      {
+        "gameId": "espn_401815242",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Pittsburgh Pirates @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-07T01:40Z"
+      }
+    ],
+    "createdAt": "2026-05-05T17:09:56.880Z",
+    "startTime": "2026-05-06T23:40:00.000Z",
+    "hasEst": true
   }
 ]
