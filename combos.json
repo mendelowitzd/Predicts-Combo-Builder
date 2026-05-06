@@ -520,5 +520,50 @@
     "createdAt": "2026-05-06T17:21:25.733Z",
     "startTime": "2026-05-07T18:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "moubv0127hr",
+    "name": "The I-95 Triple",
+    "legs": [
+      {
+        "gameId": "espn_401815244",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Athletics @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -335,
+        "isEst": true,
+        "time": "2026-05-07T22:40Z"
+      },
+      {
+        "gameId": "espn_401815245",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Baltimore Orioles @ Miami Marlins",
+        "marketLabel": "Moneyline",
+        "pick": "Baltimore Orioles",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-07T22:40Z"
+      },
+      {
+        "gameId": "espn_401815247",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Tampa Bay Rays @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-07T23:00Z"
+      }
+    ],
+    "createdAt": "2026-05-06T17:24:53.606Z",
+    "startTime": "2026-05-07T22:40:00.000Z",
+    "hasEst": true
   }
 ]
