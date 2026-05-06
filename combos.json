@@ -430,5 +430,62 @@
     "createdAt": "2026-05-06T16:43:25.583Z",
     "startTime": "2026-05-07T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "moubjp5oij6",
+    "name": "The American Tour",
+    "legs": [
+      {
+        "gameId": "espn_401815248",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Texas Rangers @ New York Yankees",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-07T16:35Z"
+      },
+      {
+        "gameId": "espn_401815250",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Cleveland Guardians @ Kansas City Royals",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Guardians",
+        "odds": -130,
+        "isEst": true,
+        "time": "2026-05-07T18:10Z"
+      },
+      {
+        "gameId": "espn_401815251",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Pittsburgh Pirates @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-07T19:40Z"
+      },
+      {
+        "gameId": "espn_401815252",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "St. Louis Cardinals @ San Diego Padres",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-08T02:00Z"
+      }
+    ],
+    "createdAt": "2026-05-06T17:16:06.300Z",
+    "startTime": "2026-05-07T16:35:00.000Z",
+    "hasEst": true
   }
 ]
