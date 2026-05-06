@@ -565,5 +565,50 @@
     "createdAt": "2026-05-06T17:24:53.606Z",
     "startTime": "2026-05-07T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "moubxhxokcb",
+    "name": "Atlantic to the Pacific",
+    "legs": [
+      {
+        "gameId": "espn_401815244",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Athletics @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -335,
+        "isEst": true,
+        "time": "2026-05-07T22:40Z"
+      },
+      {
+        "gameId": "espn_401815247",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Tampa Bay Rays @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-07T23:00Z"
+      },
+      {
+        "gameId": "espn_401815252",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "St. Louis Cardinals @ San Diego Padres",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-08T02:00Z"
+      }
+    ],
+    "createdAt": "2026-05-06T17:26:50.125Z",
+    "startTime": "2026-05-07T22:40:00.000Z",
+    "hasEst": true
   }
 ]
