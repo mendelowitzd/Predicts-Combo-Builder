@@ -709,5 +709,38 @@
     "createdAt": "2026-05-07T15:42:18.936Z",
     "startTime": "2026-05-08T23:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "movnnd46u8i",
+    "name": "Home Court Holds",
+    "legs": [
+      {
+        "gameId": "30d614c5d781b768faf9cf885e890851",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "New York Knicks @ Philadelphia 76ers",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia 76ers",
+        "odds": -112,
+        "isEst": false,
+        "time": "2026-05-08T23:10:00Z"
+      },
+      {
+        "gameId": "1b5c084f510006e8f30cd6cac40e231d",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "San Antonio Spurs @ Minnesota Timberwolves",
+        "marketLabel": "Moneyline",
+        "pick": "Minnesota Timberwolves",
+        "odds": 154,
+        "isEst": false,
+        "time": "2026-05-09T01:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-07T15:42:38.886Z",
+    "startTime": "2026-05-08T23:10:00.000Z",
+    "hasEst": false
   }
 ]
