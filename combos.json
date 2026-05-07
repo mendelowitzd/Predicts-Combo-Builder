@@ -844,5 +844,62 @@
     "createdAt": "2026-05-07T15:52:45.896Z",
     "startTime": "2026-05-09T01:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movo66vli6n",
+    "name": "Four Deep Pockets",
+    "legs": [
+      {
+        "gameId": "espn_401815255",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -725,
+        "isEst": true,
+        "time": "2026-05-08T22:40Z"
+      },
+      {
+        "gameId": "espn_401815262",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-08T23:40Z"
+      },
+      {
+        "gameId": "espn_401815265",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -100,
+        "isEst": true,
+        "time": "2026-05-09T01:40Z"
+      },
+      {
+        "gameId": "espn_401815264",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-09T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T15:57:17.265Z",
+    "startTime": "2026-05-08T22:40:00.000Z",
+    "hasEst": true
   }
 ]
