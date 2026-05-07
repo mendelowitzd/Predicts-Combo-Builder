@@ -196,5 +196,38 @@
     "createdAt": "2026-05-07T21:15:23.861Z",
     "startTime": "2026-05-10T19:30:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movzli2pl6y",
+    "name": "Spur of the Moment",
+    "legs": [
+      {
+        "gameId": "espn_401871155",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "San Antonio Spurs @ Minnesota Timberwolves",
+        "marketLabel": "Moneyline",
+        "pick": "San Antonio Spurs",
+        "odds": 480,
+        "isEst": true,
+        "time": "2026-05-10T23:30Z"
+      },
+      {
+        "gameId": "espn_401871155",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "San Antonio Spurs @ Minnesota Timberwolves",
+        "marketLabel": "Total",
+        "pick": "Over 225.5",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-10T23:30Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:17:07.393Z",
+    "startTime": "2026-05-10T23:30:00.000Z",
+    "hasEst": true
   }
 ]
