@@ -295,5 +295,38 @@
     "createdAt": "2026-05-07T21:20:41.489Z",
     "startTime": "2026-05-12T00:00:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movzr78o2as",
+    "name": "The Odd Couple",
+    "legs": [
+      {
+        "gameId": "espn_401871336",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Detroit Pistons @ Cleveland Cavaliers",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": 565,
+        "isEst": true,
+        "time": "2026-05-12T00:00Z"
+      },
+      {
+        "gameId": "espn_401871329",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Lakers",
+        "odds": 210,
+        "isEst": true,
+        "time": "2026-05-12T02:30Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:21:33.288Z",
+    "startTime": "2026-05-12T00:00:00.000Z",
+    "hasEst": true
   }
 ]
