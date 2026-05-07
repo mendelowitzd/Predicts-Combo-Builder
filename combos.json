@@ -394,5 +394,50 @@
     "createdAt": "2026-05-07T21:29:39.029Z",
     "startTime": "2026-05-12T00:00:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow0ake08zd",
+    "name": "Wide Awake",
+    "legs": [
+      {
+        "gameId": "espn_401815277",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-09T23:10Z"
+      },
+      {
+        "gameId": "espn_401815278",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Seattle Mariners @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-09T23:10Z"
+      },
+      {
+        "gameId": "espn_401815280",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -100,
+        "isEst": true,
+        "time": "2026-05-09T23:15Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:36:36.792Z",
+    "startTime": "2026-05-09T23:10:00.000Z",
+    "hasEst": true
   }
 ]
