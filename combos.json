@@ -163,5 +163,38 @@
     "createdAt": "2026-05-07T21:12:36.931Z",
     "startTime": "2026-05-10T19:30:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movzja6tq2x",
+    "name": "Uninvited Guests",
+    "legs": [
+      {
+        "gameId": "espn_401871162",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "New York Knicks @ Philadelphia 76ers",
+        "marketLabel": "Moneyline",
+        "pick": "New York Knicks",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-10T19:30Z"
+      },
+      {
+        "gameId": "espn_401871155",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "San Antonio Spurs @ Minnesota Timberwolves",
+        "marketLabel": "Moneyline",
+        "pick": "San Antonio Spurs",
+        "odds": 480,
+        "isEst": true,
+        "time": "2026-05-10T23:30Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:15:23.861Z",
+    "startTime": "2026-05-10T19:30:00.000Z",
+    "hasEst": true
   }
 ]
