@@ -31,5 +31,38 @@
     "createdAt": "2026-05-07T21:04:23.739Z",
     "startTime": "2026-05-09T19:00:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movz63i8hqs",
+    "name": "Crash the Party",
+    "legs": [
+      {
+        "gameId": "espn_401871335",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Detroit Pistons @ Cleveland Cavaliers",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": 565,
+        "isEst": true,
+        "time": "2026-05-09T19:00Z"
+      },
+      {
+        "gameId": "espn_401871328",
+        "market": "spreads",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Spread",
+        "pick": "Oklahoma City Thunder -3",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-10T00:30Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:05:08.672Z",
+    "startTime": "2026-05-09T19:00:00.000Z",
+    "hasEst": true
   }
 ]
