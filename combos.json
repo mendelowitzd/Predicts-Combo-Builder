@@ -64,5 +64,38 @@
     "createdAt": "2026-05-07T21:05:08.672Z",
     "startTime": "2026-05-09T19:00:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movz7ijoirx",
+    "name": "The Gold Standard",
+    "legs": [
+      {
+        "gameId": "espn_401871328",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Lakers",
+        "odds": 210,
+        "isEst": true,
+        "time": "2026-05-10T00:30Z"
+      },
+      {
+        "gameId": "espn_401871328",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Total",
+        "pick": "Over 223",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-10T00:30Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:06:14.820Z",
+    "startTime": "2026-05-10T00:30:00.000Z",
+    "hasEst": true
   }
 ]
