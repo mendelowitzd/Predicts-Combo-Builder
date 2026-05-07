@@ -529,5 +529,50 @@
     "createdAt": "2026-05-07T21:42:04.975Z",
     "startTime": "2026-05-09T20:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow0ni0vlye",
+    "name": "Three Storied Cities",
+    "legs": [
+      {
+        "gameId": "espn_401815270",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -725,
+        "isEst": true,
+        "time": "2026-05-09T22:05Z"
+      },
+      {
+        "gameId": "espn_401815275",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": 165,
+        "isEst": true,
+        "time": "2026-05-09T23:05Z"
+      },
+      {
+        "gameId": "espn_401815277",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-09T23:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:46:40.255Z",
+    "startTime": "2026-05-09T22:05:00.000Z",
+    "hasEst": true
   }
 ]
