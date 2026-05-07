@@ -733,5 +733,38 @@
     "createdAt": "2026-05-07T22:10:07.294Z",
     "startTime": "2026-05-10T20:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow1lc1l8av",
+    "name": "The Apple & The Peach",
+    "legs": [
+      {
+        "gameId": "espn_401815295",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -100,
+        "isEst": true,
+        "time": "2026-05-10T20:10Z"
+      },
+      {
+        "gameId": "espn_401815294",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": 205,
+        "isEst": true,
+        "time": "2026-05-10T20:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T22:12:58.809Z",
+    "startTime": "2026-05-10T20:10:00.000Z",
+    "hasEst": true
   }
 ]
