@@ -901,5 +901,38 @@
     "createdAt": "2026-05-07T22:23:29.076Z",
     "startTime": "2026-05-11T22:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow25tehx7x",
+    "name": "Sidewalks & Snakes",
+    "legs": [
+      {
+        "gameId": "espn_401815299",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-11T22:35Z"
+      },
+      {
+        "gameId": "espn_401815301",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Arizona Diamondbacks @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": 140,
+        "isEst": true,
+        "time": "2026-05-12T00:05Z"
+      }
+    ],
+    "createdAt": "2026-05-07T22:28:54.425Z",
+    "startTime": "2026-05-11T22:35:00.000Z",
+    "hasEst": true
   }
 ]
