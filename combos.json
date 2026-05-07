@@ -856,5 +856,50 @@
     "createdAt": "2026-05-07T22:17:37.793Z",
     "startTime": "2026-05-12T00:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow1yud0z3c",
+    "name": "Shoot for the Stars",
+    "legs": [
+      {
+        "gameId": "espn_401815299",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-11T22:35Z"
+      },
+      {
+        "gameId": "espn_401815302",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Seattle Mariners @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Houston Astros",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-12T00:10Z"
+      },
+      {
+        "gameId": "espn_401815303",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -615,
+        "isEst": true,
+        "time": "2026-05-12T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T22:23:29.076Z",
+    "startTime": "2026-05-11T22:35:00.000Z",
+    "hasEst": true
   }
 ]
