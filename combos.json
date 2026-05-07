@@ -97,5 +97,38 @@
     "createdAt": "2026-05-07T21:06:14.820Z",
     "startTime": "2026-05-10T00:30:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movz7slp7fv",
+    "name": "The Storm Rolls In",
+    "legs": [
+      {
+        "gameId": "espn_401871328",
+        "market": "spreads",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Spread",
+        "pick": "Oklahoma City Thunder -3",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-10T00:30Z"
+      },
+      {
+        "gameId": "espn_401871328",
+        "market": "totals",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Total",
+        "pick": "Under 223",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-10T00:30Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:06:27.853Z",
+    "startTime": "2026-05-10T00:30:00.000Z",
+    "hasEst": true
   }
 ]
