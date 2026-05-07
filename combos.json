@@ -472,5 +472,62 @@
     "createdAt": "2026-05-07T21:38:14.558Z",
     "startTime": "2026-05-10T01:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow0hlm7xwz",
+    "name": "Root for the Home Team",
+    "legs": [
+      {
+        "gameId": "espn_401815269",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Athletics @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "Baltimore Orioles",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-09T20:05Z"
+      },
+      {
+        "gameId": "espn_401815270",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -725,
+        "isEst": true,
+        "time": "2026-05-09T22:05Z"
+      },
+      {
+        "gameId": "espn_401815282",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "St. Louis Cardinals @ San Diego Padres",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-09T23:15Z"
+      },
+      {
+        "gameId": "espn_401815279",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-10T01:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:42:04.975Z",
+    "startTime": "2026-05-09T20:05:00.000Z",
+    "hasEst": true
   }
 ]
