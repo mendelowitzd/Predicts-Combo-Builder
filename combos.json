@@ -901,5 +901,38 @@
     "createdAt": "2026-05-07T15:57:17.265Z",
     "startTime": "2026-05-08T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "movohn2dns6",
+    "name": "Rain & Wind",
+    "legs": [
+      {
+        "gameId": "espn_401815263",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Seattle Mariners @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-08T23:40Z"
+      },
+      {
+        "gameId": "espn_401815260",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": 165,
+        "isEst": true,
+        "time": "2026-05-09T00:05Z"
+      }
+    ],
+    "createdAt": "2026-05-07T16:06:11.461Z",
+    "startTime": "2026-05-08T23:40:00.000Z",
+    "hasEst": true
   }
 ]
