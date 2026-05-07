@@ -574,5 +574,62 @@
     "createdAt": "2026-05-07T21:46:40.255Z",
     "startTime": "2026-05-09T22:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow0tceedgl",
+    "name": "East Coast Matinee",
+    "legs": [
+      {
+        "gameId": "espn_401815284",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Athletics @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "Baltimore Orioles",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-10T17:35Z"
+      },
+      {
+        "gameId": "espn_401815285",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -725,
+        "isEst": true,
+        "time": "2026-05-10T17:35Z"
+      },
+      {
+        "gameId": "espn_401815288",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Tampa Bay Rays @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-10T17:35Z"
+      },
+      {
+        "gameId": "espn_401815292",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-10T18:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:51:12.902Z",
+    "startTime": "2026-05-10T17:35:00.000Z",
+    "hasEst": true
   }
 ]
