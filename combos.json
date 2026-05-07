@@ -631,5 +631,62 @@
     "createdAt": "2026-05-07T21:51:12.902Z",
     "startTime": "2026-05-10T17:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mow12ipzym1",
+    "name": "Bleed Blue",
+    "legs": [
+      {
+        "gameId": "espn_401815292",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-10T18:10Z"
+      },
+      {
+        "gameId": "espn_401815290",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": 165,
+        "isEst": true,
+        "time": "2026-05-10T18:35Z"
+      },
+      {
+        "gameId": "espn_401815294",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-10T20:10Z"
+      },
+      {
+        "gameId": "espn_401815295",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -100,
+        "isEst": true,
+        "time": "2026-05-10T20:10Z"
+      }
+    ],
+    "createdAt": "2026-05-07T21:58:20.999Z",
+    "startTime": "2026-05-10T18:10:00.000Z",
+    "hasEst": true
   }
 ]
