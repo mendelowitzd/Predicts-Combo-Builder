@@ -31,5 +31,38 @@
     "createdAt": "2026-05-11T16:41:19.109Z",
     "startTime": "2026-05-13T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mp1fjsuvzua",
+    "name": "The Alamo Holds",
+    "legs": [
+      {
+        "gameId": "09800f9101b348d4a66742a3d8888b82",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "San Antonio Spurs",
+        "odds": -420,
+        "isEst": false,
+        "time": "2026-05-13T00:10:00Z"
+      },
+      {
+        "gameId": "09800f9101b348d4a66742a3d8888b82",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Total",
+        "pick": "Over 218.5",
+        "odds": -110,
+        "isEst": false,
+        "time": "2026-05-13T00:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-11T16:42:32.791Z",
+    "startTime": "2026-05-13T00:10:00.000Z",
+    "hasEst": false
   }
 ]
