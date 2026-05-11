@@ -232,5 +232,50 @@
     "createdAt": "2026-05-11T17:13:21.061Z",
     "startTime": "2026-05-13T00:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp1i7jt72nr",
+    "name": "Icons on Tour",
+    "legs": [
+      {
+        "gameId": "espn_401815308",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-12T22:35Z"
+      },
+      {
+        "gameId": "espn_401815309",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Philadelphia Phillies @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -145,
+        "isEst": true,
+        "time": "2026-05-12T22:45Z"
+      },
+      {
+        "gameId": "espn_401815305",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": 315,
+        "isEst": true,
+        "time": "2026-05-12T23:15Z"
+      }
+    ],
+    "createdAt": "2026-05-11T17:57:00.043Z",
+    "startTime": "2026-05-12T22:35:00.000Z",
+    "hasEst": true
   }
 ]
