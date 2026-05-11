@@ -97,5 +97,38 @@
     "createdAt": "2026-05-11T16:43:17.607Z",
     "startTime": "2026-05-13T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mp1fn6ih3hu",
+    "name": "Wolves Stay in the Hunt",
+    "legs": [
+      {
+        "gameId": "09800f9101b348d4a66742a3d8888b82",
+        "market": "spreads",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Spread",
+        "pick": "Minnesota Timberwolves +10.5",
+        "odds": -118,
+        "isEst": false,
+        "time": "2026-05-13T00:10:00Z"
+      },
+      {
+        "gameId": "09800f9101b348d4a66742a3d8888b82",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Total",
+        "pick": "Over 218.5",
+        "odds": -110,
+        "isEst": false,
+        "time": "2026-05-13T00:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-11T16:45:10.457Z",
+    "startTime": "2026-05-13T00:10:00.000Z",
+    "hasEst": false
   }
 ]
