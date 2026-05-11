@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "id": "mp1fi805vqn",
+    "name": "Full Moon in San Antonio",
+    "legs": [
+      {
+        "gameId": "09800f9101b348d4a66742a3d8888b82",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "Minnesota Timberwolves",
+        "odds": 330,
+        "isEst": false,
+        "time": "2026-05-13T00:10:00Z"
+      },
+      {
+        "gameId": "09800f9101b348d4a66742a3d8888b82",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Minnesota Timberwolves @ San Antonio Spurs",
+        "marketLabel": "Total",
+        "pick": "Over 218.5",
+        "odds": -110,
+        "isEst": false,
+        "time": "2026-05-13T00:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-11T16:41:19.109Z",
+    "startTime": "2026-05-13T00:10:00.000Z",
+    "hasEst": false
+  }
+]
