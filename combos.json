@@ -277,5 +277,50 @@
     "createdAt": "2026-05-11T17:57:00.043Z",
     "startTime": "2026-05-12T22:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp1i84i3erf",
+    "name": "Pinstripes, Peach & The Pacific",
+    "legs": [
+      {
+        "gameId": "espn_401815308",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-12T22:35Z"
+      },
+      {
+        "gameId": "espn_401815305",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -315,
+        "isEst": true,
+        "time": "2026-05-12T23:15Z"
+      },
+      {
+        "gameId": "espn_401815315",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-12T23:40Z"
+      }
+    ],
+    "createdAt": "2026-05-11T17:57:26.859Z",
+    "startTime": "2026-05-12T22:35:00.000Z",
+    "hasEst": true
   }
 ]
