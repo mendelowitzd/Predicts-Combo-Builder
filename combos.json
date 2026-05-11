@@ -64,5 +64,38 @@
     "createdAt": "2026-05-11T21:26:07.691Z",
     "startTime": "2026-05-12T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mp1pom2nb1v",
+    "name": "test 3",
+    "legs": [
+      {
+        "gameId": "b537062ee0483d20ae932052628b663d",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Detroit Pistons @ Cleveland Cavaliers",
+        "marketLabel": "Total",
+        "pick": "Over 213.5",
+        "odds": -106,
+        "isEst": false,
+        "time": "2026-05-12T00:10:00Z"
+      },
+      {
+        "gameId": "0db68bfa022e22873f48b8539addd5ae",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
+        "marketLabel": "Moneyline",
+        "pick": "Oklahoma City Thunder",
+        "odds": -590,
+        "isEst": false,
+        "time": "2026-05-12T02:40:00Z"
+      }
+    ],
+    "createdAt": "2026-05-11T21:26:13.439Z",
+    "startTime": "2026-05-12T00:10:00.000Z",
+    "hasEst": false
   }
 ]
