@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FD Predicts — Combo Builder</title>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;display:flex;flex-direction:column}
+a{color:#58a6ff}button{cursor:pointer;font-family:inherit}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#0d1117}::-webkit-scrollbar-thumb{background:#30363d;border-radius:3px}
+.btn{padding:7px 14px;border:none;border-radius:7px;font-size:12px;font-weight:600;transition:all .15s;white-space:nowrap}
+.btn-sm{padding:4px 9px;font-size:11px;border-radius:5px}.btn-xs{padding:3px 7px;font-size:10px;border-radius:4px}
+.btn-ghost{background:transparent;color:#8b949e;border:1px solid #30363d}.btn-ghost:hover{background:#21262d;color:#e6edf3}
+.btn-green{background:#00c853;color:#000}.btn-green:hover{background:#00e060}
+.btn-green:disabled{background:#1a3d26;color:#3a5a3a;cursor:not-allowed}
+.btn-red{background:#da3633;color:#fff}.btn-red:hover{background:#f85149}
+.btn-blue{background:#1f6feb;color:#fff}.btn-blue:hover{background:#388bfd}
+.btn-amber{background:#d97706;color:#fff}.btn-amber:hover{background:#f59e0b}
+.hdr{background:#161b22;border-bottom:1px solid #30363d;padding:10px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap}
+.logo{background:#00c853;color:#000;font-weight:900;font-size:13px;padding:3px 9px;border-radius:5px;letter-spacing:.5px}
+.hdr-title{font-size:17px;font-weight:800;flex:1;letter-spacing:-.2px}
+.hdr-btns{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.sync-pill{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;border:1px solid #30363d;color:#8b949e;background:#1c2130;transition:all .3s;flex-shrink:0}
+.sync-pill.live{border-color:#00c85344;color:#00c853;background:#0d2a1844}
+.sync-pill.syncing{border-color:#1f6feb44;color:#388bfd;background:#0d1f3544}
+.sync-pill.error{border-color:#da363344;color:#f85149;background:#2a0d0d44}
+.sync-pill.offline{border-color:#d9770644;color:#f59e0b;background:#2a1a0044}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.sync-pill.live .sync-dot{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.tabs{display:flex;background:#161b22;border-bottom:1px solid #30363d;flex-shrink:0}
+.tab{flex:1;padding:11px 8px;border:none;background:transparent;color:#8b949e;font-size:13px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:7px}
+.tab:hover{color:#e6edf3;background:rgba(255,255,255,.04)}
+.tab.nba.active{color:#e03a3e;border-bottom-color:#e03a3e}.tab.mlb.active{color:#4fa3e0;border-bottom-color:#4fa3e0}.tab.nhl.active{color:#6ebbf5;border-bottom-color:#6ebbf5}
+.tab-pip{width:7px;height:7px;border-radius:50%}.nba .tab-pip{background:#e03a3e}.mlb .tab-pip{background:#4fa3e0}.nhl .tab-pip{background:#6ebbf5}
+.data-bar{background:#111827;border-bottom:1px solid #1e2a42;padding:5px 18px;display:flex;align-items:center;gap:9px;font-size:11px;flex-shrink:0}
+.db-pip{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:background .3s}
+.pip-live{background:#00c853;box-shadow:0 0 5px #00c853}.pip-partial{background:#d97706}.pip-demo{background:#484f58}
+.db-text{color:#8b949e;flex:1}.db-text strong{color:#e6edf3}.db-remain{color:#484f58;font-size:10px;margin-left:auto}
+.main{display:flex;flex:1;overflow:hidden}
+.games-col{flex:1;overflow-y:auto;border-right:1px solid #30363d;padding:14px 14px 24px}
+.right-col{width:375px;display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+.games-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.games-toolbar h3{font-size:12px;font-weight:700;color:#8b949e;text-transform:uppercase;letter-spacing:.6px;flex:1}
+.future-tog{display:flex;align-items:center;gap:5px;font-size:11px;color:#8b949e;cursor:pointer;user-select:none}
+.future-tog input{accent-color:#a371f7;cursor:pointer}.future-tog:hover{color:#e6edf3}
+.day-hdr{font-size:11px;font-weight:700;color:#8b949e;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 7px;padding-bottom:5px;border-bottom:1px solid #21262d}
+.day-hdr:first-child{margin-top:0}
+.game-card{background:#161b22;border:1px solid #30363d;border-radius:9px;margin-bottom:10px;overflow:hidden;transition:border-color .15s}
+.game-card:hover{border-color:#484f58}.game-card.est{border-color:#3d2f6e;background:#100e1e}
+.gc-head{padding:10px 13px;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.game-card.est .gc-head{border-bottom-color:#3d2f6e}
+.matchup{font-size:13px;font-weight:700;flex:1;min-width:0}
+.gc-meta{display:flex;align-items:center;gap:6px;flex-shrink:0}.gc-time{font-size:11px;color:#8b949e}
+.est-badge{font-size:9px;font-weight:700;background:#231a44;color:#a371f7;padding:2px 6px;border-radius:3px;letter-spacing:.4px}
+.markets{padding:9px 13px;display:flex;flex-direction:column;gap:7px}
+.mkt-row{display:flex;align-items:center;gap:7px}
+.mkt-label{font-size:10px;font-weight:700;text-transform:uppercase;color:#8b949e;width:62px;flex-shrink:0}
+.odds-row{display:flex;gap:5px;flex:1}
+.ob{flex:1;min-width:0;padding:6px 5px;border-radius:6px;border:1px solid #30363d;background:#1c2130;color:#e6edf3;font-size:11px;font-weight:600;text-align:center;transition:all .15s;line-height:1.3}
+.ob:hover{border-color:#388bfd;background:#1a2440}.ob.picked{border-color:#00c853;background:#0d2a18;color:#00c853}.ob.other{opacity:.35}
+.game-card.est .ob{border-color:#2d2348;background:#160f2a}.game-card.est .ob:hover{border-color:#a371f7;background:#1e1540}
+.game-card.est .ob.picked{border-color:#a371f7;background:#231a44;color:#a371f7}
+.ob-name{font-size:10px;font-weight:700;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ob-line{font-size:10px;color:#8b949e;display:block}.ob-odds{font-size:12px;font-weight:800;display:block}.ob-est{font-size:9px;color:#6d57a8;display:block}
+.pos{color:#00c853}.neg{color:#d97706}.pos-est{color:#a371f7}.neg-est{color:#8a6dbf}
+.est-note{font-size:10px;color:#6d57a8;background:#100e1e;border:1px solid #3d2f6e;border-radius:6px;padding:6px 10px;margin-bottom:12px;line-height:1.5}
+.loading-msg{color:#8b949e;font-size:12px;text-align:center;padding:32px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.no-games{text-align:center;padding:40px 20px;color:#8b949e}.no-games .icon{font-size:36px;margin-bottom:10px}
+.builder{flex:0 0 auto;border-bottom:1px solid #30363d;padding:13px 14px}
+.panel-title{font-size:12px;font-weight:700;color:#8b949e;text-transform:uppercase;letter-spacing:.6px;margin-bottom:11px}
+.combo-input{width:100%;padding:8px 11px;background:#21262d;border:1px solid #30363d;border-radius:7px;color:#e6edf3;font-size:13px;margin-bottom:9px;font-family:inherit}
+.combo-input:focus{outline:none;border-color:#388bfd}.combo-input::placeholder{color:#484f58}
+.legs-wrap{min-height:44px;max-height:188px;overflow-y:auto;margin-bottom:9px}
+.leg{display:flex;align-items:center;gap:7px;padding:5px 7px;background:#1c2130;border-radius:6px;margin-bottom:4px;font-size:11px}
+.leg.est-leg{background:#160f2a}
+.sport-tag{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0}
+.tag-nba{background:#3a1515;color:#e03a3e}.tag-mlb{background:#0d1f35;color:#4fa3e0}.tag-nhl{background:#0d1f2e;color:#6ebbf5}
+.est-tag{background:#231a44;color:#a371f7;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0}
+.leg-info{flex:1;min-width:0}
+.leg-pick{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.leg-sub{color:#8b949e;display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.leg-del{background:none;border:none;color:#8b949e;font-size:15px;padding:0 2px;flex-shrink:0;line-height:1}
+.leg-del:hover{color:#f85149}
+.empty-legs{color:#8b949e;font-size:12px;text-align:center;padding:12px 0;font-style:italic}
+.builder-foot{display:flex;align-items:center;gap:7px}
+.leg-count{font-size:11px;color:#8b949e;flex:1}.leg-count.ok{color:#00c853}
+.saved-col{flex:1;overflow-y:auto;padding:13px 14px}
+.saved-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.saved-badge{background:#21262d;color:#8b949e;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.ci{background:#161b22;border:1px solid #30363d;border-radius:8px;margin-bottom:9px;overflow:hidden}
+.ci-head{display:flex;align-items:center;gap:8px;padding:9px 11px;cursor:pointer}.ci-head:hover{background:#1c2130}
+.ci-arrow{color:#8b949e;font-size:11px;transition:transform .15s;flex-shrink:0}.ci.open .ci-arrow{transform:rotate(90deg)}
+.ci-name{font-size:13px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-n{background:#21262d;color:#8b949e;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0}
+.ci-est{background:#231a44;color:#a371f7;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0}
+.ci-body{display:none;padding:0 11px 9px;border-top:1px solid #30363d}.ci.open .ci-body{display:block}
+.ci-date{font-size:10px;color:#8b949e;padding:6px 0 5px}
+.ci-leg{display:flex;align-items:center;gap:5px;padding:4px 0;font-size:11px;border-bottom:1px solid #21262d}
+.ci-leg:last-child{border-bottom:none}
+.ci-num{color:#8b949e;width:15px;flex-shrink:0}.ci-pick{font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-mkt{color:#8b949e;font-size:10px;flex-shrink:0}
+.suggest-wrap{margin-bottom:9px;padding:8px 9px;background:#0d1117;border:1px solid #2d1f52;border-radius:7px}
+.suggest-label{font-size:10px;color:#6d57a8;font-weight:700;letter-spacing:.4px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.suggest-pills{display:flex;flex-wrap:wrap;gap:4px}
+.s-pill{padding:4px 10px;background:#1c2130;border:1px solid #3d2f6e;border-radius:14px;font-size:11px;color:#c9b1ff;cursor:pointer;transition:all .15s;line-height:1.4}
+.s-pill:hover{background:#2d1f52;border-color:#a371f7;color:#e6d5ff}
+.btn-more{background:none;border:none;color:#6d57a8;font-size:10px;cursor:pointer;padding:0;font-weight:700;white-space:nowrap}
+.btn-more:hover{color:#a371f7}
+.clear-all-btn{background:none;border:1px solid #30363d;border-radius:5px;color:#8b949e;font-size:10px;padding:2px 8px;cursor:pointer;font-family:inherit}
+.clear-all-btn:hover{border-color:#f85149;color:#f85149}
+.no-combos{color:#8b949e;font-size:12px;text-align:center;padding:24px 0;font-style:italic}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:200;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:22px;width:100%;max-height:92vh;overflow-y:auto}
+.modal-sm{max-width:400px}.modal-md{max-width:500px}
+.modal h2{font-size:16px;font-weight:800;margin-bottom:5px;letter-spacing:-.2px}
+.modal-sub{font-size:12px;color:#8b949e;margin-bottom:18px;line-height:1.6}
+.form-label{display:block;font-size:12px;color:#8b949e;margin-bottom:5px;font-weight:600}
+.form-input{width:100%;padding:9px 11px;background:#21262d;border:1px solid #30363d;border-radius:7px;color:#e6edf3;font-size:13px;margin-bottom:14px;font-family:inherit}
+.form-input:focus{outline:none;border-color:#388bfd}.form-input::placeholder{color:#484f58}
+select.form-input{cursor:pointer}
+.form-hint{font-size:11px;color:#8b949e;margin-top:-10px;margin-bottom:14px;line-height:1.6}
+.modal-foot{display:flex;gap:9px;justify-content:flex-end;margin-top:6px}
+.divider{height:1px;background:#30363d;margin:16px 0}
+.gh-error-banner{background:#2a0d0d;border:1px solid #da363366;border-radius:8px;padding:14px 16px;margin-bottom:0;font-size:12px;line-height:1.7;color:#f0a0a0}
+.gh-error-banner strong{color:#f85149;display:block;margin-bottom:4px;font-size:13px}
+.gh-error-banner code{background:#1a0808;padding:2px 6px;border-radius:3px;font-size:11px;color:#fca5a5}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid #30363d;border-top-color:#388bfd;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#1c2130;border:1px solid #30363d;color:#e6edf3;font-size:12px;font-weight:600;padding:9px 18px;border-radius:24px;z-index:500;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="logo">FD</div>
+  <div class="hdr-title">Predicts Combo Builder</div>
+  <div class="hdr-btns">
+    <div class="sync-pill" id="sync-pill"><span class="sync-dot"></span><span id="sync-label">Connecting…</span></div>
+    <button class="btn btn-amber btn-sm" id="refresh-btn" onclick="App.refresh()">↻ Refresh Odds</button>
+    <button class="btn btn-ghost btn-sm" onclick="App.openSettings()">⚙ Settings</button>
+    <button class="btn btn-blue btn-sm" onclick="App.exportExcel()">📊 Export Excel</button>
+  </div>
+</div>
+<div class="tabs">
+  <button class="tab nba active" id="tab-nba" onclick="App.switchSport('nba')"><span class="tab-pip"></span>🏀 NBA</button>
+  <button class="tab mlb" id="tab-mlb" onclick="App.switchSport('mlb')"><span class="tab-pip"></span>⚾ MLB</button>
+  <button class="tab nhl" id="tab-nhl" onclick="App.switchSport('nhl')"><span class="tab-pip"></span>🏒 NHL</button>
+</div>
+<div class="data-bar">
+  <span class="db-pip pip-demo" id="db-pip"></span>
+  <span class="db-text" id="db-text">Loading…</span>
+  <span class="db-remain" id="db-remain"></span>
+</div>
+<div class="main">
+  <div class="games-col">
+    <div class="games-toolbar">
+      <h3 id="games-title">NBA Games</h3>
+      <span class="future-tog" style="font-size:11px;color:#6d57a8">📅 Next <span id="futdays-label">3</span>d shown</span>
+    </div>
+    <div id="games-list"><div class="loading-msg"><span class="spinner"></span>Loading games…</div></div>
+  </div>
+  <div class="right-col">
+    <div class="builder">
+      <div class="panel-title">Build Combo</div>
+      <input class="combo-input" id="combo-name" type="text" placeholder="Name this combo (e.g. Chavez Ravine After Dark)" maxlength="60">
+      <div class="legs-wrap" id="legs-wrap"><div class="empty-legs">Click any odds button to start building</div></div>
+      <div class="suggest-wrap" id="suggest-wrap" style="display:none">
+        <div class="suggest-label">✨ Name suggestions <button class="btn-more" onclick="App.shuffleSuggestions()">↻ 5 more</button></div>
+        <div class="suggest-pills" id="suggest-pills"></div>
+      </div>
+      <div class="builder-foot">
+        <span class="leg-count" id="leg-count">0 / 6 legs</span>
+        <button class="btn btn-ghost btn-sm" onclick="App.clearCombo()">Clear</button>
+        <button class="btn btn-green btn-sm" id="save-btn" onclick="App.saveCombo()" disabled>Save Combo</button>
+      </div>
+    </div>
+    <div class="saved-col">
+      <div class="saved-head">
+        <div class="panel-title" style="margin:0">Saved Combos <span style="font-weight:400;font-size:10px;color:#484f58;text-transform:none;letter-spacing:0">— shared via GitHub</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><button class="clear-all-btn" onclick="App.clearAllCombos()" title="Delete all saved combos">Clear All</button><span class="saved-badge" id="saved-badge">0 / 25</span></div>
+      </div>
+      <div id="saved-list"><div class="no-combos">Connecting to GitHub…</div></div>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="overlay-settings">
+  <div class="modal modal-md">
+    <h2>⚙ Settings</h2>
+    <p class="modal-sub">Combos are stored in the shared GitHub repo — everyone on the team sees the same list. A GitHub token is required to save or delete combos.</p>
+    <label class="form-label">GitHub Personal Access Token</label>
+    <input class="form-input" id="s-ghtoken" type="password" placeholder="github_pat_xxxxxxxxxxxx…">
+    <p class="form-hint">Go to <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> → <strong>Tokens (classic)</strong> → check <strong>repo</strong> scope → generate.</p>
+    <div class="divider"></div>
+    <label class="form-label">Anthropic API Key <span style="font-weight:400;color:#8b949e">(optional — powers AI name suggestions)</span></label>
+    <input class="form-input" id="s-anthropic" type="password" placeholder="sk-ant-xxxxxxxxxxxx…">
+    <p class="form-hint">Get a key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>. Used only to generate combo name suggestions — costs fractions of a cent per use.</p>
+    <div class="divider"></div>
+    <label class="form-label">The Odds API Key</label>
+    <input class="form-input" id="s-apikey" type="text" placeholder="e.g. cdbe810e1a60c836228777892b7295e5">
+    <p class="form-hint">Get a free key at <a href="https://the-odds-api.com" target="_blank">the-odds-api.com</a> — 500 req/month free.</p>
+    <label class="form-label">Preferred Bookmaker <span style="font-weight:400;color:#8b949e">(optional)</span></label>
+    <input class="form-input" id="s-bookmaker" type="text" placeholder="e.g. draftkings, fanduel — blank = best available">
+    <label class="form-label">Future games window</label>
+    <select class="form-input" id="s-futdays">
+      <option value="1">+1 day ahead</option><option value="2">+2 days ahead</option>
+      <option value="3">+3 days ahead</option><option value="5" selected>+5 days ahead</option><option value="7">+7 days ahead</option>
+    </select>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="App.closeSettings()">Cancel</button>
+      <button class="btn btn-green" onclick="App.saveSettings()">Save &amp; Reload</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const SPORTS={
+  nba:{key:'basketball_nba',label:'NBA',icon:'🏀',tag:'tag-nba',homeAdv:.45,totalBase:224,spreadScale:2.2},
+  mlb:{key:'baseball_mlb',label:'MLB',icon:'⚾',tag:'tag-mlb',homeAdv:.30,totalBase:8.5,spreadScale:.8},
+  nhl:{key:'icehockey_nhl',label:'NHL',icon:'🏒',tag:'tag-nhl',homeAdv:.25,totalBase:6.0,spreadScale:.6}
+};
+const RATINGS={
+  'Oklahoma City Thunder':9.2,'Cleveland Cavaliers':8.8,'Boston Celtics':8.6,'Houston Rockets':7.9,'Denver Nuggets':7.8,'Golden State Warriors':7.5,'Los Angeles Lakers':7.4,'Memphis Grizzlies':7.2,'Minnesota Timberwolves':7.5,'Dallas Mavericks':7.1,'Milwaukee Bucks':6.9,'New York Knicks':7.3,'Miami Heat':6.8,'Indiana Pacers':6.8,'Philadelphia 76ers':6.5,'Phoenix Suns':6.3,'New Orleans Pelicans':6.1,'Sacramento Kings':6.5,'Los Angeles Clippers':6.4,'Atlanta Hawks':5.9,'Chicago Bulls':5.6,'Orlando Magic':6.9,'Toronto Raptors':5.6,'Detroit Pistons':6.1,'Brooklyn Nets':4.9,'Washington Wizards':4.3,'San Antonio Spurs':5.1,'Utah Jazz':4.6,'Portland Trail Blazers':5.3,'Charlotte Hornets':4.9,
+  'Los Angeles Dodgers':9.1,'New York Yankees':8.6,'Atlanta Braves':8.1,'Philadelphia Phillies':7.9,'Houston Astros':7.6,'San Diego Padres':7.3,'Baltimore Orioles':7.1,'Cleveland Guardians':7.1,'Texas Rangers':6.9,'Toronto Blue Jays':6.6,'Boston Red Sox':6.9,'Minnesota Twins':6.6,'Seattle Mariners':6.6,'New York Mets':6.9,'Chicago Cubs':6.3,'St. Louis Cardinals':6.1,'Milwaukee Brewers':6.6,'San Francisco Giants':6.1,'Tampa Bay Rays':6.9,'Kansas City Royals':6.3,'Detroit Tigers':6.1,'Arizona Diamondbacks':6.6,'Pittsburgh Pirates':5.6,'Cincinnati Reds':5.6,'Miami Marlins':5.1,'Chicago White Sox':4.3,'Oakland Athletics':4.6,'Colorado Rockies':4.6,'Washington Nationals':5.1,'Los Angeles Angels':5.1,
+  'Florida Panthers':9.1,'Colorado Avalanche':8.6,'Vegas Golden Knights':8.6,'Boston Bruins':8.3,'New York Rangers':8.1,'Carolina Hurricanes':8.1,'Toronto Maple Leafs':7.9,'Dallas Stars':7.9,'Edmonton Oilers':8.1,'Tampa Bay Lightning':7.6,'Winnipeg Jets':7.6,'New Jersey Devils':7.3,'Seattle Kraken':6.9,'Minnesota Wild':7.1,'Washington Capitals':6.9,'Vancouver Canucks':7.1,'Nashville Predators':6.6,'Pittsburgh Penguins':6.3,'New York Islanders':6.1,'Detroit Red Wings':6.6,'Ottawa Senators':6.6,'Calgary Flames':6.6,'Buffalo Sabres':6.1,'St. Louis Blues':6.3,'Los Angeles Kings':7.1,'Montreal Canadiens':6.6,'Philadelphia Flyers':5.9,'Anaheim Ducks':5.6,'Chicago Blackhawks':4.6,'Utah Hockey Club':5.6,'San Jose Sharks':4.1,'Columbus Blue Jackets':5.1
+};
+// Global nickname table (city stripped) — used by name suggester and export
+const NICKNAMES={
+  'Atlanta Hawks':'Hawks','Boston Celtics':'Celtics','Brooklyn Nets':'Nets','Charlotte Hornets':'Hornets','Chicago Bulls':'Bulls','Cleveland Cavaliers':'Cavaliers','Dallas Mavericks':'Mavericks','Denver Nuggets':'Nuggets','Detroit Pistons':'Pistons','Golden State Warriors':'Warriors','Houston Rockets':'Rockets','Indiana Pacers':'Pacers','Los Angeles Clippers':'Clippers','LA Clippers':'Clippers','Los Angeles Lakers':'Lakers','Memphis Grizzlies':'Grizzlies','Miami Heat':'Heat','Milwaukee Bucks':'Bucks','Minnesota Timberwolves':'Timberwolves','New Orleans Pelicans':'Pelicans','New York Knicks':'Knicks','Oklahoma City Thunder':'Thunder','Orlando Magic':'Magic','Philadelphia 76ers':'76ers','Phoenix Suns':'Suns','Portland Trail Blazers':'Trail Blazers','Sacramento Kings':'Kings','San Antonio Spurs':'Spurs','Toronto Raptors':'Raptors','Utah Jazz':'Jazz','Washington Wizards':'Wizards',
+  'Arizona Diamondbacks':'D-backs','Atlanta Braves':'Braves','Baltimore Orioles':'O\'s','Boston Red Sox':'Red Sox','Chicago Cubs':'Cubs','Chicago White Sox':'White Sox','Cincinnati Reds':'Reds','Cleveland Guardians':'Guardians','Colorado Rockies':'Rockies','Detroit Tigers':'Tigers','Houston Astros':'Astros','Kansas City Royals':'Royals','Los Angeles Angels':'Angels','Los Angeles Dodgers':'Dodgers','Miami Marlins':'Marlins','Milwaukee Brewers':'Brewers','Minnesota Twins':'Twins','New York Mets':'Mets','New York Yankees':'Yankees','Oakland Athletics':'Athletics','Philadelphia Phillies':'Phillies','Pittsburgh Pirates':'Pirates','San Diego Padres':'Padres','San Francisco Giants':'Giants','Seattle Mariners':'Mariners','St. Louis Cardinals':'Cardinals','Tampa Bay Rays':'Rays','Texas Rangers':'Rangers','Toronto Blue Jays':'Blue Jays','Washington Nationals':'Nationals',
+  'Florida Panthers':'Panthers','Colorado Avalanche':'Avalanche','Vegas Golden Knights':'Golden Knights','Boston Bruins':'Bruins','New York Rangers':'Rangers','Carolina Hurricanes':'Hurricanes','Toronto Maple Leafs':'Maple Leafs','Dallas Stars':'Stars','Edmonton Oilers':'Oilers','Tampa Bay Lightning':'Lightning','Winnipeg Jets':'Jets','New Jersey Devils':'Devils','Seattle Kraken':'Kraken','Minnesota Wild':'Wild','Washington Capitals':'Capitals','Vancouver Canucks':'Canucks','Nashville Predators':'Predators','Pittsburgh Penguins':'Penguins','New York Islanders':'Islanders','Detroit Red Wings':'Red Wings','Ottawa Senators':'Senators','Calgary Flames':'Flames','Buffalo Sabres':'Sabres','St. Louis Blues':'Blues','Los Angeles Kings':'Kings','Montreal Canadiens':'Canadiens','Philadelphia Flyers':'Flyers','Anaheim Ducks':'Ducks','Chicago Blackhawks':'Blackhawks','Utah Hockey Club':'Utah HC','San Jose Sharks':'Sharks','Columbus Blue Jackets':'Blue Jackets'
+};
+// Team wordplay map — city flavor, imagery, culture for name generation
+const TEAM_WORDPLAY={
+  // NBA
+  'Atlanta Hawks':        ['Peach State','Sweet Georgia','ATL','red clay','Hartsfield hustle','Southern skies'],
+  'Boston Celtics':       ['Causeway Street','Boston Common','Emerald City','cloverleaf','New England grit','Commonwealth'],
+  'Brooklyn Nets':        ['Borough of Kings','Barclays block','Fort Greene','bridge and tunnel','outer borough','BK'],
+  'Charlotte Hornets':    ['Queen City','Carolina clay','Buzz City','Piedmont buzz','Southern sting'],
+  'Chicago Bulls':        ['Windy City','Second City','South Loop','the horns','Lakeshore charge','Chi-Town'],
+  'Cleveland Cavaliers':  ['Rock Hall','Lake Erie','The Land','Rust Belt','Cuyahoga charge','North Coast'],
+  'Dallas Mavericks':     ['Lone Star','Big D','Deep Ellum','oil country','Texas iron','Reunion fever'],
+  'Denver Nuggets':       ['Mile High','Rocky Mountain gold','5280','Rockies run','Colorado rush','altitude'],
+  'Detroit Pistons':      ['Hockeytown','Motor City','8 Mile','Motown iron','Assembly Line','Detroit muscle'],
+  'Golden State Warriors':['Bay Bridge','Gold Rush','The Bay','Oracle thunder','Dub Nation charge','Bay fog'],
+  'Houston Rockets':      ['Space City','Mission Control','NASA','launch sequence','blastoff','Houston airspace'],
+  'Indiana Pacers':       ['Indy 500','Hoosier speed','Motor Speedway','Circle City pace','brick wall','grid pace'],
+  'Los Angeles Clippers': ['Inglewood','The Intangibles','South Bay','Crypto corner','Elysian hustle'],
+  'LA Clippers':          ['Inglewood','The Intangibles','South Bay','Crypto corner','Elysian hustle'],
+  'Los Angeles Lakers':   ['Hollywood','Showtime','Sunset Strip','Tinseltown','silver screen','star power','Forum glory'],
+  'Memphis Grizzlies':    ['Beale Street','Delta blues','Mississippi mud','Bluff City claws','Tennessee grit'],
+  'Miami Heat':           ['South Beach','Vice City','Biscayne burn','Ocean Drive','Art Deco fire','305'],
+  'Milwaukee Bucks':      ['Cream City','Brew City','Great Lakes charge','Bucks County','brewing storm'],
+  'Minnesota Timberwolves':['North Star','Boundary Waters','Land of 10000 Lakes','Twin Cities howl','true north'],
+  'New Orleans Pelicans': ['French Quarter','Bayou country','Mardi Gras','NOLA heat','Bourbon Street','Crescent City'],
+  'New York Knicks':      ['Madison Square','Fifth Avenue','Broadway','The Garden','Manhattan rush','the city'],
+  'Oklahoma City Thunder':['Tornado Alley','Great Plains storm','Oil Belt lightning','prairie voltage','red dirt electricity'],
+  'Orlando Magic':        ['I-4 corridor','Central Florida spell','Theme Park District','enchanted','The O','Sunshine State magic'],
+  'Philadelphia 76ers':   ['Broad Street','Liberty Bell','Rocky steps','SEPTA grind','Philly grit','cheesesteak hustle'],
+  'Phoenix Suns':         ['Valley of the Sun','desert heat','Arizona gold','Camelback burn','cactus country','Sonoran fire'],
+  'Portland Trail Blazers':['Rose City','Pacific Northwest','Burnside Bridge','Oregon Trail','Willamette rise','Portland rain'],
+  'Sacramento Kings':     ['Gold Rush country','Capital City','River City','farm country kings','Old Sacramento'],
+  'San Antonio Spurs':    ['Alamo City','River Walk','Texas stone','Silver and Black','Lone Star discipline','San Anto'],
+  'Toronto Raptors':      ['The 6','Great White North','CN Tower','Scotiabank swagger','True North','maple'],
+  'Utah Jazz':            ['Salt Flats','Great Salt Lake','Wasatch run','Mormon Tabernacle','desert notes','altitude harmony'],
+  'Washington Wizards':   ['Beltway','Capitol Hill','District charge','K Street','Potomac run','monument city'],
+  // MLB
+  'Arizona Diamondbacks': ['Sonoran Desert','Chase Field heat','Valley of the Sun','cactus coil','desert strike'],
+  'Atlanta Braves':       ['Peach State','Truist territory','Tomahawk country','Georgia clay','Chop City','Cumberland current'],
+  'Baltimore Orioles':    ['Camden Yards','Chesapeake Bay','Charm City','crab feast','Inner Harbor','B’More'],
+  'Boston Red Sox':       ['Fenway Park','Green Monster','Kenmore Square','Yawkey Way','The Nation','Commonwealth clash'],
+  'Chicago Cubs':         ['Wrigley ivy','Wrigleyville','Bleacher Bums','North Side','brick and ivy','friendly confines spirit'],
+  'Chicago White Sox':    ['South Side','Bridgeport','35th Street','the other Chicago','Guaranteed Rate... wait - South Side iron','Sox Park'],
+  'Cincinnati Reds':      ['Queen City','Ohio River','Great American','Riverfront hustle','Fountain Square','Porkopolis'],
+  'Cleveland Guardians':  ['Progressive Field','Lake Erie','Rock Hall','The Land','Cuyahoga','North Coast guardians'],
+  'Colorado Rockies':     ['Mile High','Coors altitude','Rocky Mountain thin air','Denver elevation','purple mountain','5280 at bat'],
+  'Detroit Tigers':       ['Motor City','Tiger Stadium soul','Michigan Avenue prowl','Motown roar','Woodward Avenue'],
+  'Houston Astros':       ['Space City','Mission Control','NASA outfield','orbit','The Juice Box','bayou blast'],
+  'Kansas City Royals':   ['Fountain City','BBQ capital','Crown','Kauffman fountains','Midwest royalty'],
+  'Los Angeles Angels':   ['Halos','Anaheim','Orange County','Angel City','SoCal wings','inland empire'],
+  'Los Angeles Dodgers':  ['Chavez Ravine','Hollywood blue','Sunset blue','Blue Heaven','Elysian Park','Dodgertown'],
+  'Miami Marlins':        ['South Beach','Marlins Park aquarium','305','Biscayne flash','tropical fins','Little Havana'],
+  'Milwaukee Brewers':    ['Cream City suds','American Family Field','brewing tradition','Great Lakes barley','Brew City barrel'],
+  'Minnesota Twins':      ['Twin Cities','Land of 10000 Lakes','Target Field cold','Twins Cities bridge','Mississippi headwaters'],
+  'New York Mets':        ['Flushing','Queens','Shea echo','Citi lights','7 Train','outer borough'],
+  'New York Yankees':     ['The Bronx','pinstripes','Monument Park','Yankee mystique','the house that Ruth built','Big Apple'],
+  'Oakland Athletics':    ['East Bay','The Coliseum','Oakland grit','Bay Area underdog','Oaktown'],
+  'Philadelphia Phillies':['Broad Street','Citizens Bank','Rocky steps','South Philly','cheesesteak hustle','Passyunk'],
+  'Pittsburgh Pirates':   ['Steel City','Three Rivers','North Shore','black and gold','Pittsburgh grit','Rust Belt'],
+  'San Diego Padres':     ['Petco Park','Gaslamp Quarter','Pacific blue','SoCal sunshine','Coronado blue','America\'s Finest'],
+  'San Francisco Giants': ['Oracle Park','McCovey Cove','Bay Bridge Series','Pacific fog','The City','NorCal'],
+  'Seattle Mariners':     ['Puget Sound','Emerald City','T-Mobile rain','Space Needle','Pacific Northwest','Rainier shadow'],
+  'St. Louis Cardinals':  ['Gateway Arch','Busch cheer','Show-Me State','Mississippi bend','Midwestern red','St. Loo'],
+  'Tampa Bay Rays':       ['Tropicana dome','Gulf Coast','St. Pete sunshine','Pinellas shine','Rays of Tampa'],
+  'Texas Rangers':        ['Globe Life','Arlington','Lone Star','Big Tex','Texas heat','DFW dust'],
+  'Toronto Blue Jays':    ['Rogers Centre','The 6','CN shadow','True North blue','Great White North fly'],
+  'Washington Nationals': ['National Mall','Cherry Blossom','Beltway blast','Nationals Park','Capitol view','DC blue'],
+  // NHL
+  'Anaheim Ducks':        ['The Pond','Orange County ice','SoCal freeze','Anaheim chill','Costa Mesa cold'],
+  'Boston Bruins':        ['Causeway Street','TD Garden','Boston Garden soul','New England grit','Hub of the Universe ice'],
+  'Buffalo Sabres':       ['Rust Belt ice','Lake Erie snow','Buffalo wings','Niagara frost','716','blizzard steel'],
+  'Calgary Flames':       ['Stampede City','Alberta oil','Chinook winds','Saddledome fire','Cowtown blaze'],
+  'Carolina Hurricanes':  ['RBC wind','Tobacco Road storm','Atlantic seaboard','Raleigh surge','Carolina squall'],
+  'Chicago Blackhawks':   ['Windy City ice','Second City freeze','United Center grit','Chicago winter','Madhouse on Madison'],
+  'Colorado Avalanche':   ['Rocky Mountain slide','Mile High ice','Pepsi Center altitude','Denver snowfall','Rockies rush'],
+  'Columbus Blue Jackets':['Nationwide freeze','Cowtown ice','Ohio cold','Short North chill','Great Plains frost'],
+  'Dallas Stars':         ['Lone Star ice','Big D freeze','Texas cold','Reunion Arena memory','Deep Ellum chill'],
+  'Detroit Red Wings':    ['Hockeytown','Joe Louis soul','Motor City ice','Motown freeze','The Winged Wheel'],
+  'Edmonton Oilers':      ['Oil Country','Alberta crude','Rexall soul','Rogers freeze','North of 60 ice'],
+  'Florida Panthers':     ['Sunrise ice','Everglades chill','South Florida freeze','FLA Hockey','BB&T cold','Panthers of the swamp'],
+  'Los Angeles Kings':    ['Hollywood ice','Crypto freeze','Forum memory','Southern California cold','LA royalty'],
+  'Minnesota Wild':       ['State of Hockey','Boundary Waters ice','North Star spirit','Minnesota cold','Land of 10000 frozen lakes'],
+  'Montreal Canadiens':   ['Bleu Blanc Rouge','Bell Centre soul','Original Six','Les Habitants','Montreal winter','St. Catherine freeze'],
+  'Nashville Predators':  ['Music City ice','honky-tonk freeze','Broadway Bars','Lower Broadway chill','country cold','Bridgestone chill'],
+  'New Jersey Devils':    ['Garden State ice','Continental freeze','Prudential chill','The Rock','Exit 13 ice'],
+  'New York Islanders':   ['Nassau Coliseum soul','Long Island ice','UBS Arena','Lighthouse District chill','suburban freeze'],
+  'New York Rangers':     ['Madison Square ice','Broadway blue','The Garden freeze','Fifth Avenue cold','Empire State chill'],
+  'Ottawa Senators':      ['Parliament Hill ice','National Capital freeze','Rideau Canal','Kanata cold','ByWard Market chill'],
+  'Philadelphia Flyers':  ['Broad Street Bullies','Wells Fargo freeze','Philly ice','South Philly cold','Pattison chill'],
+  'Pittsburgh Penguins':  ['Steel City ice','PPG freeze','Three Rivers cold','black and gold chill','Pittsburgh winter'],
+  'San Jose Sharks':      ['Silicon Valley ice','SAP Center freeze','Bay Area cold','tech district chill','Pacific freeze'],
+  'Seattle Kraken':       ['Puget Sound deep','Emerald City ice','Climate Pledge chill','Pacific Northwest freeze','Release the deep'],
+  'St. Louis Blues':      ['Gateway freeze','Scottrade soul','Show-Me ice','Mississippi cold','Blues notes and ice'],
+  'Tampa Bay Lightning':  ['Amalie Arena','Gulf Coast storm','Tampa electricity','813 voltage','Florida thunder'],
+  'Toronto Maple Leafs':  ['Maple Leaf Gardens soul','Air Canada ice','True North freeze','Scotiabank chill','Hockey Night in Canada'],
+  'Utah Hockey Club':     ['Great Salt Lake ice','Wasatch freeze','Delta Center chill','Salt Flats cold','Beehive State ice'],
+  'Vancouver Canucks':    ['Rogers Arena','Pacific Northwest ice','Gastown freeze','BC cold','Pacific Coliseum memory'],
+  'Vegas Golden Knights': ['The Strip ice','T-Mobile shimmer','Neon freeze','Desert ice','Vegas voltage','702 chill'],
+  'Washington Capitals':  ['Capital One ice','Beltway freeze','DC cold','National Mall chill','Chinatown ice','Monument freeze'],
+  'Winnipeg Jets':        ['True North ice','MTS Centre soul','Prairie freeze','Canada cold','Jets City chill'],
+};
+function estimateOdds(home,away,sport){
+  const cfg=SPORTS[sport],diff=(RATINGS[home]||6)-(RATINGS[away]||6)+cfg.homeAdv,pH=1/(1+Math.exp(-diff*.55));
+  const toAm=p=>{p=Math.min(Math.max(p,.05),.95);return p>=.5?Math.round(-(p/(1-p))*100/5)*5:Math.round(((1-p)/p)*100/5)*5;};
+  const spr=Math.round(diff*cfg.spreadScale*2)/2,tot=cfg.totalBase+((home.charCodeAt(0)+away.charCodeAt(0))%7-3)*.5;
+  return{h2h:[{name:home,price:toAm(pH)},{name:away,price:toAm(1-pH)}],spreads:[{name:home,price:-110,point:parseFloat((-spr).toFixed(1))},{name:away,price:-110,point:parseFloat(spr.toFixed(1))}],totals:[{name:'Over',price:-110,point:tot},{name:'Under',price:-110,point:tot}],isEst:true};
+}
+function demoGames(sportKey){
+  const sport=Object.keys(SPORTS).find(s=>SPORTS[s].key===sportKey),now=new Date();
+  const at=(d,h)=>{const x=new Date(now);x.setDate(x.getDate()+d);x.setHours(h,0,0,0);return x.toISOString();};
+  const sets={basketball_nba:[{id:'_d1',home:'Los Angeles Lakers',away:'Golden State Warriors',time:at(0,19)},{id:'_d2',home:'Boston Celtics',away:'Milwaukee Bucks',time:at(0,20)},{id:'_d3',home:'Oklahoma City Thunder',away:'Denver Nuggets',time:at(1,21)},{id:'_d4',home:'Cleveland Cavaliers',away:'New York Knicks',time:at(1,19)},{id:'_d5',home:'Minnesota Timberwolves',away:'Dallas Mavericks',time:at(2,20)}],baseball_mlb:[{id:'_d6',home:'New York Yankees',away:'Boston Red Sox',time:at(0,19)},{id:'_d7',home:'Los Angeles Dodgers',away:'San Francisco Giants',time:at(0,22)},{id:'_d8',home:'Atlanta Braves',away:'Philadelphia Phillies',time:at(1,19)},{id:'_d9',home:'Houston Astros',away:'Texas Rangers',time:at(2,20)}],icehockey_nhl:[{id:'_da',home:'Boston Bruins',away:'New York Rangers',time:at(0,19)},{id:'_db',home:'Colorado Avalanche',away:'Vegas Golden Knights',time:at(0,21)},{id:'_dc',home:'Toronto Maple Leafs',away:'Edmonton Oilers',time:at(1,19)},{id:'_dd',home:'Florida Panthers',away:'Carolina Hurricanes',time:at(2,20)}]};
+  return(sets[sportKey]||[]).map(g=>({...g,...estimateOdds(g.home,g.away,sport),isEst:false}));
+}
+const GH={OWNER:'mendelowitzd',REPO:'Predicts-Combo-Builder',FILE:'combos.json',_sha:null,
+  token(){return localStorage.getItem('fd_ghtoken')||'';},
+  url(){return`https://api.github.com/repos/${this.OWNER}/${this.REPO}/contents/${this.FILE}`;},
+  async load(){
+    const h={'Accept':'application/vnd.github+json'};if(this.token())h['Authorization']=`Bearer ${this.token()}`;
+    const r=await fetch(this.url(),{headers:h});
+    if(r.status===404){this._sha=null;return[];}
+    if(r.status===401||r.status===403)throw new Error('Invalid or expired GitHub token — update in ⚙ Settings');
+    if(!r.ok)throw new Error(`GitHub error (${r.status})`);
+    const d=await r.json();this._sha=d.sha;
+    try{return JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));}catch(e){return[];}
+  },
+  async save(combos){
+    if(!this.token())throw new Error('GitHub token required — add one in ⚙ Settings');
+    const content=btoa(unescape(encodeURIComponent(JSON.stringify(combos,null,2)))),body={message:`Update combos ${new Date().toISOString()}`,content};
+    if(this._sha)body.sha=this._sha;
+    const h={'Authorization':`Bearer ${this.token()}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'};
+    let r=await fetch(this.url(),{method:'PUT',headers:h,body:JSON.stringify(body)});
+    if(r.status===409||r.status===422){await this.load();body.sha=this._sha;r=await fetch(this.url(),{method:'PUT',headers:h,body:JSON.stringify(body)});}
+    if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||`Save failed (${r.status})`);}
+    const res=await r.json();if(res.content?.sha)this._sha=res.content.sha;
+  }
+};
+function buildOddsUrl(s,k,b){return`https://api.the-odds-api.com/v4/sports/${SPORTS[s].key}/odds?apiKey=${k}&regions=us&markets=h2h,spreads,totals&oddsFormat=american&dateFormat=iso${b?'&bookmakers='+b:''}`;}
+function buildEventsUrl(s,k){return`https://api.the-odds-api.com/v4/sports/${SPORTS[s].key}/events?apiKey=${k}&dateFormat=iso`;}
+function parseOdds(raw,bk){return raw.map(ev=>{const b=bk?(ev.bookmakers.find(x=>x.key===bk)||ev.bookmakers[0]):ev.bookmakers[0];if(!b)return null;const gm=k=>b.markets.find(m=>m.key===k),h=gm('h2h'),sp=gm('spreads'),tot=gm('totals');return{id:ev.id,home:ev.home_team,away:ev.away_team,time:ev.commence_time,h2h:h?h.outcomes:[],spreads:sp?sp.outcomes:[],totals:tot?tot.outcomes:[],isEst:false};}).filter(Boolean);}
+
+// ESPN public scoreboard — no auth, CORS-friendly, returns real schedule by date
+const ESPN_PATHS={nba:'basketball/nba',mlb:'baseball/mlb',nhl:'hockey/nhl'};
+async function fetchESPN(sport,days){
+  const path=ESPN_PATHS[sport];if(!path)return[];
+  const now=new Date();
+  const dateStrs=[];
+  for(let i=0;i<=days;i++){const d=new Date(now);d.setDate(d.getDate()+i);dateStrs.push(d.toISOString().slice(0,10).replace(/-/g,''));}
+  const games=[];
+  await Promise.all(dateStrs.map(async date=>{
+    try{
+      const r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/${path}/scoreboard?dates=${date}`);
+      if(!r.ok)return;
+      const data=await r.json();
+      (data.events||[]).forEach(ev=>{
+        const comps=ev.competitions?.[0]?.competitors||[];
+        const home=comps.find(c=>c.homeAway==='home')?.team?.displayName;
+        const away=comps.find(c=>c.homeAway==='away')?.team?.displayName;
+        if(home&&away)games.push({id:'espn_'+ev.id,home,away,time:ev.date});
+      });
+    }catch(e){}
+  }));
+  return games;
+}
+
+const App=(()=>{
+  const S={sport:'nba',games:{nba:[],mlb:[],nhl:[]},future:{nba:[],mlb:[],nhl:[]},liveLoaded:{nba:false,mlb:false,nhl:false},loadedAt:null,apiRemain:null,currentLegs:[],savedCombos:[],apiKey:'',bookmaker:'',futDays:5,expanded:null,pollTimer:null};
+  async function init(){
+    S.apiKey=ls('fd_apikey')||'';S.bookmaker=ls('fd_bookmaker')||'';S.futDays=parseInt(ls('fd_futdays')||'5');
+    const fdEl=document.getElementById('futdays-label');if(fdEl)fdEl.textContent=S.futDays;
+    try{const p=JSON.parse(ls('fd_games')||'{}');if(p.games)S.games=p.games;if(p.liveLoaded)S.liveLoaded=p.liveLoaded;if(p.loadedAt)S.loadedAt=p.loadedAt;}catch(e){}
+    Object.keys(SPORTS).forEach(sp=>{if(!S.games[sp]?.length)S.games[sp]=demoGames(SPORTS[sp].key);});
+    buildFutureEst();updateDataBar();renderGames();renderBuilder();
+    await syncCombos();S.pollTimer=setInterval(syncCombos,30000);
+    if(!GH.token()&&!S.apiKey&&!ls('fd_seen'))openSettings();
+    if(S.apiKey){const stale=!S.loadedAt||(Date.now()-new Date(S.loadedAt).getTime()>4*60*60*1000);if(stale||!Object.values(S.liveLoaded).some(Boolean)){fetchAll();}else{fetchFutureEvents().then(()=>{renderGames();});}} else{fetchFutureEvents().then(()=>{renderGames();});}
+  }
+  async function syncCombos(){
+    setSyncStatus('syncing');
+    try{S.savedCombos=await GH.load();setSyncStatus('live');renderSaved();}
+    catch(e){console.warn('GH:',e.message);setSyncStatus('error',e.message);if(!S.savedCombos.length)showGHError(e.message);}
+  }
+  function setSyncStatus(state){
+    const pill=document.getElementById('sync-pill'),label=document.getElementById('sync-label'),now=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    if(state==='live'){pill.className='sync-pill live';label.textContent=`Synced · ${now}`;}
+    else if(state==='syncing'){pill.className='sync-pill syncing';label.textContent='Syncing…';}
+    else if(state==='error'){pill.className='sync-pill error';label.textContent='Sync error';}
+    else{pill.className='sync-pill offline';label.textContent='Offline';}
+  }
+  function showGHError(msg){
+    const el=document.getElementById('saved-list'),noToken=!GH.token();
+    let hint=noToken?`<br><br>⚠️ <strong>No GitHub token set.</strong> Go to <strong>⚙ Settings</strong> → paste your GitHub Personal Access Token (classic, <code>repo</code> scope).`:msg.includes('401')||msg.includes('403')||msg.includes('Invalid')?`<br><br>⚠️ Token may be expired. Go to <strong>⚙ Settings</strong> to update.`:`<br><br>Check your connection and try refreshing.`;
+    el.innerHTML=`<div class="gh-error-banner"><strong>Could not connect to GitHub</strong>${msg}${hint}</div>`;
+  }
+  async function fetchAll(){
+    if(!S.apiKey){openSettings();return;}setRefreshBtn(true);let ok=0,fail=0,remainHdr=null;
+    await Promise.all(Object.keys(SPORTS).map(async sport=>{
+      try{const resp=await fetch(buildOddsUrl(sport,S.apiKey,S.bookmaker));remainHdr=resp.headers.get('x-requests-remaining')||remainHdr;
+        if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.message||`HTTP ${resp.status}`);}
+        S.games[sport]=parseOdds(await resp.json(),S.bookmaker);S.liveLoaded[sport]=true;ok++;}
+      catch(e){if(!S.games[sport]?.length)S.games[sport]=demoGames(SPORTS[sport].key);fail++;console.warn(sport,e.message);}
+    }));
+    await fetchFutureEvents();S.loadedAt=new Date().toISOString();if(remainHdr!==null)S.apiRemain=remainHdr;
+    ls('fd_games',JSON.stringify({games:S.games,liveLoaded:S.liveLoaded,loadedAt:S.loadedAt}));
+    buildFutureEst();updateDataBar();renderGames();setRefreshBtn(false);
+    if(ok===3)toast('✅ Live odds loaded for all 3 sports');else if(ok>0)toast(`✅ Live odds (${fail} sport(s) unavailable)`);else toast('⚠️ Could not load odds — check API key in ⚙ Settings');
+  }
+  async function fetchFutureEvents(){
+    const cutoff=new Date();cutoff.setDate(cutoff.getDate()+S.futDays);cutoff.setHours(23,59,59,999);
+    await Promise.all(Object.keys(SPORTS).map(async sport=>{
+      try{
+        // Fetch Odds API events + ESPN schedule in parallel
+        const [oddsRaw, espnGames] = await Promise.all([
+          S.apiKey ? fetch(buildEventsUrl(sport,S.apiKey)).then(r=>r.ok?r.json():[]).catch(()=>[]) : Promise.resolve([]),
+          fetchESPN(sport, S.futDays)
+        ]);
+        // Keys for games that already have real odds — don't duplicate them
+        const liveIds=new Set(S.games[sport].map(g=>g.id));
+        const liveKeys=new Set(S.games[sport].map(g=>`${g.home}|${new Date(g.time).toDateString()}`));
+        const seen=new Set();
+        const futureGames=[];
+        function addGame(id,home,away,time){
+          if(new Date(time)>cutoff)return;
+          const key=`${home}|${new Date(time).toDateString()}`;
+          if(seen.has(key)||liveKeys.has(key))return;
+          seen.add(key);
+          futureGames.push({id,home,away,time,...estimateOdds(home,away,sport),isEst:true});
+        }
+        // Priority 1: Odds API events (real games, odds opening soon)
+        for(const ev of oddsRaw){
+          if(!liveIds.has(ev.id))addGame(ev.id,ev.home_team,ev.away_team,ev.commence_time);
+        }
+        // Priority 2: ESPN schedule for any days not yet covered
+        for(const g of espnGames) addGame(g.id,g.home,g.away,g.time);
+        futureGames.sort((a,b)=>new Date(a.time)-new Date(b.time));
+        S.future[sport]=futureGames;
+      }catch(e){S.future[sport]=[];}
+    }));
+  }
+  function buildFutureEst(){
+    // No-op: future games come only from real schedule via /events API. No fake games.
+  }
+  async function refresh(){if(!S.apiKey){openSettings();return;}await fetchAll();}
+  function setRefreshBtn(loading){const btn=document.getElementById('refresh-btn');btn.innerHTML=loading?'<span class="spinner"></span> Refreshing…':'↻ Refresh Odds';btn.disabled=loading;if(loading)document.getElementById('games-list').innerHTML='<div class="loading-msg"><span class="spinner"></span>Fetching live odds…</div>';}
+  function updateDataBar(){
+    const pip=document.getElementById('db-pip'),txt=document.getElementById('db-text'),rem=document.getElementById('db-remain'),live=Object.values(S.liveLoaded).filter(Boolean).length;
+    if(live===3){pip.className='db-pip pip-live';const t=S.loadedAt?new Date(S.loadedAt).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'';txt.innerHTML=`<strong>Live odds</strong> — all 3 sports${t?' · updated '+t:''}`;}
+    else if(live>0){pip.className='db-pip pip-partial';const sp=Object.entries(S.liveLoaded).filter(([,v])=>v).map(([s])=>s.toUpperCase()).join(', ');txt.innerHTML=`<strong>Live odds</strong> for ${sp} · click <strong>↻ Refresh Odds</strong> to retry`;}
+    else{pip.className='db-pip pip-demo';txt.innerHTML=S.apiKey?`Demo data — click <strong>↻ Refresh Odds</strong> to load live lines`:`Demo data — add Odds API key in <strong>⚙ Settings</strong>`;}
+    rem.textContent=S.apiRemain!==null?`${S.apiRemain} API calls remaining`:'';
+  }
+  function renderGames(){
+    const sport=S.sport,cfg=SPORTS[sport];document.getElementById('games-title').textContent=`${cfg.icon} ${cfg.label} Games`;
+    const all=[...(S.games[sport]||[]),...(S.future[sport]||[])],el=document.getElementById('games-list');
+    if(!all.length){el.innerHTML=`<div class="no-games"><div class="icon">${cfg.icon}</div>No games. Click ↻ Refresh Odds.</div>`;return;}
+    const byDay={};all.forEach(g=>{const k=new Date(g.time).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});(byDay[k]=byDay[k]||[]).push(g);});
+    let html='';if((S.future[sport]||[]).length)html+=`<div class="est-note">🔮 <strong>~Est</strong> odds on upcoming games are directional projections — not real lines.</div>`;
+    Object.entries(byDay).forEach(([day,gs])=>{html+=`<div class="day-hdr">${day}</div>`;gs.forEach(g=>{html+=gameHTML(g,sport);});});el.innerHTML=html;
+  }
+  function gameHTML(g,sport){
+    const isEst=g.isEst,time=new Date(g.time).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+    const fmt=v=>v>0?`+${v}`:`${v}`,oc=(v,e)=>e?(v>0?'pos-est':'neg-est'):(v>0?'pos':'neg');
+    const btn=(out,mkt,oi)=>{const leg=S.currentLegs.find(l=>l.gameId===g.id&&l.market===mkt),sel=leg&&leg.outcomeIdx===oi,oth=leg&&leg.outcomeIdx!==oi,name=out.name.length>18?out.name.split(' ').pop():out.name,line=out.point!==undefined?`<span class="ob-line">${out.point>0?'+':''}${out.point}</span>`:'';return`<button class="ob${sel?' picked':oth?' other':''}" onclick="App.toggleLeg('${g.id}','${mkt}',${oi})"><span class="ob-name">${name}</span>${line}<span class="ob-odds ${oc(out.price,isEst)}">${fmt(out.price)}</span>${isEst?'<span class="ob-est">~Est</span>':''}</button>`;};
+    const rows=[g.h2h?.length===2?`<div class="mkt-row"><span class="mkt-label">Moneyline</span><div class="odds-row">${btn(g.h2h[0],'h2h',0)}${btn(g.h2h[1],'h2h',1)}</div></div>`:'',g.spreads?.length===2?`<div class="mkt-row"><span class="mkt-label">Spread</span><div class="odds-row">${btn(g.spreads[0],'spreads',0)}${btn(g.spreads[1],'spreads',1)}</div></div>`:'',g.totals?.length===2?`<div class="mkt-row"><span class="mkt-label">Total</span><div class="odds-row">${btn(g.totals[0],'totals',0)}${btn(g.totals[1],'totals',1)}</div></div>`:''].join('');
+    return`<div class="game-card ${isEst?'est':''}" id="gc-${g.id}"><div class="gc-head"><span class="matchup">${g.away} @ ${g.home}</span><div class="gc-meta">${isEst?'<span class="est-badge">~EST</span>':''}<span class="gc-time">${time}</span></div></div><div class="markets">${rows}</div></div>`;
+  }
+  function toggleLeg(gameId,market,outcomeIdx){
+    const idx=S.currentLegs.findIndex(l=>l.gameId===gameId&&l.market===market);
+    if(idx!==-1){if(S.currentLegs[idx].outcomeIdx===outcomeIdx){S.currentLegs.splice(idx,1);renderGames();renderBuilder();return;}S.currentLegs.splice(idx,1);}
+    if(S.currentLegs.length>=6){toast('⚠️ Max 6 legs per combo');return;}
+    const sport=S.sport,allG=[...(S.games[sport]||[]),...(S.future[sport]||[])],game=allG.find(g=>g.id===gameId);if(!game)return;
+    const mData={h2h:game.h2h,spreads:game.spreads,totals:game.totals}[market],out=mData[outcomeIdx];
+    const lbls={h2h:'Moneyline',spreads:'Spread',totals:'Total'};let pick=out.name;
+    if(out.point!==undefined)pick+=market==='totals'?` ${out.point}`:` ${out.point>0?'+':''}${out.point}`;
+    S.currentLegs.push({gameId,market,outcomeIdx,sport,matchup:`${game.away} @ ${game.home}`,marketLabel:lbls[market],pick,odds:out.price,isEst:game.isEst||false,time:game.time||null});
+    renderGames();renderBuilder();
+  }
+  function renderBuilder(){
+    const legs=S.currentLegs,cnt=document.getElementById('leg-count');
+    cnt.textContent=`${legs.length} / 6 legs`;cnt.className='leg-count'+(legs.length>=2?' ok':'');
+    document.getElementById('save-btn').disabled=legs.length<2;
+    const el=document.getElementById('legs-wrap');
+    if(!legs.length){
+      el.innerHTML='<div class="empty-legs">Click any odds button to start building</div>';
+      const sw=document.getElementById('suggest-wrap');if(sw)sw.style.display='none';
+      return;
+    }
+    el.innerHTML=legs.map((l,i)=>{const cfg=SPORTS[l.sport];return`<div class="leg ${l.isEst?'est-leg':''}"><span class="sport-tag ${cfg.tag}">${cfg.label}</span>${l.isEst?'<span class="est-tag">~Est</span>':''}<div class="leg-info"><span class="leg-pick">${l.pick}</span><span class="leg-sub">${l.marketLabel} · ${l.matchup}</span></div><button class="leg-del" onclick="App.removeLeg(${i})">✕</button></div>`;}).join('');
+    // Show name suggestions when 2+ legs
+    const sw=document.getElementById('suggest-wrap');
+    if(sw){
+      if(legs.length>=2){
+        sw.style.display='block';
+        _suggPool=[]; // reset template pool when legs change
+        fetchSuggestions(); // fire-and-forget async
+      } else {
+        sw.style.display='none';
+      }
+    }
+  }
+  function removeLeg(i){S.currentLegs.splice(i,1);renderGames();renderBuilder();}
+  function clearCombo(){S.currentLegs=[];_suggPool=[];document.getElementById('combo-name').value='';renderGames();renderBuilder();}
+  async function saveCombo(){
+    if(S.currentLegs.length<2){toast('⚠️ Add at least 2 legs');return;}
+    if(!GH.token()){toast('⚠️ Add GitHub token in ⚙ Settings to save combos');openSettings();return;}
+    const name=document.getElementById('combo-name').value.trim()||autoName();
+    const legTimes=S.currentLegs.map(l=>l.time).filter(Boolean);
+    const startTime=legTimes.length?new Date(Math.min(...legTimes.map(t=>+new Date(t)))).toISOString():new Date().toISOString();
+    const combo={id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),name,legs:[...S.currentLegs],createdAt:new Date().toISOString(),startTime,hasEst:S.currentLegs.some(l=>l.isEst)};
+    const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Saving…';
+    try{const current=await GH.load();if(current.length>=25){toast('⚠️ 25 combo limit — delete one first');return;}current.push(combo);await GH.save(current);S.savedCombos=current;clearCombo();renderSaved();toast(`✅ "${name}" saved — visible to all team members`);}
+    catch(e){toast(`❌ ${e.message}`);console.error(e);}
+    finally{btn.disabled=S.currentLegs.length<2;btn.textContent='Save Combo';}
+  }
+  async function deleteCombo(comboId,name){
+    if(!confirm(`Delete "${name}"? This removes it for the whole team.`))return;
+    if(!GH.token()){toast('⚠️ GitHub token required — add one in ⚙ Settings');return;}
+    try{const current=await GH.load();const filtered=current.filter(c=>c.id!==comboId);await GH.save(filtered);S.savedCombos=filtered;renderSaved();toast('Combo deleted');}
+    catch(e){toast(`❌ ${e.message}`);}
+  }
+  function toggleExpand(id){S.expanded=S.expanded===id?null:id;renderSaved();}
+  function autoName(){const a=['Big','Night','Prime','Power','Laser','Sharp','Heavy','Bold','Steel','Hot'],n=['Edge','Combo','Sweep','Slate','Shot','Stack','Card','Play','Wave','Run'];return a[Math.floor(Math.random()*a.length)]+' '+n[Math.floor(Math.random()*n.length)];}
+
+  // ── Name Suggester ──────────────────────────────────────────────
+  let _suggPool=[];
+
+  // Get the game day from legs (earliest leg time), falls back to today
+  function getGameDay(legs){
+    const times=legs.map(l=>l.time).filter(Boolean);
+    const d=times.length?new Date(Math.min(...times.map(t=>+new Date(t)))):new Date();
+    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    return days[d.getDay()];
+  }
+
+  // Template fallback (no API key) — no Lock/parlay/guarantee language
+  function buildSuggestionPool(legs){
+    const sh=arr=>[...arr].sort(()=>Math.random()-.5);
+    const nicks=legs.filter(l=>l.market!=='totals').map(l=>{
+      const t=l.market==='spreads'?l.pick.replace(/\s[+-]?\d+\.?\d*$/,'').trim():l.pick;
+      return NICKNAMES[t]||t.split(' ').slice(-1)[0];
+    }).filter(Boolean);
+    const sports=[...new Set(legs.map(l=>l.sport))];
+    const n=legs.length;
+    const day=getGameDay(legs);
+    const pool=[];
+    pool.push(`${day} Night Special`,`${day} Slate`,`${day} Package`,`${day} Night Action`,`${day} Showcase`);
+    pool.push(`${n}-Pick Sweep`,`${n}-Pick Slate`,`${n} and Done`,`${n}-Pick Run`,`${n}-Pick Stack`);
+    if(nicks[0]) pool.push(`The ${nicks[0]} Special`,`Riding ${nicks[0]}`,`The ${nicks[0]} Run`,`${nicks[0]} Express`);
+    if(nicks[0]&&nicks[1]) pool.push(`${nicks[0]} & ${nicks[1]} Show`,`${nicks[0]} + ${nicks[1]}`,`Rolling with ${nicks[0]} & ${nicks[1]}`);
+    if(nicks[0]&&nicks[1]&&nicks[2]) pool.push(`${nicks[0]}, ${nicks[1]} & ${nicks[2]}`);
+    if(sports.includes('nba')) pool.push('Full Court Press','Buzzer Beater','From Downtown','High Octane','Paint the Town');
+    if(sports.includes('mlb')) pool.push('Walk-Off Winner','Going Yard','Green Light','First Pitch','Extra Innings');
+    if(sports.includes('nhl')) pool.push('Top Shelf','Five-Hole','Power Play','Between the Pipes');
+    if(sports.length>1) pool.push('Full Slate','The Works','All Sports');
+    pool.push('Can\'t Miss','The Inevitable','Certified','Full Send','All Gas','Ride or Die','The Heater','No Sweat','Prime Time','The Big One','After Dark','The Showcase','All In','Road Warriors','Home Cooking','Upset Special','Chaos Theory');
+    return sh([...new Set(pool)]);
+  }
+
+  // Build context for Claude prompt
+  function buildLegContext(legs){
+    return legs.map(l=>{
+      const sport=l.sport.toUpperCase();
+      const parts=(l.matchup||'').split(' @ ');
+      const away=parts[0]||'',home=parts[1]||'';
+      const fav=l.odds<0?'favorite':'underdog';
+      const oddsStr=(l.odds>0?'+':'')+l.odds;
+      if(l.market==='h2h') return `${sport}: ${away} @ ${home} | Pick: ${l.pick} (${fav} ${oddsStr}) | ${l.pick===home?'Home':'Away'} team`;
+      if(l.market==='spreads'){
+        const team=l.pick.replace(/\s[+-]?\d+\.?\d*$/,'').trim();
+        const num=l.pick.match(/([+-]?\d+\.?\d*)$/)?.[1]||'';
+        const label=l.sport==='mlb'?'run line':l.sport==='nhl'?'puck line':'spread';
+        return `${sport}: ${away} @ ${home} | Pick: ${team} ${num} ${label} | ${team===home?'Home':'Away'} team`;
+      }
+      const dir=l.pick.split(' ')[0],num=l.pick.split(' ')[1]||'';
+      const unit=l.sport==='mlb'?'runs':l.sport==='nhl'?'goals':'points';
+      return `${sport}: ${away} @ ${home} | ${dir} ${num} total ${unit}`;
+    }).join('\n');
+  }
+
+  function buildNamePrompt(legs){
+    const times=legs.map(l=>l.time).filter(Boolean);
+    const gameDate=times.length?new Date(Math.min(...times.map(t=>+new Date(t)))):new Date();
+    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const dateStr=`${days[gameDate.getDay()]}, ${months[gameDate.getMonth()]} ${gameDate.getDate()}`;
+    // Collect all teams from legs and their wordplay hints
+    const teamSet=new Set();
+    legs.forEach(l=>{
+      const parts=(l.matchup||'').split(' @ ');
+      if(parts[0])teamSet.add(parts[0].trim());
+      if(parts[1])teamSet.add(parts[1].trim());
+    });
+    const wordplayLines=[...teamSet].map(t=>{
+      const hints=TEAM_WORDPLAY[t];
+      return hints?`- ${t}: ${hints.join(', ')}`:null;
+    }).filter(Boolean).join('\n');
+    return `Generate 5 creative combo names for this prediction markets combo. The games are on ${dateStr}.
+
+LEGS:
+${buildLegContext(legs)}
+
+TEAM WORDPLAY MATERIAL — use these concepts, puns, and city references (never the actual team names):
+${wordplayLines||'(use city and mascot imagery)'}
+
+RULES — follow every one strictly:
+1. 2–5 words max. Punchy, memorable, headline-worthy.
+2. BANNED WORDS — never use: "lock," "locks," "locked," "guarantee," "guaranteed," "parlay," "bet," "betting," "gamble," "odds," "chalk." This is prediction markets, not a sportsbook.
+3. Use the TEAM WORDPLAY MATERIAL above — riff on the city flavor, puns, and imagery listed for each team. Be creative and specific to these exact teams.
+4. Mascot identity wordplay: Thunder → storm/electricity, Cubs → bear/cub, Guardians → shield/protector, Heat → fire, Rockets → launch/orbit, Bruins → bear, Pelicans → bayou/beak, Grizzlies → mountain/claws, Wild → wilderness, etc.
+5. Shared traits: all away → "Road Warriors"/"The Visitors"; all home → "Home Cooking"/"Hold the Fort"; all favorites → "All Business"/"By the Numbers"; all underdogs → "Chaos Theory"/"Against the Grain."
+6. Geography where two+ teams share a region: I-95 corridor, Rust Belt, Coast-to-Coast, Sun Belt, Great Lakes, Pacific Northwest.
+7. Historic connections between teams: WS history, dynasty rivalries, Original Six, city pairings.
+8. Calendar wordplay for ${dateStr} — lean into the date, no trademarked references.
+9. ZERO trademarks, film titles, song titles, brand names. Original wordplay and puns only.
+10. Never write the actual team name — only the city, identity, animal, or imagery behind it.
+
+Return exactly 5 names. One per line. No numbers, bullets, quotes, or explanations.`;
+  }
+
+  async function callClaude(prompt){
+    const key=ls('fd_anthropic_key')||'';
+    if(!key)return null;
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:150,messages:[{role:'user',content:prompt}]})
+    });
+    if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||`Claude API error ${resp.status}`);}
+    const data=await resp.json();
+    return data.content[0].text;
+  }
+
+  async function fetchSuggestions(){
+    const el=document.getElementById('suggest-pills');
+    if(!el||S.currentLegs.length<2)return;
+    const anthropicKey=ls('fd_anthropic_key')||'';
+    if(anthropicKey){
+      el.innerHTML='<span style="color:#6d57a8;font-size:11px;font-style:italic">✨ Thinking…</span>';
+      try{
+        const text=await callClaude(buildNamePrompt(S.currentLegs));
+        const names=text.trim().split('\n').map(n=>n.replace(/^[\d\.\-\*\s]+/,'').trim()).filter(n=>n.length>1&&n.length<=50).slice(0,5);
+        el.innerHTML=names.map(n=>`<button class="s-pill" onclick="App.pickSuggestion(${JSON.stringify(n)})">${n}</button>`).join('');
+        return;
+      }catch(e){console.warn('Claude suggestions failed:',e.message);}
+    }
+    // Template fallback
+    if(_suggPool.length<5)_suggPool=buildSuggestionPool(S.currentLegs);
+    const batch=_suggPool.splice(0,5);
+    el.innerHTML=batch.map(n=>`<button class="s-pill" onclick="App.pickSuggestion(${JSON.stringify(n)})">${n}</button>`).join('');
+  }
+
+  function shuffleSuggestions(){fetchSuggestions();}
+  function pickSuggestion(name){
+    document.getElementById('combo-name').value=name;
+    document.getElementById('combo-name').focus();
+  }
+  async function clearAllCombos(){
+    if(!GH.token()){toast('⚠️ GitHub token required — add one in ⚙ Settings');return;}
+    if(!confirm(`Delete ALL ${S.savedCombos.length} saved combo(s)? This removes them for the whole team.`))return;
+    try{await GH.save([]);S.savedCombos=[];renderSaved();toast('🗑 All combos cleared');}
+    catch(e){toast(`❌ ${e.message}`);}
+  }
+  function renderSaved(){
+    document.getElementById('saved-badge').textContent=`${S.savedCombos.length} / 25`;
+    const el=document.getElementById('saved-list');
+    if(!S.savedCombos.length){el.innerHTML='<div class="no-combos">No combos yet — build one!</div>';return;}
+    el.innerHTML=S.savedCombos.slice().reverse().map(combo=>{
+      const exp=S.expanded===combo.id,date=new Date(combo.createdAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true});
+      const legsH=combo.legs.map((l,i)=>{const cfg=SPORTS[l.sport]||SPORTS.nba;return`<div class="ci-leg"><span class="ci-num">${i+1}</span><span class="sport-tag ${cfg.tag}" style="font-size:9px">${cfg.label}</span><span class="ci-pick">${l.pick}${l.isEst?' <span style="font-size:9px;color:#6d57a8">(~est)</span>':''}</span><span class="ci-mkt">${l.marketLabel}</span></div>`;}).join('');
+      const safeName=combo.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      return`<div class="ci ${exp?'open':''}" id="ci-${combo.id}"><div class="ci-head" onclick="App.toggleExpand('${combo.id}')"><span class="ci-arrow">▶</span><span class="ci-name">${combo.name}</span>${combo.hasEst?'<span class="ci-est">~Est</span>':''}<span class="ci-n">${combo.legs.length}L</span><button class="btn btn-red btn-xs" onclick="event.stopPropagation();App.deleteCombo('${combo.id}','${safeName}')">✕</button></div><div class="ci-body"><div class="ci-date">Built ${date}</div>${legsH}</div></div>`;
+    }).join('');
+  }
+  function openSettings(){document.getElementById('s-ghtoken').value=GH.token();document.getElementById('s-anthropic').value=ls('fd_anthropic_key')||'';document.getElementById('s-apikey').value=S.apiKey;document.getElementById('s-bookmaker').value=S.bookmaker;document.getElementById('s-futdays').value=S.futDays;document.getElementById('overlay-settings').classList.add('open');}
+  function closeSettings(){document.getElementById('overlay-settings').classList.remove('open');}
+  async function saveSettings(){
+    const ghToken=document.getElementById('s-ghtoken').value.trim();const anthropicKey=document.getElementById('s-anthropic').value.trim();S.apiKey=document.getElementById('s-apikey').value.trim();S.bookmaker=document.getElementById('s-bookmaker').value.trim();S.futDays=parseInt(document.getElementById('s-futdays').value);
+    ls('fd_anthropic_key',anthropicKey);
+    ls('fd_ghtoken',ghToken);ls('fd_apikey',S.apiKey);ls('fd_bookmaker',S.bookmaker);ls('fd_futdays',S.futDays);ls('fd_seen','1');GH._sha=null;
+    const fdEl=document.getElementById('futdays-label');if(fdEl)fdEl.textContent=S.futDays;
+    closeSettings();
+    S.games={nba:[],mlb:[],nhl:[]};S.liveLoaded={nba:false,mlb:false,nhl:false};Object.keys(SPORTS).forEach(sp=>{S.games[sp]=demoGames(SPORTS[sp].key);});
+    await syncCombos();if(S.apiKey){fetchAll();}else{fetchFutureEvents().then(()=>{updateDataBar();renderGames();});}
+  }
+
+  // ── EXPORT TO EXCEL ────────────────────────────────────────────────────────
+  function exportExcel(){
+    if(!S.savedCombos.length){toast('⚠️ No combos to export');return;}
+    if(typeof XLSX==='undefined'){toast('❌ Excel library not loaded');return;}
+
+    // Machine-readable team codes
+    const CODES={
+      nba:{'Atlanta Hawks':'ATL','Boston Celtics':'BOS','Brooklyn Nets':'BKN','Charlotte Hornets':'CHA','Chicago Bulls':'CHI','Cleveland Cavaliers':'CLE','Dallas Mavericks':'DAL','Denver Nuggets':'DEN','Detroit Pistons':'DET','Golden State Warriors':'GSW','Houston Rockets':'HOU','Indiana Pacers':'IND','Los Angeles Clippers':'LAC','LA Clippers':'LAC','Los Angeles Lakers':'LAL','Memphis Grizzlies':'MEM','Miami Heat':'MIA','Milwaukee Bucks':'MIL','Minnesota Timberwolves':'MIN','New Orleans Pelicans':'NOP','New York Knicks':'NYK','Oklahoma City Thunder':'OKC','Orlando Magic':'ORL','Philadelphia 76ers':'PHI','Phoenix Suns':'PHX','Portland Trail Blazers':'POR','Sacramento Kings':'SAC','San Antonio Spurs':'SAS','Toronto Raptors':'TOR','Utah Jazz':'UTA','Washington Wizards':'WAS'},
+      mlb:{'Arizona Diamondbacks':'ARI','Atlanta Braves':'ATL','Baltimore Orioles':'BAL','Boston Red Sox':'BOS','Chicago Cubs':'CHC','Chicago White Sox':'CWS','Cincinnati Reds':'CIN','Cleveland Guardians':'CLE','Colorado Rockies':'COL','Detroit Tigers':'DET','Houston Astros':'HOU','Kansas City Royals':'KCR','Los Angeles Angels':'LAA','Los Angeles Dodgers':'LAD','Miami Marlins':'MIA','Milwaukee Brewers':'MIL','Minnesota Twins':'MIN','New York Mets':'NYM','New York Yankees':'NYY','Oakland Athletics':'OAK','Philadelphia Phillies':'PHI','Pittsburgh Pirates':'PIT','San Diego Padres':'SDP','San Francisco Giants':'SFG','Seattle Mariners':'SEA','St. Louis Cardinals':'STL','Tampa Bay Rays':'TBR','Texas Rangers':'TEX','Toronto Blue Jays':'TOR','Washington Nationals':'WSN'}
+    };
+
+    // Uses global NICKNAMES constant
+
+    // Strip spread/total number → bare team name or Over/Under
+    function selName(leg){
+      if(leg.market==='totals') return leg.pick.split(' ')[0];
+      if(leg.market==='spreads') return leg.pick.replace(/\s[+-]?\d+\.?\d*$/,'').trim();
+      return leg.pick;
+    }
+    // Parse both teams from "Away @ Home" matchup string
+    function teamsFromMatchup(leg){
+      const parts=(leg.matchup||'').split(' @ ');
+      return{home:parts[1]||'',away:parts[0]||''};
+    }
+    // Extract numeric spread/total value from pick string
+    function pickNumber(leg){
+      const m=leg.pick.match(/([+-]?\d+\.?\d*)$/);return m?m[1]:'';
+    }
+
+    // Human-readable selection label
+    function selHuman(leg){
+      const {home,away}=teamsFromMatchup(leg);
+      if(leg.market==='totals'){
+        const dir=leg.pick.split(' ')[0]; // "Over"/"Under"
+        const num=leg.pick.split(' ')[1]||'';
+        const hN=NICKNAMES[home]||home, aN=NICKNAMES[away]||away;
+        const unit=leg.sport==='mlb'?'Runs':leg.sport==='nhl'?'Goals':'Points';
+        return `${dir} ${num} Total ${unit} (${aN} @ ${hN})`;
+      }
+      if(leg.market==='spreads'){
+        const team=selName(leg);
+        const nick=NICKNAMES[team]||team;
+        const num=pickNumber(leg);
+        const opponent=team===home?(NICKNAMES[away]||away):(NICKNAMES[home]||home);
+        const vsAt=team===home?'vs.':'@';
+        return `${nick} ${num} (${vsAt} ${opponent})`;
+      }
+      // moneyline
+      const team=selName(leg);
+      const nick=NICKNAMES[team]||team;
+      const opponent=team===home?(NICKNAMES[away]||away):(NICKNAMES[home]||home);
+      const vsAt=team===home?'vs.':'@';
+      return `${nick} to Win (${vsAt} ${opponent})`;
+    }
+
+    // Machine-readable selection code
+    function selCode(leg){
+      const map=CODES[leg.sport]||{};
+      if(leg.market==='totals'){
+        const dir=leg.pick.split(' ')[0]==='Over'?'O':'U';
+        const num=leg.pick.split(' ')[1]||'';
+        const {home,away}=teamsFromMatchup(leg);
+        const hC=map[home]||home, aC=map[away]||away;
+        const suffix=leg.sport==='mlb'?'GR':leg.sport==='nhl'?'GG':'GP';
+        return `${hC} ${aC} ${dir} ${num} ${suffix}`;
+      }
+      if(leg.market==='spreads'){
+        const team=selName(leg);
+        const code=map[team]||team;
+        const num=pickNumber(leg);
+        const suffix=leg.sport==='mlb'?'RL':leg.sport==='nhl'?'PL':'PS';
+        return `${code} C ${num} ${suffix}`;
+      }
+      // moneyline
+      const n=selName(leg);
+      return `${map[n]||n} W`;
+    }
+
+    function fmtHuman(legs){ return legs.map(selHuman).join(','); }
+    function fmtMachine(legs){ return legs.map(selCode).join(','); }
+
+    // Sport label: unique sports in combo, e.g. "NBA" or "NBA/MLB"
+    function comboSport(legs){
+      const order=['nba','mlb','nhl'];
+      const unique=[...new Set(legs.map(l=>l.sport))].sort((a,b)=>order.indexOf(a)-order.indexOf(b));
+      return unique.map(s=>s.toUpperCase()).join('/');
+    }
+
+    // First game start time: use stored startTime, then fall back to earliest leg time, then createdAt
+    function comboStartTime(c){
+      const t=c.startTime||(()=>{const ts=c.legs.map(l=>l.time).filter(Boolean);return ts.length?new Date(Math.min(...ts.map(t=>+new Date(t)))).toISOString():null;})();
+      return new Date(t||c.createdAt).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true});
+    }
+
+    const HDR=['Date','Sport','Combo Selections','Machine Readable','Combo Name'];
+    const dataRows=S.savedCombos.map(c=>[
+      comboStartTime(c),
+      comboSport(c.legs),
+      fmtHuman(c.legs),
+      fmtMachine(c.legs),
+      c.name
+    ]);
+
+    const ws=XLSX.utils.aoa_to_sheet([HDR,...dataRows]);
+
+    // Styling — header: dark FD green bg, white bold text
+    const COLS=['A','B','C','D','E'];
+    const hdrS={font:{bold:true,color:{rgb:'FFFFFF'},sz:11,name:'Calibri'},fill:{patternType:'solid',fgColor:{rgb:'1A3D26'}},alignment:{horizontal:'center',vertical:'center'}};
+    COLS.forEach((col,i)=>{
+      const ref=col+'1';
+      ws[ref]=ws[ref]||{t:'s',v:HDR[i]};
+      ws[ref].s=hdrS;
+    });
+
+    // Data rows: alternating light green / white
+    dataRows.forEach((_,ri)=>{
+      const row=ri+2,rgb=(ri%2===0)?'EAF5EE':'FFFFFF';
+      COLS.forEach(col=>{
+        const ref=col+row;if(!ws[ref])return;
+        ws[ref].s={fill:{patternType:'solid',fgColor:{rgb}},alignment:{vertical:'top',wrapText:true},font:{name:'Calibri',sz:10}};
+      });
+    });
+
+    ws['!cols']=[{wch:26},{wch:12},{wch:52},{wch:40},{wch:30}];
+
+    const wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'Predicts Combos');
+    XLSX.writeFile(wb,`FD_Predicts_Combos_${new Date().toISOString().slice(0,10)}.xlsx`);
+    toast(`✅ Exported ${S.savedCombos.length} combo(s)`);
+  }
+
+  function switchSport(sport){S.sport=sport;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(`tab-${sport}`).classList.add('active');renderGames();}
+  async function toggleFuture(){}
+  function ls(key,val){if(val===undefined)return localStorage.getItem(key);localStorage.setItem(key,val);}
+  let toastTimer;
+  function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3400);}
+  return{init,refresh,switchSport,toggleFuture,toggleLeg,removeLeg,clearCombo,saveCombo,deleteCombo,toggleExpand,openSettings,closeSettings,saveSettings,exportExcel,shuffleSuggestions,pickSuggestion,clearAllCombos};
+})();
+document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
+App.init();
+</script>
+</body>
+</html>
