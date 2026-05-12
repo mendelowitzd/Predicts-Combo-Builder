@@ -130,5 +130,50 @@
     "createdAt": "2026-05-12T16:34:59.425Z",
     "startTime": "2026-05-14T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mp2v3yorj5p",
+    "name": "Pacific Coast Road Trip",
+    "legs": [
+      {
+        "gameId": "espn_401815330",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-13T23:40Z"
+      },
+      {
+        "gameId": "espn_401815331",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Seattle Mariners @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 205,
+        "isEst": true,
+        "time": "2026-05-14T00:10Z"
+      },
+      {
+        "gameId": "espn_401815332",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -615,
+        "isEst": true,
+        "time": "2026-05-14T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-12T16:45:53.883Z",
+    "startTime": "2026-05-13T23:40:00.000Z",
+    "hasEst": true
   }
 ]
