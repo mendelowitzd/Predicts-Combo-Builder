@@ -31,38 +31,5 @@
     "createdAt": "2026-05-11T21:26:02.358Z",
     "startTime": "2026-05-12T00:10:00.000Z",
     "hasEst": false
-  },
-  {
-    "id": "mp1pohmzioh",
-    "name": "test 2",
-    "legs": [
-      {
-        "gameId": "0db68bfa022e22873f48b8539addd5ae",
-        "market": "spreads",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Oklahoma City Thunder @ Los Angeles Lakers",
-        "marketLabel": "Spread",
-        "pick": "Los Angeles Lakers +11.5",
-        "odds": -108,
-        "isEst": false,
-        "time": "2026-05-12T02:40:00Z"
-      },
-      {
-        "gameId": "b537062ee0483d20ae932052628b663d",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Detroit Pistons @ Cleveland Cavaliers",
-        "marketLabel": "Moneyline",
-        "pick": "Cleveland Cavaliers",
-        "odds": -162,
-        "isEst": false,
-        "time": "2026-05-12T00:10:00Z"
-      }
-    ],
-    "createdAt": "2026-05-11T21:26:07.691Z",
-    "startTime": "2026-05-12T00:10:00.000Z",
-    "hasEst": false
   }
 ]
