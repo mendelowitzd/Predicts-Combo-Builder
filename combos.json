@@ -31,5 +31,38 @@
     "createdAt": "2026-05-12T16:33:55.795Z",
     "startTime": "2026-05-14T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mp2up1xat8l",
+    "name": "Motor City Takes the Wheel",
+    "legs": [
+      {
+        "gameId": "c3531530e77a4ada542bdbff23de5409",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Pistons",
+        "odds": -174,
+        "isEst": false,
+        "time": "2026-05-14T00:10:00Z"
+      },
+      {
+        "gameId": "c3531530e77a4ada542bdbff23de5409",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Total",
+        "pick": "Over 212.5",
+        "odds": -106,
+        "isEst": false,
+        "time": "2026-05-14T00:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-12T16:34:18.238Z",
+    "startTime": "2026-05-14T00:10:00.000Z",
+    "hasEst": false
   }
 ]
