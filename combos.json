@@ -97,5 +97,38 @@
     "createdAt": "2026-05-12T16:34:47.321Z",
     "startTime": "2026-05-14T00:10:00.000Z",
     "hasEst": false
+  },
+  {
+    "id": "mp2upxpdj19",
+    "name": "Pedal to the Metal",
+    "legs": [
+      {
+        "gameId": "c3531530e77a4ada542bdbff23de5409",
+        "market": "spreads",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Spread",
+        "pick": "Detroit Pistons -3.5",
+        "odds": -115,
+        "isEst": false,
+        "time": "2026-05-14T00:10:00Z"
+      },
+      {
+        "gameId": "c3531530e77a4ada542bdbff23de5409",
+        "market": "totals",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Cleveland Cavaliers @ Detroit Pistons",
+        "marketLabel": "Total",
+        "pick": "Under 212.5",
+        "odds": -114,
+        "isEst": false,
+        "time": "2026-05-14T00:10:00Z"
+      }
+    ],
+    "createdAt": "2026-05-12T16:34:59.425Z",
+    "startTime": "2026-05-14T00:10:00.000Z",
+    "hasEst": false
   }
 ]
