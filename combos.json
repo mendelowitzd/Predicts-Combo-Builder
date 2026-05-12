@@ -220,5 +220,62 @@
     "createdAt": "2026-05-12T16:46:26.549Z",
     "startTime": "2026-05-13T22:45:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp2vhey72cx",
+    "name": "Hush the Home Crowd",
+    "legs": [
+      {
+        "gameId": "espn_401815320",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": 315,
+        "isEst": true,
+        "time": "2026-05-13T23:15Z"
+      },
+      {
+        "gameId": "espn_401815330",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-13T23:40Z"
+      },
+      {
+        "gameId": "espn_401815327",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Arizona Diamondbacks @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": 140,
+        "isEst": true,
+        "time": "2026-05-14T00:05Z"
+      },
+      {
+        "gameId": "espn_401815331",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Seattle Mariners @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 205,
+        "isEst": true,
+        "time": "2026-05-14T00:10Z"
+      }
+    ],
+    "createdAt": "2026-05-12T16:56:21.487Z",
+    "startTime": "2026-05-13T23:15:00.000Z",
+    "hasEst": true
   }
 ]
