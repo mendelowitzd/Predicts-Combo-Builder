@@ -154,38 +154,5 @@
     "createdAt": "2026-05-13T14:13:05.692Z",
     "startTime": "2026-05-14T18:10:00.000Z",
     "hasEst": true
-  },
-  {
-    "id": "mp454npukcr",
-    "name": "Laser Run",
-    "legs": [
-      {
-        "gameId": "espn_401815337",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Philadelphia Phillies @ Boston Red Sox",
-        "marketLabel": "Moneyline",
-        "pick": "Philadelphia Phillies",
-        "odds": -145,
-        "isEst": true,
-        "time": "2026-05-14T22:45Z"
-      },
-      {
-        "gameId": "espn_401815334",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Chicago Cubs @ Atlanta Braves",
-        "marketLabel": "Moneyline",
-        "pick": "Atlanta Braves",
-        "odds": -315,
-        "isEst": true,
-        "time": "2026-05-14T23:15Z"
-      }
-    ],
-    "createdAt": "2026-05-13T14:14:08.658Z",
-    "startTime": "2026-05-14T22:45:00.000Z",
-    "hasEst": true
   }
 ]
