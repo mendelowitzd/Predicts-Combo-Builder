@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "id": "mp44zmup2y5",
+    "name": "Hot Run",
+    "legs": [
+      {
+        "gameId": "espn_401815335",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Pittsburgh Pirates",
+        "odds": -205,
+        "isEst": true,
+        "time": "2026-05-14T16:35Z"
+      },
+      {
+        "gameId": "espn_401815338",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Washington Nationals @ Cincinnati Reds",
+        "marketLabel": "Moneyline",
+        "pick": "Cincinnati Reds",
+        "odds": -155,
+        "isEst": true,
+        "time": "2026-05-14T16:40Z"
+      },
+      {
+        "gameId": "espn_401815336",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Detroit Tigers @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -185,
+        "isEst": true,
+        "time": "2026-05-14T17:10Z"
+      }
+    ],
+    "createdAt": "2026-05-13T14:10:14.257Z",
+    "startTime": "2026-05-14T16:35:00.000Z",
+    "hasEst": true
+  }
+]
