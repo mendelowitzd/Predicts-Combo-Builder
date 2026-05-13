@@ -43,5 +43,50 @@
     "createdAt": "2026-05-13T14:10:14.257Z",
     "startTime": "2026-05-14T16:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp4518zy5cp",
+    "name": "Night Run",
+    "legs": [
+      {
+        "gameId": "espn_401815336",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Detroit Tigers @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "Detroit Tigers",
+        "odds": 185,
+        "isEst": true,
+        "time": "2026-05-14T17:10Z"
+      },
+      {
+        "gameId": "espn_401815342",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Seattle Mariners @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 205,
+        "isEst": true,
+        "time": "2026-05-14T18:10Z"
+      },
+      {
+        "gameId": "espn_401815341",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-14T17:40Z"
+      }
+    ],
+    "createdAt": "2026-05-13T14:11:29.614Z",
+    "startTime": "2026-05-14T17:10:00.000Z",
+    "hasEst": true
   }
 ]
