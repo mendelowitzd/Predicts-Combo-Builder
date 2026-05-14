@@ -685,5 +685,38 @@
     "createdAt": "2026-05-14T19:33:32.876Z",
     "startTime": "2026-05-18T22:45:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5w1zeyvfg",
+    "name": "Enemies Aligned",
+    "legs": [
+      {
+        "gameId": "espn_401815395",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Toronto Blue Jays @ New York Yankees",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -355,
+        "isEst": true,
+        "time": "2026-05-18T23:05Z"
+      },
+      {
+        "gameId": "espn_401815396",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Kansas City Royals",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-18T23:40Z"
+      }
+    ],
+    "createdAt": "2026-05-14T19:35:39.658Z",
+    "startTime": "2026-05-18T23:05:00.000Z",
+    "hasEst": true
   }
 ]
