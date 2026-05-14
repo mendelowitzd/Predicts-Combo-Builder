@@ -703,5 +703,62 @@
     "createdAt": "2026-05-14T18:58:57.146Z",
     "startTime": "2026-05-17T20:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5v7jecw7v",
+    "name": "State Bragging Rights",
+    "legs": [
+      {
+        "gameId": "espn_401815380",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Philadelphia Phillies @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Pittsburgh Pirates",
+        "odds": 300,
+        "isEst": true,
+        "time": "2026-05-17T17:35Z"
+      },
+      {
+        "gameId": "espn_401815377",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ Cleveland Guardians",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Guardians",
+        "odds": -270,
+        "isEst": true,
+        "time": "2026-05-17T17:40Z"
+      },
+      {
+        "gameId": "espn_401815379",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-17T17:40Z"
+      },
+      {
+        "gameId": "espn_401815382",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-17T18:10Z"
+      }
+    ],
+    "createdAt": "2026-05-14T19:11:59.220Z",
+    "startTime": "2026-05-17T17:35:00.000Z",
+    "hasEst": true
   }
 ]
