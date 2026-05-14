@@ -658,5 +658,50 @@
     "createdAt": "2026-05-14T18:35:29.451Z",
     "startTime": "2026-05-16T23:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5uqry2zh6",
+    "name": "Fog, Sunshine & Rain",
+    "legs": [
+      {
+        "gameId": "espn_401815389",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Athletics",
+        "marketLabel": "Moneyline",
+        "pick": "San Francisco Giants",
+        "odds": 110,
+        "isEst": true,
+        "time": "2026-05-17T20:05Z"
+      },
+      {
+        "gameId": "espn_401815387",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -765,
+        "isEst": true,
+        "time": "2026-05-17T20:07Z"
+      },
+      {
+        "gameId": "espn_401815388",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 125,
+        "isEst": true,
+        "time": "2026-05-17T23:20Z"
+      }
+    ],
+    "createdAt": "2026-05-14T18:58:57.146Z",
+    "startTime": "2026-05-17T20:05:00.000Z",
+    "hasEst": true
   }
 ]
