@@ -556,5 +556,50 @@
     "createdAt": "2026-05-14T17:54:16.542Z",
     "startTime": "2026-05-16T19:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5sm1ag0co",
+    "name": "The Other Side of Town",
+    "legs": [
+      {
+        "gameId": "espn_401815367",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-16T23:10Z"
+      },
+      {
+        "gameId": "espn_401815364",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-16T23:15Z"
+      },
+      {
+        "gameId": "espn_401815372",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -765,
+        "isEst": true,
+        "time": "2026-05-17T01:38Z"
+      }
+    ],
+    "createdAt": "2026-05-14T17:59:16.744Z",
+    "startTime": "2026-05-16T23:10:00.000Z",
+    "hasEst": true
   }
 ]
