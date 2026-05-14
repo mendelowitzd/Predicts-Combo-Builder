@@ -601,5 +601,62 @@
     "createdAt": "2026-05-14T17:59:16.744Z",
     "startTime": "2026-05-16T23:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5twlrf219",
+    "name": "Four Regions, One Night",
+    "legs": [
+      {
+        "gameId": "espn_401815367",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-16T23:10Z"
+      },
+      {
+        "gameId": "espn_401815361",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-16T23:15Z"
+      },
+      {
+        "gameId": "espn_401815364",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-16T23:15Z"
+      },
+      {
+        "gameId": "espn_401815373",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-16T23:15Z"
+      }
+    ],
+    "createdAt": "2026-05-14T18:35:29.451Z",
+    "startTime": "2026-05-16T23:10:00.000Z",
+    "hasEst": true
   }
 ]
