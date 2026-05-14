@@ -793,5 +793,50 @@
     "createdAt": "2026-05-14T19:15:18.569Z",
     "startTime": "2026-05-17T17:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5vkju3p69",
+    "name": "Where Hip Hop Lives",
+    "legs": [
+      {
+        "gameId": "espn_401815376",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-17T17:35Z"
+      },
+      {
+        "gameId": "espn_401815379",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-17T17:40Z"
+      },
+      {
+        "gameId": "espn_401815387",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -765,
+        "isEst": true,
+        "time": "2026-05-17T20:07Z"
+      }
+    ],
+    "createdAt": "2026-05-14T19:22:06.315Z",
+    "startTime": "2026-05-17T17:35:00.000Z",
+    "hasEst": true
   }
 ]
