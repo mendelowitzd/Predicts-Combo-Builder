@@ -760,5 +760,38 @@
     "createdAt": "2026-05-14T19:11:59.220Z",
     "startTime": "2026-05-17T17:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5vbt7txbc",
+    "name": "South to the North Side",
+    "legs": [
+      {
+        "gameId": "espn_401815376",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-17T17:35Z"
+      },
+      {
+        "gameId": "espn_401815382",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-17T18:10Z"
+      }
+    ],
+    "createdAt": "2026-05-14T19:15:18.569Z",
+    "startTime": "2026-05-17T17:35:00.000Z",
+    "hasEst": true
   }
 ]
