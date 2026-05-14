@@ -838,5 +838,50 @@
     "createdAt": "2026-05-14T19:22:06.315Z",
     "startTime": "2026-05-17T17:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5vpag56fc",
+    "name": "Rain, Sunshine & Desert",
+    "legs": [
+      {
+        "gameId": "espn_401815401",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago White Sox @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -420,
+        "isEst": true,
+        "time": "2026-05-19T01:40Z"
+      },
+      {
+        "gameId": "espn_401815402",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ San Diego Padres",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-19T01:40Z"
+      },
+      {
+        "gameId": "espn_401815403",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Arizona Diamondbacks",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -155,
+        "isEst": true,
+        "time": "2026-05-19T01:40Z"
+      }
+    ],
+    "createdAt": "2026-05-14T19:25:47.429Z",
+    "startTime": "2026-05-19T01:40:00.000Z",
+    "hasEst": true
   }
 ]
