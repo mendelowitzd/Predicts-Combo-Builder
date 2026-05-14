@@ -511,5 +511,50 @@
     "createdAt": "2026-05-14T17:44:28.563Z",
     "startTime": "2026-05-17T01:38:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5sflnijme",
+    "name": "Afternoon Appetizer",
+    "legs": [
+      {
+        "gameId": "espn_401815371",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Arizona Diamondbacks @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-16T19:10Z"
+      },
+      {
+        "gameId": "espn_401815365",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Philadelphia Phillies @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-16T20:05Z"
+      },
+      {
+        "gameId": "espn_401815363",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Miami Marlins @ Tampa Bay Rays",
+        "marketLabel": "Moneyline",
+        "pick": "Tampa Bay Rays",
+        "odds": -315,
+        "isEst": true,
+        "time": "2026-05-16T20:10Z"
+      }
+    ],
+    "createdAt": "2026-05-14T17:54:16.542Z",
+    "startTime": "2026-05-16T19:10:00.000Z",
+    "hasEst": true
   }
 ]
