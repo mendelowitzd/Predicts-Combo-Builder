@@ -222,39 +222,6 @@
     "hasEst": true
   },
   {
-    "id": "mp45gg5ba9g",
-    "name": "combo 8",
-    "legs": [
-      {
-        "gameId": "espn_401815334",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Chicago Cubs @ Atlanta Braves",
-        "marketLabel": "Moneyline",
-        "pick": "Atlanta Braves",
-        "odds": -315,
-        "isEst": true,
-        "time": "2026-05-14T23:15Z"
-      },
-      {
-        "gameId": "espn_401815343",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "San Francisco Giants @ Los Angeles Dodgers",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Dodgers",
-        "odds": -615,
-        "isEst": true,
-        "time": "2026-05-15T02:10Z"
-      }
-    ],
-    "createdAt": "2026-05-13T14:23:18.719Z",
-    "startTime": "2026-05-14T23:15:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "mp5ouuu9t1s",
     "name": "No Weak Links",
     "legs": [
