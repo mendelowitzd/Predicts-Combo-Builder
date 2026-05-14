@@ -583,5 +583,50 @@
     "createdAt": "2026-05-14T19:25:47.429Z",
     "startTime": "2026-05-19T01:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5vsm3kuxh",
+    "name": "The Division Rules",
+    "legs": [
+      {
+        "gameId": "espn_401815390",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Miami Marlins",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -440,
+        "isEst": true,
+        "time": "2026-05-18T22:40Z"
+      },
+      {
+        "gameId": "espn_401815392",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ Philadelphia Phillies",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -420,
+        "isEst": true,
+        "time": "2026-05-18T22:40Z"
+      },
+      {
+        "gameId": "espn_401815394",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Mets @ Washington Nationals",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-18T22:45Z"
+      }
+    ],
+    "createdAt": "2026-05-14T19:28:22.496Z",
+    "startTime": "2026-05-18T22:40:00.000Z",
+    "hasEst": true
   }
 ]
