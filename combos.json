@@ -433,5 +433,50 @@
     "createdAt": "2026-05-14T16:28:44.654Z",
     "startTime": "2026-05-15T23:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5ph10p2ab",
+    "name": "Rivalry Road Trip",
+    "legs": [
+      {
+        "gameId": "espn_401815356",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Arizona Diamondbacks @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "Arizona Diamondbacks",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-16T00:40Z"
+      },
+      {
+        "gameId": "espn_401815357",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -765,
+        "isEst": true,
+        "time": "2026-05-16T01:38Z"
+      },
+      {
+        "gameId": "espn_401815359",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Athletics",
+        "marketLabel": "Moneyline",
+        "pick": "San Francisco Giants",
+        "odds": 110,
+        "isEst": true,
+        "time": "2026-05-16T01:40Z"
+      }
+    ],
+    "createdAt": "2026-05-14T16:31:24.265Z",
+    "startTime": "2026-05-16T00:40:00.000Z",
+    "hasEst": true
   }
 ]
