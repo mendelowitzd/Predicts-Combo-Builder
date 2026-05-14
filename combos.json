@@ -298,5 +298,62 @@
     "createdAt": "2026-05-13T14:23:18.719Z",
     "startTime": "2026-05-14T23:15:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5ouuu9t1s",
+    "name": "No Weak Links",
+    "legs": [
+      {
+        "gameId": "espn_401815349",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-15T23:10Z"
+      },
+      {
+        "gameId": "espn_401815346",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-15T23:15Z"
+      },
+      {
+        "gameId": "espn_401815352",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-15T23:40Z"
+      },
+      {
+        "gameId": "espn_401815357",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -765,
+        "isEst": true,
+        "time": "2026-05-16T01:38Z"
+      }
+    ],
+    "createdAt": "2026-05-14T16:14:09.825Z",
+    "startTime": "2026-05-15T23:10:00.000Z",
+    "hasEst": true
   }
 ]
