@@ -445,5 +445,38 @@
     "createdAt": "2026-05-14T16:25:06.857Z",
     "startTime": "2026-05-16T00:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5pdlv24yk",
+    "name": "The Rivalry Road Trip",
+    "legs": [
+      {
+        "gameId": "espn_401815349",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -215,
+        "isEst": true,
+        "time": "2026-05-15T23:10Z"
+      },
+      {
+        "gameId": "espn_401815352",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-15T23:40Z"
+      }
+    ],
+    "createdAt": "2026-05-14T16:28:44.654Z",
+    "startTime": "2026-05-15T23:10:00.000Z",
+    "hasEst": true
   }
 ]
