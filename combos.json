@@ -156,39 +156,6 @@
     "hasEst": true
   },
   {
-    "id": "mp45fywtyaw",
-    "name": "combo 6",
-    "legs": [
-      {
-        "gameId": "espn_401815337",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Philadelphia Phillies @ Boston Red Sox",
-        "marketLabel": "Moneyline",
-        "pick": "Boston Red Sox",
-        "odds": 145,
-        "isEst": true,
-        "time": "2026-05-14T22:45Z"
-      },
-      {
-        "gameId": "espn_401815334",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Chicago Cubs @ Atlanta Braves",
-        "marketLabel": "Moneyline",
-        "pick": "Chicago Cubs",
-        "odds": 315,
-        "isEst": true,
-        "time": "2026-05-14T23:15Z"
-      }
-    ],
-    "createdAt": "2026-05-13T14:22:56.381Z",
-    "startTime": "2026-05-14T22:45:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "mp5ouuu9t1s",
     "name": "No Weak Links",
     "legs": [
