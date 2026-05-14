@@ -402,51 +402,6 @@
     "hasEst": true
   },
   {
-    "id": "mp5p8xt55sl",
-    "name": "No Rest for the NL West",
-    "legs": [
-      {
-        "gameId": "espn_401815356",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Arizona Diamondbacks @ Colorado Rockies",
-        "marketLabel": "Moneyline",
-        "pick": "Arizona Diamondbacks",
-        "odds": -255,
-        "isEst": true,
-        "time": "2026-05-16T00:40Z"
-      },
-      {
-        "gameId": "espn_401815357",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Dodgers",
-        "odds": -765,
-        "isEst": true,
-        "time": "2026-05-16T01:38Z"
-      },
-      {
-        "gameId": "espn_401815359",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "San Francisco Giants @ Athletics",
-        "marketLabel": "Moneyline",
-        "pick": "San Francisco Giants",
-        "odds": 110,
-        "isEst": true,
-        "time": "2026-05-16T01:40Z"
-      }
-    ],
-    "createdAt": "2026-05-14T16:25:06.857Z",
-    "startTime": "2026-05-16T00:40:00.000Z",
-    "hasEst": true
-  },
-  {
     "id": "mp5pdlv24yk",
     "name": "The Rivalry Road Trip",
     "legs": [
