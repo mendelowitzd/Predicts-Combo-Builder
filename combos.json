@@ -355,5 +355,50 @@
     "createdAt": "2026-05-14T16:14:09.825Z",
     "startTime": "2026-05-15T23:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp5p2r8r0m0",
+    "name": "From the Bell to the Bay",
+    "legs": [
+      {
+        "gameId": "espn_401815350",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Philadelphia Phillies @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Philadelphia Phillies",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-15T22:40Z"
+      },
+      {
+        "gameId": "espn_401815348",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Miami Marlins @ Tampa Bay Rays",
+        "marketLabel": "Moneyline",
+        "pick": "Tampa Bay Rays",
+        "odds": -315,
+        "isEst": true,
+        "time": "2026-05-15T23:10Z"
+      },
+      {
+        "gameId": "espn_401815346",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Atlanta Braves",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-15T23:15Z"
+      }
+    ],
+    "createdAt": "2026-05-14T16:20:18.411Z",
+    "startTime": "2026-05-15T22:40:00.000Z",
+    "hasEst": true
   }
 ]
