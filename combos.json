@@ -784,5 +784,38 @@
     "createdAt": "2026-05-15T17:42:54.260Z",
     "startTime": "2026-05-16T20:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp77ikply4v",
+    "name": "West Fest",
+    "legs": [
+      {
+        "gameId": "espn_401815370",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Texas Rangers @ Houston Astros",
+        "marketLabel": "Moneyline",
+        "pick": "Houston Astros",
+        "odds": -175,
+        "isEst": true,
+        "time": "2026-05-16T23:10Z"
+      },
+      {
+        "gameId": "espn_401815373",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": 125,
+        "isEst": true,
+        "time": "2026-05-16T23:15Z"
+      }
+    ],
+    "createdAt": "2026-05-15T17:44:15.705Z",
+    "startTime": "2026-05-16T23:10:00.000Z",
+    "hasEst": true
   }
 ]
