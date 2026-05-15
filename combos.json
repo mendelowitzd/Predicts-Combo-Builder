@@ -718,5 +718,38 @@
     "createdAt": "2026-05-14T19:35:39.658Z",
     "startTime": "2026-05-18T23:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp77dm188xb",
+    "name": "Early Bird Special",
+    "legs": [
+      {
+        "gameId": "espn_401815366",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Toronto Blue Jays @ Detroit Tigers",
+        "marketLabel": "Moneyline",
+        "pick": "Toronto Blue Jays",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-16T17:10Z"
+      },
+      {
+        "gameId": "espn_401815368",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Kansas City Royals @ St. Louis Cardinals",
+        "marketLabel": "Moneyline",
+        "pick": "St. Louis Cardinals",
+        "odds": -105,
+        "isEst": true,
+        "time": "2026-05-16T18:15Z"
+      }
+    ],
+    "createdAt": "2026-05-15T17:40:24.140Z",
+    "startTime": "2026-05-16T17:10:00.000Z",
+    "hasEst": true
   }
 ]
