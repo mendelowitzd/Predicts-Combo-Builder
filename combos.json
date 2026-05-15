@@ -751,5 +751,38 @@
     "createdAt": "2026-05-15T17:40:24.140Z",
     "startTime": "2026-05-16T17:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mp77gtv8alt",
+    "name": "East Feast",
+    "legs": [
+      {
+        "gameId": "espn_401815360",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Baltimore Orioles @ Washington Nationals",
+        "marketLabel": "Moneyline",
+        "pick": "Baltimore Orioles",
+        "odds": -255,
+        "isEst": true,
+        "time": "2026-05-16T20:05Z"
+      },
+      {
+        "gameId": "espn_401815363",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Miami Marlins @ Tampa Bay Rays",
+        "marketLabel": "Moneyline",
+        "pick": "Tampa Bay Rays",
+        "odds": -315,
+        "isEst": true,
+        "time": "2026-05-16T20:10Z"
+      }
+    ],
+    "createdAt": "2026-05-15T17:42:54.260Z",
+    "startTime": "2026-05-16T20:05:00.000Z",
+    "hasEst": true
   }
 ]
