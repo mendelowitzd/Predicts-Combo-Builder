@@ -817,50 +817,5 @@
     "createdAt": "2026-05-15T17:44:15.705Z",
     "startTime": "2026-05-16T23:10:00.000Z",
     "hasEst": true
-  },
-  {
-    "id": "mp77kgneukz",
-    "name": "Crosstown Chaos",
-    "legs": [
-      {
-        "gameId": "espn_401815364",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "New York Yankees @ New York Mets",
-        "marketLabel": "Moneyline",
-        "pick": "New York Mets",
-        "odds": 215,
-        "isEst": true,
-        "time": "2026-05-16T23:15Z"
-      },
-      {
-        "gameId": "espn_401815367",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Chicago Cubs @ Chicago White Sox",
-        "marketLabel": "Moneyline",
-        "pick": "Chicago White Sox",
-        "odds": 255,
-        "isEst": true,
-        "time": "2026-05-16T23:10Z"
-      },
-      {
-        "gameId": "espn_401815372",
-        "market": "h2h",
-        "outcomeIdx": 0,
-        "sport": "mlb",
-        "matchup": "Los Angeles Dodgers @ Los Angeles Angels",
-        "marketLabel": "Moneyline",
-        "pick": "Los Angeles Angels",
-        "odds": 765,
-        "isEst": true,
-        "time": "2026-05-17T01:38Z"
-      }
-    ],
-    "createdAt": "2026-05-15T17:45:43.754Z",
-    "startTime": "2026-05-16T23:10:00.000Z",
-    "hasEst": true
   }
 ]
