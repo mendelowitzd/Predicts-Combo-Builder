@@ -862,38 +862,5 @@
     "createdAt": "2026-05-15T17:45:43.754Z",
     "startTime": "2026-05-16T23:10:00.000Z",
     "hasEst": true
-  },
-  {
-    "id": "mpfrnq2ifiy",
-    "name": "Prime Slate",
-    "legs": [
-      {
-        "gameId": "679760ad793188b79273efa2408440ac",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "San Diego Padres @ Milwaukee Brewers",
-        "marketLabel": "Moneyline",
-        "pick": "San Diego Padres",
-        "odds": 114,
-        "isEst": false,
-        "time": "2026-05-14T17:41:00Z"
-      },
-      {
-        "gameId": "0fd9dcf5dd607b0b9074ed98709c23da",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "mlb",
-        "matchup": "Miami Marlins @ Minnesota Twins",
-        "marketLabel": "Moneyline",
-        "pick": "Minnesota Twins",
-        "odds": -122,
-        "isEst": false,
-        "time": "2026-05-14T17:40:00Z"
-      }
-    ],
-    "createdAt": "2026-05-21T17:30:17.658Z",
-    "startTime": "2026-05-14T17:40:00.000Z",
-    "hasEst": false
   }
 ]
