@@ -166,5 +166,38 @@
     "createdAt": "2026-05-24T23:36:27.450Z",
     "startTime": "2026-05-29T23:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkf3p1no3v",
+    "name": "Wind & Rain",
+    "legs": [
+      {
+        "gameId": "espn_401815542",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ St. Louis Cardinals",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": 105,
+        "isEst": true,
+        "time": "2026-05-30T00:15Z"
+      },
+      {
+        "gameId": "espn_401815547",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Arizona Diamondbacks @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-30T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:37:38.699Z",
+    "startTime": "2026-05-30T00:15:00.000Z",
+    "hasEst": true
   }
 ]
