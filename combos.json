@@ -268,5 +268,38 @@
     "createdAt": "2026-05-24T22:36:18.297Z",
     "startTime": "2026-05-27T19:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkcyj3yx2i",
+    "name": "Money Talks",
+    "legs": [
+      {
+        "gameId": "espn_401815523",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Kansas City Royals",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-27T23:40Z"
+      },
+      {
+        "gameId": "espn_401815526",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -1400,
+        "isEst": true,
+        "time": "2026-05-28T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:37:38.494Z",
+    "startTime": "2026-05-27T23:40:00.000Z",
+    "hasEst": true
   }
 ]
