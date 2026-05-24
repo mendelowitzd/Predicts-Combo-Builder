@@ -277,5 +277,38 @@
     "createdAt": "2026-05-24T23:45:20.430Z",
     "startTime": "2026-05-29T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkfexffgye",
+    "name": "Corner to Corner",
+    "legs": [
+      {
+        "gameId": "espn_401815536",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Cincinnati Reds",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -335,
+        "isEst": true,
+        "time": "2026-05-29T22:40Z"
+      },
+      {
+        "gameId": "espn_401815547",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Arizona Diamondbacks @ Seattle Mariners",
+        "marketLabel": "Moneyline",
+        "pick": "Seattle Mariners",
+        "odds": -120,
+        "isEst": true,
+        "time": "2026-05-30T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:46:22.779Z",
+    "startTime": "2026-05-29T22:40:00.000Z",
+    "hasEst": true
   }
 ]
