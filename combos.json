@@ -301,5 +301,38 @@
     "createdAt": "2026-05-24T22:37:38.494Z",
     "startTime": "2026-05-27T23:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkd0xuwlbz",
+    "name": "Spread the News",
+    "legs": [
+      {
+        "gameId": "espn_401815517",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -240,
+        "isEst": true,
+        "time": "2026-05-27T23:10Z"
+      },
+      {
+        "gameId": "espn_401815523",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Kansas City Royals",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-27T23:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:39:30.920Z",
+    "startTime": "2026-05-27T23:10:00.000Z",
+    "hasEst": true
   }
 ]
