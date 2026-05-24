@@ -445,5 +445,38 @@
     "createdAt": "2026-05-24T22:52:35.356Z",
     "startTime": "2026-05-27T22:45:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkdjg45e0s",
+    "name": "Great Lakes Double",
+    "legs": [
+      {
+        "gameId": "espn_401815520",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Washington Nationals @ Cleveland Guardians",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Guardians",
+        "odds": -355,
+        "isEst": true,
+        "time": "2026-05-27T17:10Z"
+      },
+      {
+        "gameId": "espn_401815516",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-27T22:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:53:54.389Z",
+    "startTime": "2026-05-27T17:10:00.000Z",
+    "hasEst": true
   }
 ]
