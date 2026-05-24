@@ -511,5 +511,38 @@
     "createdAt": "2026-05-24T22:56:51.683Z",
     "startTime": "2026-05-28T17:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkdof3g19z",
+    "name": "Peach & Maple",
+    "legs": [
+      {
+        "gameId": "espn_401815530",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -165,
+        "isEst": true,
+        "time": "2026-05-28T20:10Z"
+      },
+      {
+        "gameId": "espn_401815532",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Toronto Blue Jays @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "Toronto Blue Jays",
+        "odds": 155,
+        "isEst": true,
+        "time": "2026-05-28T22:35Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:57:46.348Z",
+    "startTime": "2026-05-28T20:10:00.000Z",
+    "hasEst": true
   }
 ]
