@@ -478,5 +478,38 @@
     "createdAt": "2026-05-24T22:53:54.389Z",
     "startTime": "2026-05-27T17:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkdn8wzjwk",
+    "name": "Second Fiddle",
+    "legs": [
+      {
+        "gameId": "espn_401815529",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Los Angeles Angels @ Detroit Tigers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Angels",
+        "odds": 205,
+        "isEst": true,
+        "time": "2026-05-28T17:10Z"
+      },
+      {
+        "gameId": "espn_401815534",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Minnesota Twins @ Chicago White Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago White Sox",
+        "odds": 300,
+        "isEst": true,
+        "time": "2026-05-28T18:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:56:51.683Z",
+    "startTime": "2026-05-28T17:10:00.000Z",
+    "hasEst": true
   }
 ]
