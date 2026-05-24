@@ -76,5 +76,62 @@
     "createdAt": "2026-05-24T23:33:36.387Z",
     "startTime": "2026-05-30T00:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkf0uy90d3",
+    "name": "Beats of the East",
+    "legs": [
+      {
+        "gameId": "espn_401815541",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Toronto Blue Jays @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "Toronto Blue Jays",
+        "odds": 155,
+        "isEst": true,
+        "time": "2026-05-29T23:05Z"
+      },
+      {
+        "gameId": "espn_401815535",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Los Angeles Angels @ Tampa Bay Rays",
+        "marketLabel": "Moneyline",
+        "pick": "Tampa Bay Rays",
+        "odds": -315,
+        "isEst": true,
+        "time": "2026-05-29T23:10Z"
+      },
+      {
+        "gameId": "espn_401815537",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Boston Red Sox @ Cleveland Guardians",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": 130,
+        "isEst": true,
+        "time": "2026-05-29T23:10Z"
+      },
+      {
+        "gameId": "espn_401815548",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Athletics",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -355,
+        "isEst": true,
+        "time": "2026-05-30T01:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:35:26.385Z",
+    "startTime": "2026-05-29T23:05:00.000Z",
+    "hasEst": true
   }
 ]
