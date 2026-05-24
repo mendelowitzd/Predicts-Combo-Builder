@@ -334,5 +334,38 @@
     "createdAt": "2026-05-24T22:39:30.920Z",
     "startTime": "2026-05-27T23:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkd2fwvpe1",
+    "name": "Friends for a Night",
+    "legs": [
+      {
+        "gameId": "espn_401815521",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Houston Astros @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Houston Astros",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-28T00:05Z"
+      },
+      {
+        "gameId": "espn_401815526",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -1400,
+        "isEst": true,
+        "time": "2026-05-28T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:40:40.975Z",
+    "startTime": "2026-05-28T00:05:00.000Z",
+    "hasEst": true
   }
 ]
