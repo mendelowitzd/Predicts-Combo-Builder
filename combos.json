@@ -166,5 +166,50 @@
     "createdAt": "2026-05-24T22:26:33.691Z",
     "startTime": "2026-05-26T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkcsas8p9d",
+    "name": "Afternoon Faithful",
+    "legs": [
+      {
+        "gameId": "espn_401815518",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Miami Marlins @ Toronto Blue Jays",
+        "marketLabel": "Moneyline",
+        "pick": "Toronto Blue Jays",
+        "odds": -270,
+        "isEst": true,
+        "time": "2026-05-27T17:07Z"
+      },
+      {
+        "gameId": "espn_401815520",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Washington Nationals @ Cleveland Guardians",
+        "marketLabel": "Moneyline",
+        "pick": "Cleveland Guardians",
+        "odds": -355,
+        "isEst": true,
+        "time": "2026-05-27T17:10Z"
+      },
+      {
+        "gameId": "espn_401815524",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "St. Louis Cardinals @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "Milwaukee Brewers",
+        "odds": -155,
+        "isEst": true,
+        "time": "2026-05-27T17:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:32:47.768Z",
+    "startTime": "2026-05-27T17:07:00.000Z",
+    "hasEst": true
   }
 ]
