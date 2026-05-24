@@ -577,5 +577,38 @@
     "createdAt": "2026-05-24T23:00:15.112Z",
     "startTime": "2026-05-28T18:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkdvhnmcu6",
+    "name": "Better with Age",
+    "legs": [
+      {
+        "gameId": "espn_401815530",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Boston Red Sox",
+        "odds": 165,
+        "isEst": true,
+        "time": "2026-05-28T20:10Z"
+      },
+      {
+        "gameId": "espn_401815531",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-28T22:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:03:16.258Z",
+    "startTime": "2026-05-28T20:10:00.000Z",
+    "hasEst": true
   }
 ]
