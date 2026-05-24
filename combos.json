@@ -133,5 +133,38 @@
     "createdAt": "2026-05-24T22:19:09.776Z",
     "startTime": "2026-05-26T23:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkcka576ny",
+    "name": "Good Neighbors",
+    "legs": [
+      {
+        "gameId": "espn_401815501",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Chicago Cubs",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-26T22:40Z"
+      },
+      {
+        "gameId": "espn_401815509",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "St. Louis Cardinals @ Milwaukee Brewers",
+        "marketLabel": "Moneyline",
+        "pick": "Milwaukee Brewers",
+        "odds": -155,
+        "isEst": true,
+        "time": "2026-05-26T23:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:26:33.691Z",
+    "startTime": "2026-05-26T22:40:00.000Z",
+    "hasEst": true
   }
 ]
