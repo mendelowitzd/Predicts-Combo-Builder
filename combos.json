@@ -412,5 +412,38 @@
     "createdAt": "2026-05-24T22:44:07.720Z",
     "startTime": "2026-05-27T20:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkdhr4s0yj",
+    "name": "Peach & Apple",
+    "legs": [
+      {
+        "gameId": "espn_401815515",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -165,
+        "isEst": true,
+        "time": "2026-05-27T22:45Z"
+      },
+      {
+        "gameId": "espn_401815517",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Cincinnati Reds @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -240,
+        "isEst": true,
+        "time": "2026-05-27T23:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:52:35.356Z",
+    "startTime": "2026-05-27T22:45:00.000Z",
+    "hasEst": true
   }
 ]
