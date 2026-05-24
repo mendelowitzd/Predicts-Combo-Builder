@@ -655,5 +655,50 @@
     "createdAt": "2026-05-24T23:07:32.135Z",
     "startTime": "2026-05-28T22:35:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpke3ixrbt8",
+    "name": "Home Under the Lights",
+    "legs": [
+      {
+        "gameId": "espn_401815532",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Toronto Blue Jays @ Baltimore Orioles",
+        "marketLabel": "Moneyline",
+        "pick": "Baltimore Orioles",
+        "odds": -155,
+        "isEst": true,
+        "time": "2026-05-28T22:35Z"
+      },
+      {
+        "gameId": "espn_401815531",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Pittsburgh Pirates",
+        "odds": 125,
+        "isEst": true,
+        "time": "2026-05-28T22:40Z"
+      },
+      {
+        "gameId": "espn_401815533",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Houston Astros @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Texas Rangers",
+        "odds": 125,
+        "isEst": true,
+        "time": "2026-05-29T00:05Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:09:31.167Z",
+    "startTime": "2026-05-28T22:35:00.000Z",
+    "hasEst": true
   }
 ]
