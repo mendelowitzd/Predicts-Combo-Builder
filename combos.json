@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "id": "mpkc0xhgdcv",
+    "name": "All They Do is Win",
+    "legs": [
+      {
+        "gameId": "espn_401815500",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Atlanta Braves @ Boston Red Sox",
+        "marketLabel": "Moneyline",
+        "pick": "Atlanta Braves",
+        "odds": -165,
+        "isEst": true,
+        "time": "2026-05-26T22:45Z"
+      },
+      {
+        "gameId": "espn_401815508",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "New York Yankees @ Kansas City Royals",
+        "marketLabel": "Moneyline",
+        "pick": "New York Yankees",
+        "odds": -300,
+        "isEst": true,
+        "time": "2026-05-26T23:40Z"
+      },
+      {
+        "gameId": "espn_401815511",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Colorado Rockies @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -1400,
+        "isEst": true,
+        "time": "2026-05-27T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T22:11:30.820Z",
+    "startTime": "2026-05-26T22:45:00.000Z",
+    "hasEst": true
+  }
+]
