@@ -133,5 +133,38 @@
     "createdAt": "2026-05-24T23:35:26.385Z",
     "startTime": "2026-05-29T23:05:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkf262i7z5",
+    "name": "Star Power",
+    "legs": [
+      {
+        "gameId": "espn_401815538",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Miami Marlins @ New York Mets",
+        "marketLabel": "Moneyline",
+        "pick": "New York Mets",
+        "odds": -315,
+        "isEst": true,
+        "time": "2026-05-29T23:10Z"
+      },
+      {
+        "gameId": "espn_401815549",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Philadelphia Phillies @ Los Angeles Dodgers",
+        "marketLabel": "Moneyline",
+        "pick": "Los Angeles Dodgers",
+        "odds": -230,
+        "isEst": true,
+        "time": "2026-05-30T02:10Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:36:27.450Z",
+    "startTime": "2026-05-29T23:10:00.000Z",
+    "hasEst": true
   }
 ]
