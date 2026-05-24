@@ -733,5 +733,38 @@
     "createdAt": "2026-05-24T23:11:13.831Z",
     "startTime": "2026-05-28T17:10:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpke7i8vx9x",
+    "name": "Sail & Launch",
+    "legs": [
+      {
+        "gameId": "espn_401815531",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "mlb",
+        "matchup": "Chicago Cubs @ Pittsburgh Pirates",
+        "marketLabel": "Moneyline",
+        "pick": "Pittsburgh Pirates",
+        "odds": 125,
+        "isEst": true,
+        "time": "2026-05-28T22:40Z"
+      },
+      {
+        "gameId": "espn_401815533",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "Houston Astros @ Texas Rangers",
+        "marketLabel": "Moneyline",
+        "pick": "Houston Astros",
+        "odds": -125,
+        "isEst": true,
+        "time": "2026-05-29T00:05Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:12:36.895Z",
+    "startTime": "2026-05-28T22:40:00.000Z",
+    "hasEst": true
   }
 ]
