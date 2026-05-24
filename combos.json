@@ -199,5 +199,38 @@
     "createdAt": "2026-05-24T23:37:38.699Z",
     "startTime": "2026-05-30T00:15:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mpkf7h3pozg",
+    "name": "The Beach & The Bay",
+    "legs": [
+      {
+        "gameId": "espn_401815540",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Diego Padres @ Washington Nationals",
+        "marketLabel": "Moneyline",
+        "pick": "San Diego Padres",
+        "odds": -285,
+        "isEst": true,
+        "time": "2026-05-29T22:45Z"
+      },
+      {
+        "gameId": "espn_401815546",
+        "market": "h2h",
+        "outcomeIdx": 1,
+        "sport": "mlb",
+        "matchup": "San Francisco Giants @ Colorado Rockies",
+        "marketLabel": "Moneyline",
+        "pick": "San Francisco Giants",
+        "odds": -195,
+        "isEst": true,
+        "time": "2026-05-30T00:40Z"
+      }
+    ],
+    "createdAt": "2026-05-24T23:40:35.029Z",
+    "startTime": "2026-05-29T22:45:00.000Z",
+    "hasEst": true
   }
 ]
