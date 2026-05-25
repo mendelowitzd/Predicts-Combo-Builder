@@ -343,38 +343,5 @@
     "createdAt": "2026-05-25T20:57:32.553Z",
     "startTime": "2026-05-29T00:30:00.000Z",
     "hasEst": true
-  },
-  {
-    "id": "mploursuymv",
-    "name": "Laser Wave",
-    "legs": [
-      {
-        "gameId": "espn_401873202",
-        "market": "h2h",
-        "outcomeIdx": 1,
-        "sport": "nba",
-        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
-        "marketLabel": "Moneyline",
-        "pick": "Oklahoma City Thunder",
-        "odds": -745,
-        "isEst": true,
-        "time": "2026-05-29T00:30Z"
-      },
-      {
-        "gameId": "espn_401873202",
-        "market": "totals",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
-        "marketLabel": "Total",
-        "pick": "Over 223",
-        "odds": -110,
-        "isEst": true,
-        "time": "2026-05-29T00:30Z"
-      }
-    ],
-    "createdAt": "2026-05-25T20:58:24.702Z",
-    "startTime": "2026-05-29T00:30:00.000Z",
-    "hasEst": true
   }
 ]
