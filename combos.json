@@ -310,5 +310,38 @@
     "createdAt": "2026-05-24T23:46:22.779Z",
     "startTime": "2026-05-29T22:40:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mplosnftm2e",
+    "name": "Big Run",
+    "legs": [
+      {
+        "gameId": "espn_401873202",
+        "market": "h2h",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
+        "marketLabel": "Moneyline",
+        "pick": "San Antonio Spurs",
+        "odds": 745,
+        "isEst": true,
+        "time": "2026-05-29T00:30Z"
+      },
+      {
+        "gameId": "espn_401873202",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
+        "marketLabel": "Total",
+        "pick": "Over 223",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-29T00:30Z"
+      }
+    ],
+    "createdAt": "2026-05-25T20:56:45.737Z",
+    "startTime": "2026-05-29T00:30:00.000Z",
+    "hasEst": true
   }
 ]
