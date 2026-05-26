@@ -376,5 +376,38 @@
     "createdAt": "2026-05-26T01:13:29.993Z",
     "startTime": "2026-05-29T00:30:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mply27klykf",
+    "name": "Silver & Black Stand",
+    "legs": [
+      {
+        "gameId": "espn_401873202",
+        "market": "spreads",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
+        "marketLabel": "Spread",
+        "pick": "San Antonio Spurs +8",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-29T00:30Z"
+      },
+      {
+        "gameId": "espn_401873202",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
+        "marketLabel": "Total",
+        "pick": "Over 223",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-29T00:30Z"
+      }
+    ],
+    "createdAt": "2026-05-26T01:16:08.277Z",
+    "startTime": "2026-05-29T00:30:00.000Z",
+    "hasEst": true
   }
 ]
