@@ -409,5 +409,38 @@
     "createdAt": "2026-05-26T01:16:08.277Z",
     "startTime": "2026-05-29T00:30:00.000Z",
     "hasEst": true
+  },
+  {
+    "id": "mply3ahx911",
+    "name": "Thunderous Roar",
+    "legs": [
+      {
+        "gameId": "espn_401873202",
+        "market": "spreads",
+        "outcomeIdx": 1,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
+        "marketLabel": "Spread",
+        "pick": "Oklahoma City Thunder -8",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-29T00:30Z"
+      },
+      {
+        "gameId": "espn_401873202",
+        "market": "totals",
+        "outcomeIdx": 0,
+        "sport": "nba",
+        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
+        "marketLabel": "Total",
+        "pick": "Over 223",
+        "odds": -110,
+        "isEst": true,
+        "time": "2026-05-29T00:30Z"
+      }
+    ],
+    "createdAt": "2026-05-26T01:16:58.725Z",
+    "startTime": "2026-05-29T00:30:00.000Z",
+    "hasEst": true
   }
 ]
