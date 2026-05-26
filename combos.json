@@ -409,38 +409,5 @@
     "createdAt": "2026-05-25T21:00:21.404Z",
     "startTime": "2026-05-29T00:30:00.000Z",
     "hasEst": true
-  },
-  {
-    "id": "mployyw5nx4",
-    "name": "From Downtown",
-    "legs": [
-      {
-        "gameId": "espn_401873202",
-        "market": "spreads",
-        "outcomeIdx": 1,
-        "sport": "nba",
-        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
-        "marketLabel": "Spread",
-        "pick": "Oklahoma City Thunder -8",
-        "odds": -110,
-        "isEst": true,
-        "time": "2026-05-29T00:30Z"
-      },
-      {
-        "gameId": "espn_401873202",
-        "market": "totals",
-        "outcomeIdx": 0,
-        "sport": "nba",
-        "matchup": "Oklahoma City Thunder @ San Antonio Spurs",
-        "marketLabel": "Total",
-        "pick": "Over 223",
-        "odds": -110,
-        "isEst": true,
-        "time": "2026-05-29T00:30Z"
-      }
-    ],
-    "createdAt": "2026-05-25T21:01:40.517Z",
-    "startTime": "2026-05-29T00:30:00.000Z",
-    "hasEst": true
   }
 ]
