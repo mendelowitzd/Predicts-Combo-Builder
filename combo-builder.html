@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Predicts Combo Builder — FanDuel Merch Ops</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root {
+    --bg-deep: #0f1923;
+    --bg-card: #1c2b3a;
+    --bg-card2: #162130;
+    --bg-hover: #223040;
+    --border: #2a3f52;
+    --blue: #1a73e8;
+    --blue-light: #4a9eff;
+    --teal: #00d4aa;
+    --red: #e84040;
+    --yellow: #f5c542;
+    --text: #e2e8f0;
+    --text-dim: #7a95ae;
+    --text-muted: #4a6070;
+    --mono: 'Courier New', Courier, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-deep); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; min-height: 100vh; }
+
+  /* HEADER */
+  header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; align-items: center; gap: 16px; }
+  header .logo { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--teal); text-transform: uppercase; }
+  header h1 { font-size: 16px; font-weight: 600; color: var(--text); }
+  header .meta { margin-left: auto; color: var(--text-dim); font-size: 11px; }
+
+  /* TABS */
+  .tabs { display: flex; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 0 20px; }
+  .tab { padding: 10px 18px; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dim); letter-spacing: 0.5px; border-bottom: 2px solid transparent; transition: all 0.15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+  .tab-badge { display: inline-block; background: var(--blue); color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 10px; margin-left: 5px; }
+
+  /* PANELS */
+  .tab-content { display: none; }
+  .tab-content.active { display: flex; flex: 1; }
+
+  /* BUILDER LAYOUT */
+  .builder-layout { display: grid; grid-template-columns: 1fr 380px; gap: 0; width: 100%; height: calc(100vh - 84px); overflow: hidden; }
+  .left-panel { overflow-y: auto; border-right: 1px solid var(--border); }
+  .right-panel { overflow-y: auto; background: var(--bg-card2); }
+
+  /* CONTROLS BAR */
+  .controls-bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--bg-card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+  .controls-bar h2 { font-size: 12px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .btn { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.15s; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-light); }
+  .btn-teal { background: var(--teal); color: #0f1923; }
+  .btn-teal:hover { filter: brightness(1.1); }
+  .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text-dim); }
+  .btn-danger { background: transparent; color: var(--red); border: 1px solid var(--red); }
+  .btn-danger:hover { background: var(--red); color: #fff; }
+  .btn-sm { padding: 3px 8px; font-size: 11px; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* DATE GROUP */
+  .date-group { border-bottom: 1px solid var(--border); }
+  .date-header { padding: 8px 16px; background: var(--bg-deep); font-size: 11px; font-weight: 700; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; position: sticky; top: 48px; z-index: 5; border-bottom: 1px solid var(--border); }
+  .sport-group { }
+  .sport-header { padding: 6px 16px 6px 24px; background: var(--bg-card2); font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); }
+  .sport-badge { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+  .sport-nba { background: #c9243f22; color: #ff6b8a; border: 1px solid #c9243f55; }
+  .sport-mlb { background: #0066cc22; color: #66aaff; border: 1px solid #0066cc55; }
+  .sport-wnba { background: #ff8c0022; color: #ffb347; border: 1px solid #ff8c0055; }
+  .sport-soccer { background: #00aa4422; color: #44dd88; border: 1px solid #00aa4455; }
+  .sport-nfl { background: #8b000022; color: #ff9999; border: 1px solid #8b000055; }
+  .sport-cfb { background: #44440022; color: #dddd44; border: 1px solid #44440055; }
+
+  /* GAME ROW */
+  .game-row { border-bottom: 1px solid var(--border); }
+  .game-header { display: flex; align-items: center; padding: 8px 16px 8px 32px; cursor: pointer; transition: background 0.1s; gap: 8px; }
+  .game-header:hover { background: var(--bg-hover); }
+  .game-header.expanded { background: var(--bg-hover); }
+  .game-teams { flex: 1; font-size: 12px; font-weight: 500; }
+  .game-time { font-size: 11px; color: var(--text-dim); white-space: nowrap; }
+  .expand-icon { color: var(--text-muted); font-size: 10px; transition: transform 0.15s; }
+  .expand-icon.open { transform: rotate(90deg); }
+
+  /* LEG OPTIONS */
+  .leg-options { background: var(--bg-deep); border-top: 1px solid var(--border); padding: 12px 16px 12px 32px; display: none; }
+  .leg-options.open { display: block; }
+  .leg-section { margin-bottom: 12px; }
+  .leg-section-title { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .leg-buttons { display: flex; flex-wrap: wrap; gap: 5px; }
+  .leg-btn { padding: 4px 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); border-radius: 3px; cursor: pointer; font-size: 11px; transition: all 0.1s; }
+  .leg-btn:hover { border-color: var(--blue); color: var(--blue-light); }
+  .leg-btn.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  /* INLINE INPUT ROW */
+  .input-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+  .input-row label { font-size: 11px; color: var(--text-dim); white-space: nowrap; min-width: 70px; }
+  .input-mini { background: var(--bg-card); border: 1px solid var(--border); color: var(--text); border-radius: 3px; padding: 3px 7px; font-size: 12px; width: 80px; }
+  .input-mini:focus { outline: none; border-color: var(--blue); }
+  .select-mini { background: var(--bg-card); border: 1px solid var(--border); color: var(--text); border-radius: 3px; padding: 3px 6px; font-size: 12px; }
+  .select-mini:focus { outline: none; border-color: var(--blue); }
+  .input-wide { width: 160px; }
+
+  /* EMPTY STATE */
+  .empty-state { padding: 10px 16px 10px 32px; color: var(--text-muted); font-size: 11px; font-style: italic; }
+  .error-state { padding: 8px 16px 8px 32px; color: var(--red); font-size: 11px; display: flex; align-items: center; gap: 8px; }
+
+  /* RIGHT PANEL — COMBO BUILDER */
+  .combo-header { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+  .combo-header h2 { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .leg-counter { font-size: 11px; color: var(--text-dim); margin-bottom: 10px; }
+  .leg-counter span { font-weight: 700; color: var(--text); }
+  .name-input-wrap { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .name-input-wrap label { font-size: 10px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .name-input { background: var(--bg-card); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 6px 10px; font-size: 13px; width: 100%; }
+  .name-input:focus { outline: none; border-color: var(--blue); }
+  .save-row { display: flex; gap: 8px; align-items: center; }
+  .validation-error { color: var(--red); font-size: 11px; margin-top: 6px; }
+
+  /* LEGS LIST */
+  .legs-list { padding: 12px 16px; }
+  .legs-list-empty { color: var(--text-muted); font-size: 12px; font-style: italic; text-align: center; padding: 24px 0; }
+  .leg-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 8px 10px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px; animation: slideIn 0.15s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .leg-item-num { font-size: 10px; font-weight: 700; color: var(--text-muted); min-width: 16px; padding-top: 1px; }
+  .leg-item-body { flex: 1; min-width: 0; }
+  .leg-item-game { font-size: 10px; color: var(--text-dim); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .leg-item-sel { font-size: 12px; font-weight: 500; }
+  .leg-item-type { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+  .leg-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 0 2px; line-height: 1; flex-shrink: 0; }
+  .leg-remove:hover { color: var(--red); }
+
+  /* MR PREVIEW */
+  .mr-preview { padding: 0 16px 12px; }
+  .mr-preview-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .mr-preview-box { background: var(--bg-deep); border: 1px solid var(--border); border-radius: 3px; padding: 8px 10px; font-family: var(--mono); font-size: 11px; color: var(--teal); word-break: break-all; min-height: 32px; }
+
+  /* SAVED COMBOS */
+  .saved-panel { width: 100%; padding: 16px 20px; overflow-y: auto; height: calc(100vh - 84px); }
+  .saved-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .saved-header h2 { font-size: 14px; font-weight: 700; }
+  .saved-count { font-size: 12px; color: var(--text-dim); }
+  .saved-table { width: 100%; border-collapse: collapse; }
+  .saved-table th { text-align: left; font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .saved-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: top; }
+  .saved-table tr:hover td { background: var(--bg-hover); }
+  .combo-name-cell { font-weight: 600; color: var(--text); }
+  .combo-legs-preview { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+  .combo-sports { display: flex; gap: 4px; flex-wrap: wrap; }
+  .no-combos { text-align: center; color: var(--text-muted); padding: 40px; font-style: italic; }
+  .actions-cell { white-space: nowrap; display: flex; gap: 5px; }
+
+  /* LOADING */
+  .loading-spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid var(--border); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-row { padding: 8px 16px 8px 32px; display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-size: 11px; }
+
+  /* MISC */
+  .divider { height: 1px; background: var(--border); margin: 8px 0; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">FanDuel Predicts</div>
+  <h1>Combo Builder</h1>
+  <div class="meta">Merch Ops Internal Tool &nbsp;|&nbsp; <span id="todayLabel"></span></div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="builder">Builder</div>
+  <div class="tab" data-tab="saved">Saved Combos <span class="tab-badge" id="savedBadge">0</span></div>
+</div>
+
+<!-- BUILDER TAB -->
+<div class="tab-content active" id="tab-builder">
+  <div class="builder-layout">
+
+    <!-- LEFT: Games -->
+    <div class="left-panel">
+      <div class="controls-bar">
+        <h2>Upcoming Games</h2>
+        <span id="gamesLoadingStatus" style="color:var(--text-dim);font-size:11px;"></span>
+        <button class="btn btn-ghost btn-sm" id="refreshBtn" onclick="loadAllGames()">↻ Refresh</button>
+        <select class="select-mini" id="sportFilter" onchange="renderGames()" style="margin-left:auto;">
+          <option value="all">All Sports</option>
+          <option value="NBA">NBA</option>
+          <option value="MLB">MLB</option>
+          <option value="WNBA">WNBA</option>
+          <option value="Soccer">Soccer (World Cup)</option>
+          <option value="NFL">NFL</option>
+          <option value="CFB">CFB</option>
+        </select>
+      </div>
+      <div id="gamesContainer"></div>
+    </div>
+
+    <!-- RIGHT: Builder -->
+    <div class="right-panel">
+      <div class="combo-header">
+        <h2>Combo Builder</h2>
+        <div class="leg-counter">Legs: <span id="legCount">0</span> / 6</div>
+        <div class="name-input-wrap">
+          <label>On-Site Name</label>
+          <input class="name-input" id="comboName" type="text" placeholder="e.g. Knicks Big Night Special" maxlength="120">
+        </div>
+        <div class="save-row">
+          <button class="btn btn-teal" onclick="saveCombo()">Save Combo</button>
+          <button class="btn btn-ghost btn-sm" onclick="clearBuilder()">Clear</button>
+        </div>
+        <div class="validation-error" id="validationMsg"></div>
+      </div>
+
+      <div class="legs-list" id="legsList">
+        <div class="legs-list-empty" id="legsEmpty">Add legs from games on the left.</div>
+      </div>
+
+      <div class="mr-preview" id="mrPreviewWrap" style="display:none;">
+        <div class="mr-preview-label">Machine Readable Preview</div>
+        <div class="mr-preview-box" id="mrPreviewBox"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAVED TAB -->
+<div class="tab-content" id="tab-saved">
+  <div class="saved-panel">
+    <div class="saved-header">
+      <h2>Saved Combos</h2>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="saved-count" id="savedCountLabel">0 / 50 combos</span>
+        <button class="btn btn-teal" onclick="exportToExcel()">Export to Excel</button>
+        <button class="btn btn-danger" onclick="clearAllCombos()">Clear All</button>
+      </div>
+    </div>
+    <div id="savedCombosContainer"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONSTANTS & DATA
+// ============================================================
+const TODAY = new Date();
+const SPORTS = [
+  { key: 'NBA',    label: 'NBA',            espnPath: 'basketball/nba',       unit: 'Points' },
+  { key: 'MLB',    label: 'MLB',            espnPath: 'baseball/mlb',         unit: 'Runs' },
+  { key: 'WNBA',   label: 'WNBA',           espnPath: 'basketball/wnba',      unit: 'Points' },
+  { key: 'Soccer', label: 'Soccer (WC)',    espnPath: 'soccer/fifa.world',    unit: 'Goals' },
+  { key: 'NFL',    label: 'NFL',            espnPath: 'football/nfl',         unit: 'Points' },
+  { key: 'CFB',    label: 'CFB',            espnPath: 'football/college-football', unit: 'Points' },
+];
+
+// ESPN abbrev → FanDuel Predicts code
+// Keys include both the ESPN API abbreviation AND the FD code itself (as a passthrough),
+// so the lookup works regardless of which format arrives from the API.
+const NBA_TEAM_MAP = {
+  // ESPN API abbrev : FD Predicts code   (from Confluence NBA Team Reference)
+  ATL:'ATL', BOS:'BOS',
+  BKN:'BKN', NJ:'BKN',            // Brooklyn Nets (ESPN may use BKN or NJ)
+  CHA:'CHA',
+  CHI:'CHI',
+  CLE:'CLE',
+  DAL:'DAL',
+  DEN:'DEN',
+  DET:'DET',
+  GS:'GSW',  GSW:'GSW',           // Golden State Warriors
+  HOU:'HOU',
+  IND:'IND',
+  LAC:'LAC',
+  LAL:'LAL',
+  MEM:'MEM',
+  MIA:'MIA',
+  MIL:'MIL',
+  MIN:'MIN',
+  NO:'NOP',  NOP:'NOP',           // New Orleans Pelicans
+  NY:'NYK',  NYK:'NYK',           // New York Knicks
+  OKC:'OKC',
+  ORL:'ORL',
+  PHI:'PHI',
+  PHX:'PHX', PHO:'PHX',           // Phoenix Suns
+  POR:'POR',
+  SAC:'SAC',
+  SA:'SAS',  SAS:'SAS',           // San Antonio Spurs
+  TOR:'TOR',
+  UTA:'UTA', UTAH:'UTA',
+  WSH:'WAS', WAS:'WAS',           // Washington Wizards
+};
+const MLB_TEAM_MAP = {
+  ARI:'ARI',
+  ATL:'ATL',
+  BAL:'BAL',
+  BOS:'BOS',
+  CHC:'CHC',
+  CWS:'CWS', CHS:'CWS',
+  CIN:'CIN',
+  CLE:'CLE',
+  COL:'COL',
+  DET:'DET',
+  HOU:'HOU',
+  KC:'KCR',  KCR:'KCR',          // Kansas City Royals
+  LAA:'LAA', ANA:'LAA',
+  LAD:'LAD',
+  MIA:'MIA', FLA:'MIA',
+  MIL:'MIL',
+  MIN:'MIN',
+  NYM:'NYM',
+  NYY:'NYY',
+  OAK:'ATH', ATH:'ATH',          // Athletics
+  PHI:'PHI',
+  PIT:'PIT',
+  SD:'SDX',  SDX:'SDX',  SDP:'SDX',  // San Diego Padres
+  SF:'SFG',  SFG:'SFG',          // San Francisco Giants
+  SEA:'SEA',
+  STL:'STL',
+  TB:'TBX',  TBX:'TBX',          // Tampa Bay Rays
+  TEX:'TEX',
+  TOR:'TOR',
+  WSH:'WSH', WAS:'WSH',          // Washington Nationals
+};
+const NFL_TEAM_MAP = {
+  ARI:'ARI',
+  ATL:'ATL',
+  BAL:'BAL',
+  BUF:'BUF',
+  CAR:'CAR',
+  CHI:'CHI',
+  CIN:'CIN',
+  CLE:'CLE',
+  DAL:'DAL',
+  DEN:'DEN',
+  DET:'DET',
+  GB:'GBX',  GBX:'GBX',          // Green Bay Packers
+  HOU:'HOU',
+  IND:'IND',
+  JAX:'JAX', JAC:'JAX',
+  KC:'KCX',  KCX:'KCX',          // Kansas City Chiefs
+  LAC:'LAC',
+  LAR:'LAR',
+  LV:'LVX',  LVX:'LVX', OAK:'LVX', // Las Vegas Raiders
+  MIA:'MIA',
+  MIN:'MIN',
+  NE:'NEX',  NEX:'NEX',          // New England Patriots
+  NO:'NOX',  NOX:'NOX',          // New Orleans Saints
+  NYG:'NYG',
+  NYJ:'NYJ',
+  PHI:'PHI',
+  PIT:'PIT',
+  SEA:'SEA',
+  SF:'SFX',  SFX:'SFX',          // San Francisco 49ers
+  TB:'TBX',  TBX:'TBX',          // Tampa Bay Buccaneers
+  TEN:'TEN',
+  WSH:'WAS', WAS:'WAS',          // Washington Commanders
+};
+// Soccer team map — authoritative source: "World Cup Mapping File (1).xlsx"
+// Keys include ESPN 3-char, alt 3-char, and the FD 2-char code itself (passthrough)
+const SOCCER_TEAM_MAP = {
+  // Algeria
+  DZA:'DZ', ALG:'DZ', DZ:'DZ',
+  // Argentina
+  ARG:'AR', AR:'AR',
+  // Australia
+  AUS:'AU', AU:'AU',
+  // Austria
+  AUT:'AT', AT:'AT',
+  // Belgium
+  BEL:'BE', BE:'BE',
+  // Bosnia & Herzegovina
+  BIH:'BA', BA:'BA',
+  // Brazil
+  BRA:'BR', BR:'BR',
+  // Canada
+  CAN:'CA', CA:'CA',
+  // Cape Verde
+  CPV:'CV', CV:'CV',
+  // Colombia
+  COL:'CO', CO:'CO',
+  // Congo DR
+  COD:'CD', CD:'CD',
+  // Croatia
+  HRV:'HR', CRO:'HR', HR:'HR',
+  // Curaçao
+  CUW:'CW', CW:'CW',
+  // Czechia
+  CZE:'CZ', CZ:'CZ',
+  // Ecuador
+  ECU:'EC', EC:'EC',
+  // Egypt
+  EGY:'EG', EG:'EG',
+  // England  (ESPN uses ENG, FD uses EN)
+  ENG:'EN', EN:'EN',
+  // France
+  FRA:'FR', FR:'FR',
+  // Germany  (ESPN uses GER, ISO 3 is DEU, FD uses DE)
+  DEU:'DE', GER:'DE', DE:'DE',
+  // Ghana
+  GHA:'GH', GH:'GH',
+  // Haiti
+  HTI:'HT', HAI:'HT', HT:'HT',
+  // Iran
+  IRN:'IR', IRI:'IR', IR:'IR',
+  // Iraq
+  IRQ:'IQ', IQ:'IQ',
+  // Ivory Coast
+  CIV:'CI', CI:'CI',
+  // Japan
+  JPN:'JP', JP:'JP',
+  // Jordan
+  JOR:'JO', JO:'JO',
+  // Mexico
+  MEX:'MX', MX:'MX',
+  // Morocco
+  MAR:'MA', MOR:'MA', MA:'MA',
+  // Netherlands  (ESPN uses NED, ISO is NLD, FD uses NL)
+  NLD:'NL', NED:'NL', NL:'NL',
+  // New Zealand
+  NZL:'NZ', NZ:'NZ',
+  // Norway
+  NOR:'NO', NO:'NO',
+  // Panama
+  PAN:'PA', PA:'PA',
+  // Paraguay  (ESPN alt PAR, ISO PRY, FD PY)
+  PRY:'PY', PAR:'PY', PY:'PY',
+  // Portugal  (ESPN alt POR, ISO PRT, FD PT)
+  PRT:'PT', POR:'PT', PT:'PT',
+  // Qatar
+  QAT:'QA', QA:'QA',
+  // Saudi Arabia  (ESPN KSA, ISO SAU, FD SA)
+  SAU:'SA', KSA:'SA', SA:'SA',
+  // Scotland  (non-standard — ESPN uses SCO, FD uses SC)
+  SCO:'SC', SC:'SC',
+  // Senegal
+  SEN:'SN', SN:'SN',
+  // South Africa
+  ZAF:'ZA', RSA:'ZA', ZA:'ZA',
+  // South Korea
+  KOR:'KR', SKO:'KR', KR:'KR',
+  // Spain
+  ESP:'ES', SPA:'ES', ES:'ES',
+  // Sweden  (in mapping file — ESPN SWE, FD SE)
+  SWE:'SE', SE:'SE',
+  // Switzerland
+  CHE:'CH', SUI:'CH', CH:'CH',
+  // Tunisia
+  TUN:'TN', TN:'TN',
+  // Türkiye
+  TUR:'TR', TR:'TR',
+  // Uruguay  (ESPN URU, ISO URY, FD UY)
+  URY:'UY', URU:'UY', UY:'UY',
+  // USA
+  USA:'US', US:'US',
+  // Uzbekistan
+  UZB:'UZ', UZ:'UZ',
+};
+
+// Prop configs by sport
+const PROP_CONFIGS = {
+  NBA:  { props: ['Points','Rebounds','Assists','Three-Pointers Made','Points + Rebounds + Assists','Blocks','Steals','Double-Double','Triple-Double'], numeric: ['Points','Rebounds','Assists','Three-Pointers Made','Points + Rebounds + Assists','Blocks','Steals'], anytime: ['Double-Double','Triple-Double'] },
+  WNBA: { props: ['Points','Rebounds','Assists','Three-Pointers Made','Points + Rebounds + Assists','Blocks','Steals','Double-Double','Triple-Double'], numeric: ['Points','Rebounds','Assists','Three-Pointers Made','Points + Rebounds + Assists','Blocks','Steals'], anytime: ['Double-Double','Triple-Double'] },
+  MLB:  { props: ['Home Run','Total Bases','RBIs','Hits','Strikeouts (Pitcher)','Stolen Base'], numeric: ['Total Bases','RBIs','Hits','Strikeouts (Pitcher)'], anytime: ['Home Run','Stolen Base'] },
+  NFL:  { props: ['Touchdown Scorer (Anytime)','Passing Yards','Rushing Yards','Receiving Yards','Receptions','Passing Touchdowns','Interceptions'], numeric: ['Passing Yards','Rushing Yards','Receiving Yards','Receptions','Passing Touchdowns','Interceptions'], anytime: ['Touchdown Scorer (Anytime)'] },
+  CFB:  { props: ['Touchdown Scorer (Anytime)','Passing Yards','Rushing Yards','Receiving Yards','Receptions','Passing Touchdowns','Interceptions'], numeric: ['Passing Yards','Rushing Yards','Receiving Yards','Receptions','Passing Touchdowns','Interceptions'], anytime: ['Touchdown Scorer (Anytime)'] },
+  Soccer:{ props: ['Anytime Goal Scorer','First Goal Scorer','Anytime Assist'], numeric: [], anytime: ['Anytime Goal Scorer','First Goal Scorer','Anytime Assist'] },
+};
+
+// MR suffix map for props
+const PROP_MR_SUFFIX = {
+  'Points': 'PP', 'Three-Pointers Made': 'PT', 'Rebounds': 'RB', 'Assists': 'AS',
+  'Points + Rebounds + Assists': 'PRA', 'Blocks': 'BK', 'Steals': 'ST',
+  'Double-Double': 'DD', 'Triple-Double': 'TD',
+  'Home Run': 'HR', 'Total Bases': 'TB', 'RBIs': 'RI', 'Hits': 'HT',
+  'Strikeouts (Pitcher)': 'SK', 'Stolen Base': 'SB',
+  'Touchdown Scorer (Anytime)': 'TD', 'Passing Yards': 'PY', 'Rushing Yards': 'RU',
+  'Receiving Yards': 'RE', 'Receptions': 'RC', 'Passing Touchdowns': 'PT2',
+  'Interceptions': 'IN',
+  'Anytime Goal Scorer': 'AG', 'First Goal Scorer': 'FG', 'Anytime Assist': 'AA',
+};
+
+// Total label by sport
+function getTotalLabel(sport) {
+  if (sport === 'MLB') return 'Total Runs';
+  if (sport === 'Soccer') return 'Total Goals';
+  return 'Total Points';
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let allGames = []; // { homeTeam, awayTeam, homeAbbr, awayAbbr, gameDate, gameTime, sport, gameId }
+let currentLegs = []; // { gameId, sport, homeTeam, awayTeam, homeAbbr, awayAbbr, gameDate, legType, selection, mrCode, onSiteLabel }
+let savedCombos = loadPersistedCombos(); // { id, name, legs, savedAt } — persisted in localStorage
+let expandedGames = new Set();
+let loadingStatus = {};
+
+// ============================================================
+// INIT
+// ============================================================
+document.getElementById('todayLabel').textContent = formatDateDisplay(TODAY);
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('tab-' + t.dataset.tab).classList.add('active');
+    if (t.dataset.tab === 'saved') renderSavedCombos();
+  });
+});
+
+loadAllGames();
+updateSavedBadge();
+
+// ============================================================
+// PERSISTENCE HELPERS
+// ============================================================
+function loadPersistedCombos() {
+  try {
+    const raw = localStorage.getItem('predicts_combos_v1');
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return [];
+}
+function persistCombos() {
+  try { localStorage.setItem('predicts_combos_v1', JSON.stringify(savedCombos)); } catch(e) {}
+}
+
+// ============================================================
+// DATE HELPERS
+// ============================================================
+function formatDateESPN(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}${m}${day}`;
+}
+function formatDateISO(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function formatDateDisplay(d) {
+  return d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+}
+// Convert a UTC ISO datetime string to a CME date code in Central Time.
+// Format: M{month_no_pad}{day_zero_pad} → e.g. 2026-06-14T02:00:00Z → "614" (June 14 CT)
+// No "M" prefix — matches format UGMDE614, NGNYM614, etc.
+function utcToCmeDateCode(utcIso) {
+  if (!utcIso) return null;
+  try {
+    const d = new Date(utcIso);
+    // Use Intl to get the correct calendar date in America/Chicago (handles DST automatically)
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago',
+      month: 'numeric',
+      day: '2-digit',
+    }).formatToParts(d);
+    const month = parts.find(p => p.type === 'month').value;  // no leading zero
+    const day   = parts.find(p => p.type === 'day').value;    // zero-padded
+    return `${parseInt(month)}${day}`;
+  } catch(e) { return null; }
+}
+// CT-aware ISO date (YYYY-MM-DD) for display/grouping
+function utcToCTDateISO(utcIso) {
+  if (!utcIso) return null;
+  try {
+    const d = new Date(utcIso);
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+    }).formatToParts(d);
+    const y = parts.find(p => p.type === 'year').value;
+    const m = parts.find(p => p.type === 'month').value;
+    const dy = parts.find(p => p.type === 'day').value;
+    return `${y}-${m}-${dy}`;
+  } catch(e) { return null; }
+}
+function isoToDisplay(iso) {
+  const [y,m,day] = iso.split('-');
+  const d = new Date(parseInt(y), parseInt(m)-1, parseInt(day));
+  return d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+}
+
+// ============================================================
+// LOAD GAMES
+// ============================================================
+async function loadAllGames() {
+  allGames = [];
+  loadingStatus = {};
+  document.getElementById('gamesContainer').innerHTML = '';
+  document.getElementById('gamesLoadingStatus').innerHTML = '<span class="loading-spinner"></span> Loading...';
+
+  // Each sport independently scans forward until it has 7 unique game days.
+  // This means a sport like World Cup (which starts weeks away) will still show
+  // its first 7 game days, not just whatever falls in the next 7 calendar days.
+  await Promise.all(SPORTS.map(sport => loadSportSchedule(sport)));
+
+  document.getElementById('gamesLoadingStatus').textContent = `${allGames.length} games loaded`;
+  renderGames();
+}
+
+async function loadSportSchedule(sport) {
+  const TARGET_GAME_DAYS = 10;
+  const MAX_LOOKAHEAD   = 120; // scan up to 120 days ahead
+  const BATCH_SIZE      = 14;  // fetch 14 days at a time in parallel
+
+  let offset = 0;
+
+  while (offset < MAX_LOOKAHEAD) {
+    const batch = [];
+    for (let i = offset; i < Math.min(offset + BATCH_SIZE, MAX_LOOKAHEAD); i++) {
+      const d = new Date(TODAY);
+      d.setDate(TODAY.getDate() + i);
+      batch.push(d);
+    }
+
+    await Promise.all(batch.map(d => fetchGamesForSportDate(sport, d)));
+
+    // Count unique game days already collected for this sport
+    const uniqueDays = new Set(allGames.filter(g => g.sport === sport.key).map(g => g.gameDate));
+    if (uniqueDays.size >= TARGET_GAME_DAYS) break;
+
+    offset += BATCH_SIZE;
+  }
+}
+
+async function fetchGamesForSportDate(sport, date) {
+  const dateStr = formatDateESPN(date);
+  const url = `https://site.api.espn.com/apis/site/v2/sports/${sport.espnPath}/scoreboard?dates=${dateStr}`;
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    const events = data.events || [];
+    for (const ev of events) {
+      const comp = ev.competitions?.[0];
+      if (!comp) continue;
+      const competitors = comp.competitors || [];
+      const home = competitors.find(c => c.homeAway === 'home');
+      const away = competitors.find(c => c.homeAway === 'away');
+      if (!home || !away) continue;
+
+      const gameTimeRaw = comp.date || ev.date;
+      // Derive date from the actual game UTC time converted to Central Time.
+      // Fall back to the search date if no timestamp is available.
+      const gameDate        = (gameTimeRaw && utcToCTDateISO(gameTimeRaw))  || formatDateISO(date);
+      const gameCmeDateCode = (gameTimeRaw && utcToCmeDateCode(gameTimeRaw)) || (() => {
+        const iso = formatDateISO(date);
+        const [,m,d] = iso.split('-');
+        return `${parseInt(m)}${d}`;
+      })();
+
+      let gameTime = '';
+      if (gameTimeRaw) {
+        try {
+          gameTime = new Date(gameTimeRaw).toLocaleTimeString('en-US', {
+            hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago', timeZoneName: 'short',
+          });
+        } catch(e) { gameTime = gameTimeRaw; }
+      }
+
+      allGames.push({
+        gameId: ev.id || `${sport.key}-${dateStr}-${home.team.abbreviation}-${away.team.abbreviation}`,
+        sport: sport.key,
+        homeTeam: home.team.displayName || home.team.name,
+        awayTeam: away.team.displayName || away.team.name,
+        homeAbbr: home.team.abbreviation,
+        awayAbbr: away.team.abbreviation,
+        gameDate,
+        gameCmeDateCode,  // e.g. "614" for June 14 CT — used in MR codes
+        gameTime,
+        gameTimeUTC: gameTimeRaw || null,  // raw UTC ISO for ET conversion on export
+        status: ev.status?.type?.description || '',
+      });
+    }
+  } catch(e) {
+    // Store error per sport so we can show it
+    if (!loadingStatus[sport.key]) loadingStatus[sport.key] = {};
+    loadingStatus[sport.key][formatDateISO(date)] = e.message;
+  }
+}
+
+// ============================================================
+// RENDER GAMES
+// ============================================================
+function renderGames() {
+  const filter = document.getElementById('sportFilter').value;
+  const container = document.getElementById('gamesContainer');
+  container.innerHTML = '';
+
+  const rawGames = filter === 'all' ? allGames : allGames.filter(g => g.sport === filter);
+
+  // For each sport, keep only the first 7 unique game days
+  const allowedDates = {}; // sportKey → Set of allowed ISO dates
+  for (const sport of SPORTS) {
+    const sportDates = [...new Set(
+      rawGames.filter(g => g.sport === sport.key).map(g => g.gameDate)
+    )].sort().slice(0, 10);
+    allowedDates[sport.key] = new Set(sportDates);
+  }
+  const games = rawGames.filter(g => allowedDates[g.sport]?.has(g.gameDate));
+
+  // Group by date then sport
+  const byDate = {};
+  for (const g of games) {
+    if (!byDate[g.gameDate]) byDate[g.gameDate] = {};
+    if (!byDate[g.gameDate][g.sport]) byDate[g.gameDate][g.sport] = [];
+    byDate[g.gameDate][g.sport].push(g);
+  }
+
+  const dates = Object.keys(byDate).sort();
+  if (dates.length === 0) {
+    container.innerHTML = '<div style="padding:24px;color:var(--text-muted);text-align:center;font-style:italic;">No games found. Try refreshing.</div>';
+    return;
+  }
+
+  for (const date of dates) {
+    const dg = document.createElement('div');
+    dg.className = 'date-group';
+    dg.innerHTML = `<div class="date-header">${isoToDisplay(date)}</div>`;
+
+    const sportKeys = Object.keys(byDate[date]).sort();
+    for (const sportKey of sportKeys) {
+      const sg = document.createElement('div');
+      sg.className = 'sport-group';
+      sg.innerHTML = `<div class="sport-header"><span class="sport-badge sport-${sportKey.toLowerCase()}">${sportKey}</span></div>`;
+
+      for (const game of byDate[date][sportKey]) {
+        sg.appendChild(buildGameRow(game));
+      }
+      dg.appendChild(sg);
+    }
+    container.appendChild(dg);
+  }
+
+  // Show sports with no games but had errors
+  if (filter === 'all') {
+    for (const sport of SPORTS) {
+      if (!games.find(g => g.sport === sport.key)) {
+        const hasError = loadingStatus[sport.key];
+        const dg2 = document.createElement('div');
+        dg2.className = 'date-group';
+        dg2.innerHTML = `
+          <div class="date-header" style="color:var(--text-muted);">${sport.label}</div>
+          <div class="${hasError ? 'error-state' : 'empty-state'}">
+            ${hasError
+              ? `⚠ Unable to load games for ${sport.label}. <button class="btn btn-ghost btn-sm" onclick="loadAllGames()" style="margin-left:6px;">Retry</button>`
+              : `No upcoming games found.`}
+          </div>`;
+        container.appendChild(dg2);
+      }
+    }
+  }
+}
+
+function buildGameRow(game) {
+  const row = document.createElement('div');
+  row.className = 'game-row';
+  row.id = `gamerow-${game.gameId}`;
+
+  const isExpanded = expandedGames.has(game.gameId);
+  row.innerHTML = `
+    <div class="game-header ${isExpanded ? 'expanded' : ''}" onclick="toggleGame('${game.gameId}')">
+      <span class="game-teams">${game.awayTeam} @ ${game.homeTeam}</span>
+      <span class="game-time">${game.gameTime}</span>
+      <span class="expand-icon ${isExpanded ? 'open' : ''}">▶</span>
+    </div>
+    <div class="leg-options ${isExpanded ? 'open' : ''}" id="legs-${game.gameId}">
+      ${buildLegOptions(game)}
+    </div>`;
+  return row;
+}
+
+function toggleGame(gameId) {
+  if (expandedGames.has(gameId)) {
+    expandedGames.delete(gameId);
+  } else {
+    expandedGames.add(gameId);
+  }
+  const row = document.getElementById(`gamerow-${gameId}`);
+  if (!row) return;
+  row.querySelector('.game-header').classList.toggle('expanded', expandedGames.has(gameId));
+  row.querySelector('.expand-icon').classList.toggle('open', expandedGames.has(gameId));
+  row.querySelector('.leg-options').classList.toggle('open', expandedGames.has(gameId));
+}
+
+function buildLegOptions(game) {
+  const g = game;
+  const isSoccer = g.sport === 'Soccer';
+  const totalLabel = getTotalLabel(g.sport);
+  const propCfg = PROP_CONFIGS[g.sport];
+  const gid = g.gameId;
+
+  let html = '';
+
+  // MONEYLINE
+  html += `<div class="leg-section"><div class="leg-section-title">Moneyline</div><div class="leg-buttons">`;
+  html += `<button class="leg-btn" onclick="addLeg('${gid}','moneyline','away')">${esc(g.awayTeam)} to Win</button>`;
+  html += `<button class="leg-btn" onclick="addLeg('${gid}','moneyline','home')">${esc(g.homeTeam)} to Win</button>`;
+  if (isSoccer) {
+    html += `<button class="leg-btn" onclick="addLeg('${gid}','moneyline','draw')">Draw</button>`;
+  }
+  html += `</div></div>`;
+
+  // GAME TOTAL
+  html += `<div class="leg-section"><div class="leg-section-title">Game Total (Over/Under)</div>`;
+  html += `<div class="input-row">
+    <label>Line:</label>
+    <input class="input-mini" id="total-line-${gid}" type="number" step="0.5" placeholder="e.g. 215.5">
+    <button class="leg-btn" onclick="addTotalLeg('${gid}','over')">Over</button>
+    <button class="leg-btn" onclick="addTotalLeg('${gid}','under')">Under</button>
+  </div></div>`;
+
+  // SPREAD
+  html += `<div class="leg-section"><div class="leg-section-title">Spread</div>`;
+  html += `<div class="input-row">
+    <label>Line:</label>
+    <select class="select-mini" id="spread-dir-${gid}"><option value="-">-</option><option value="+">+</option></select>
+    <input class="input-mini" id="spread-line-${gid}" type="number" step="0.5" placeholder="e.g. 4.5">
+  </div>
+  <div class="leg-buttons" style="margin-top:4px;">
+    <button class="leg-btn" onclick="addSpreadLeg('${gid}','away')">${esc(g.awayTeam)} [Spread]</button>
+    <button class="leg-btn" onclick="addSpreadLeg('${gid}','home')">${esc(g.homeTeam)} [Spread]</button>
+  </div></div>`;
+
+  // PLAYER PROPS
+  if (propCfg) {
+    html += `<div class="leg-section"><div class="leg-section-title">Player Props</div>`;
+    html += `<div class="input-row"><label>Player:</label><input class="input-mini input-wide" id="prop-player-${gid}" type="text" placeholder="Player name"></div>`;
+    html += `<div class="input-row"><label>Prop:</label>
+      <select class="select-mini input-wide" id="prop-type-${gid}" onchange="updatePropThresholdUI('${gid}')">
+        ${propCfg.props.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join('')}
+      </select>
+    </div>`;
+    html += `<div id="prop-threshold-wrap-${gid}" class="input-row">
+      <label>Line:</label>
+      <select class="select-mini" id="prop-dir-${gid}"><option value="Over">Over</option></select>
+      <input class="input-mini" id="prop-line-${gid}" type="number" step="0.5" placeholder="e.g. 24.5">
+    </div>`;
+    html += `<button class="leg-btn" style="margin-top:4px;" onclick="addPropLeg('${gid}')">+ Add Prop</button>`;
+    html += `</div>`;
+    // Initialize threshold UI
+  }
+
+  return html;
+}
+
+function updatePropThresholdUI(gid) {
+  const game = allGames.find(g => g.gameId === gid);
+  if (!game) return;
+  const propCfg = PROP_CONFIGS[game.sport];
+  if (!propCfg) return;
+  const propType = document.getElementById(`prop-type-${gid}`)?.value;
+  const wrap = document.getElementById(`prop-threshold-wrap-${gid}`);
+  if (!wrap) return;
+  const isAnytime = propCfg.anytime.includes(propType);
+  wrap.style.display = isAnytime ? 'none' : 'flex';
+}
+
+// ============================================================
+// LEG CONSTRUCTION
+// ============================================================
+function getTeamCode(sport, abbr) {
+  if (sport === 'NBA' || sport === 'WNBA') return NBA_TEAM_MAP[abbr] || abbr;
+  if (sport === 'MLB') return MLB_TEAM_MAP[abbr] || abbr;
+  if (sport === 'NFL' || sport === 'CFB') return NFL_TEAM_MAP[abbr] || abbr;
+  if (sport === 'Soccer') return SOCCER_TEAM_MAP[abbr] || abbr;
+  return abbr;
+}
+
+function fmtLine(n) {
+  // Matches Excel TEXT(F,"0.0#") — one decimal minimum, two if non-zero
+  const f = parseFloat(n);
+  if (isNaN(f)) return n;
+  const s2 = f.toFixed(2);
+  return s2.endsWith('0') ? f.toFixed(1) : s2;
+}
+
+function buildMR(game, legType, opts) {
+  const sport = game.sport;
+  const homeCode = getTeamCode(sport, game.homeAbbr);
+  const awayCode = getTeamCode(sport, game.awayAbbr);
+  const isSoccer = sport === 'Soccer';
+  const isNBAlike = sport === 'NBA' || sport === 'WNBA';
+  const isNFLlike = sport === 'NFL' || sport === 'CFB';
+  const dateSuffix = game.gameCmeDateCode || ''; // e.g. "614" for June 14 CT
+
+  // ── NBA / WNBA ── CME format:
+  //   Moneyline  → NG{TEAM}{DATE} C0001
+  //   Spread     → NH{TEAM}{DATE} C+{line} / NH{TEAM}{DATE} C-{line}
+  //   Game Total → NT{HOME}{DATE} C{line}   (home team always used as game key)
+  //   Team/Player props → unchanged (no CME prefix, no date)
+  if (isNBAlike) {
+    const teamCode = opts.side === 'home' ? homeCode : awayCode;
+    if (legType === 'moneyline') {
+      return `NG${teamCode}${dateSuffix} C0001`;
+    }
+    if (legType === 'spread') {
+      const dir = opts.dir;
+      const line = fmtLine(opts.line);
+      return dir === '+'
+        ? `NH${teamCode}${dateSuffix} C+${line}`
+        : `NH${teamCode}${dateSuffix} C-${line}`;
+    }
+    if (legType === 'total') {
+      if (opts.dir === 'under') return null; // Only Over supported
+      // Game total uses away team as the identifier
+      return `NT${homeCode}${dateSuffix} C${fmtLine(opts.line)}`;
+    }
+    if (legType === 'prop') {
+      const { player, propType, line } = opts;
+      const propCfg = PROP_CONFIGS[sport];
+      const isAnytime = propCfg?.anytime.includes(propType);
+      if (isAnytime) return `${teamCode} ${player} O 0.5 ${PROP_MR_SUFFIX[propType] || 'PROP'}`;
+      return `${teamCode} ${player} O ${fmtLine(line)} ${PROP_MR_SUFFIX[propType] || 'PROP'}`;
+    }
+    return null;
+  }
+
+  // ── Soccer (FIFA World Cup) ── CME format per World Cup Mapping File:
+  //   Win (moneyline) → UGM{TEAM}M{DATE} C0001   e.g. UGMCHM618 C0001
+  //   Draw            → UNM{HOME}M{DATE} C0001    e.g. UNMCHM618 C0001
+  //   Game Goals Over → UTM{HOME}M{DATE} C{line}  e.g. UTMCHM618 C2.5
+  //   Goalscorer      → {TEAM} {Player} O 0.5 AG
+  if (isSoccer) {
+    const teamCode = opts.side === 'home' ? homeCode : awayCode;
+    const sDate = `M${dateSuffix}`; // Soccer date always has "M" separator before the digits
+    if (legType === 'moneyline') {
+      if (opts.side === 'draw') return `UNM${homeCode}${sDate} C0001`;
+      return `UGM${teamCode}${sDate} C0001`;
+    }
+    if (legType === 'total') {
+      if (opts.dir === 'under') return null;
+      return `UTM${homeCode}${sDate} C${fmtLine(opts.line)}`;
+    }
+    if (legType === 'prop') {
+      const { player, propType } = opts;
+      if (propType === 'Anytime Goal Scorer') return `${teamCode} ${player} O 0.5 AG`;
+      if (propType === 'First Goal Scorer')   return `${teamCode} ${player} O 0.5 FG`;
+      if (propType === 'Anytime Assist')      return `${teamCode} ${player} O 0.5 AA`;
+      return null;
+    }
+    return null;
+  }
+
+  // ── MLB ── (Confluence readable spec, no CME prefix/date)
+  if (sport === 'MLB') {
+    const teamCode = opts.side === 'home' ? homeCode : awayCode;
+    if (legType === 'moneyline') return `LG${teamCode}M${dateSuffix} C0001`;
+    if (legType === 'total') {
+      if (opts.dir === 'under') return null;
+      return `${awayCode} ${homeCode} O ${fmtLine(opts.line)} GP`;
+    }
+    if (legType === 'spread') {
+      return `${teamCode} C${opts.dir}${fmtLine(opts.line)} PS`;
+    }
+    if (legType === 'prop') {
+      const { player, propType, line } = opts;
+      const propCfg = PROP_CONFIGS[sport];
+      const isAnytime = propCfg?.anytime.includes(propType);
+      if (isAnytime) return `${teamCode} ${player} O 0.5 HR`;
+      return `${teamCode} ${player} O ${fmtLine(line)} ${PROP_MR_SUFFIX[propType] || 'PROP'}`;
+    }
+    return null;
+  }
+
+  // ── NFL / CFB ── (Confluence readable spec, no CME prefix/date)
+  if (isNFLlike) {
+    const teamCode = opts.side === 'home' ? homeCode : awayCode;
+    if (legType === 'moneyline') return `${teamCode} W`;
+    if (legType === 'total') {
+      if (opts.dir === 'under') return null;
+      return `${awayCode} ${homeCode} O ${fmtLine(opts.line)} GP`;
+    }
+    if (legType === 'spread') {
+      return `${teamCode} C${opts.dir}${fmtLine(opts.line)} PS`;
+    }
+    if (legType === 'prop') {
+      const { player, propType, line } = opts;
+      const propCfg = PROP_CONFIGS[sport];
+      const isAnytime = propCfg?.anytime.includes(propType);
+      if (isAnytime) return `${teamCode} ${player} O 0.5 TD`;
+      return `${teamCode} ${player} O ${fmtLine(line)} ${PROP_MR_SUFFIX[propType] || 'PROP'}`;
+    }
+    return null;
+  }
+
+  return null;
+}
+
+function addLeg(gameId, legType, side) {
+  const game = allGames.find(g => g.gameId === gameId);
+  if (!game) return;
+  if (currentLegs.length >= 6) { showValidation('Maximum 6 legs per combo.'); return; }
+
+  let selection, onSiteLabel, mrCode;
+
+  if (legType === 'moneyline') {
+    if (side === 'home') {
+      onSiteLabel = `${game.homeTeam} to Win (vs. ${game.awayTeam})`;
+    } else if (side === 'away') {
+      onSiteLabel = `${game.awayTeam} to Win (@ ${game.homeTeam})`;
+    } else {
+      onSiteLabel = `Draw (${game.awayTeam} vs. ${game.homeTeam})`;
+    }
+    selection = onSiteLabel;
+    mrCode = buildMR(game, 'moneyline', { side });
+  }
+
+  pushLeg(game, legType, selection, onSiteLabel, mrCode);
+}
+
+function addTotalLeg(gameId, dir) {
+  const game = allGames.find(g => g.gameId === gameId);
+  if (!game) return;
+  if (currentLegs.length >= 6) { showValidation('Maximum 6 legs per combo.'); return; }
+
+  const lineEl = document.getElementById(`total-line-${gameId}`);
+  const line = lineEl?.value?.trim();
+  if (!line) { alert('Please enter a line for the Game Total.'); return; }
+
+  const totalLabel = getTotalLabel(game.sport);
+  const threshold = Math.ceil(parseFloat(line));
+  // On-site format: "220+ Total Points" (ceiling of line, no "Over" prefix)
+  const onSiteLabel = dir === 'over'
+    ? `${threshold}+ ${totalLabel}`
+    : `Under ${line} ${totalLabel}`;
+  const mrCode = buildMR(game, 'total', { dir, line });
+
+  pushLeg(game, 'total', onSiteLabel, onSiteLabel, mrCode);
+}
+
+function addSpreadLeg(gameId, side) {
+  const game = allGames.find(g => g.gameId === gameId);
+  if (!game) return;
+  if (currentLegs.length >= 6) { showValidation('Maximum 6 legs per combo.'); return; }
+
+  const dirEl = document.getElementById(`spread-dir-${gameId}`);
+  const lineEl = document.getElementById(`spread-line-${gameId}`);
+  const dir = dirEl?.value || '-';
+  const line = lineEl?.value?.trim();
+  if (!line) { alert('Please enter a spread line.'); return; }
+
+  const team = side === 'home' ? game.homeTeam : game.awayTeam;
+  const onSiteLabel = `${team} ${dir}${line}`;
+  const mrCode = buildMR(game, 'spread', { side, dir, line });
+
+  pushLeg(game, 'spread', onSiteLabel, onSiteLabel, mrCode);
+}
+
+function addPropLeg(gameId) {
+  const game = allGames.find(g => g.gameId === gameId);
+  if (!game) return;
+  if (currentLegs.length >= 6) { showValidation('Maximum 6 legs per combo.'); return; }
+
+  const playerEl = document.getElementById(`prop-player-${gameId}`);
+  const propTypeEl = document.getElementById(`prop-type-${gameId}`);
+  const dirEl = document.getElementById(`prop-dir-${gameId}`);
+  const lineEl = document.getElementById(`prop-line-${gameId}`);
+
+  const player = playerEl?.value?.trim();
+  if (!player) { alert('Please enter a player name.'); return; }
+
+  const propType = propTypeEl?.value;
+  const propCfg = PROP_CONFIGS[game.sport];
+  const isAnytime = propCfg?.anytime.includes(propType);
+
+  let onSiteLabel, mrCode;
+
+  if (isAnytime) {
+    onSiteLabel = `${player} Anytime ${propType.replace(' (Anytime)','')}`;
+    mrCode = buildMR(game, 'prop', { player, propType, side: 'away', isAnytime: true });
+  } else {
+    const line = lineEl?.value?.trim();
+    if (!line) { alert('Please enter a line for this prop.'); return; }
+    const dir = dirEl?.value || 'Over';
+    const threshold = Math.ceil(parseFloat(line));
+    onSiteLabel = `${player} ${threshold}+ ${propType}`;
+    mrCode = buildMR(game, 'prop', { player, propType, line, dir, side: 'away' });
+  }
+
+  pushLeg(game, 'prop', onSiteLabel, onSiteLabel, mrCode);
+}
+
+function pushLeg(game, legType, selection, onSiteLabel, mrCode) {
+  currentLegs.push({
+    gameId: game.gameId,
+    sport: game.sport,
+    homeTeam: game.homeTeam,
+    awayTeam: game.awayTeam,
+    gameDate: game.gameDate,
+    gameTimeUTC: game.gameTimeUTC || null,
+    legType,
+    selection,
+    onSiteLabel,
+    mrCode,
+  });
+  clearValidation();
+  renderBuilder();
+}
+
+// ============================================================
+// RENDER BUILDER
+// ============================================================
+function renderBuilder() {
+  document.getElementById('legCount').textContent = currentLegs.length;
+  const list = document.getElementById('legsList');
+  const empty = document.getElementById('legsEmpty');
+  const mrWrap = document.getElementById('mrPreviewWrap');
+
+  if (currentLegs.length === 0) {
+    list.innerHTML = '<div class="legs-list-empty" id="legsEmpty">Add legs from games on the left.</div>';
+    mrWrap.style.display = 'none';
+    return;
+  }
+
+  list.innerHTML = '';
+  currentLegs.forEach((leg, i) => {
+    const div = document.createElement('div');
+    div.className = 'leg-item';
+    div.innerHTML = `
+      <div class="leg-item-num">${i+1}</div>
+      <div class="leg-item-body">
+        <div class="leg-item-game"><span class="sport-badge sport-${leg.sport.toLowerCase()}">${leg.sport}</span> &nbsp;${esc(leg.awayTeam)} @ ${esc(leg.homeTeam)} &nbsp;·&nbsp; ${leg.gameDate}</div>
+        <div class="leg-item-sel">${esc(leg.onSiteLabel)}</div>
+        <div class="leg-item-type">${capitalize(leg.legType)}</div>
+      </div>
+      <button class="leg-remove" onclick="removeLeg(${i})" title="Remove leg">×</button>`;
+    list.appendChild(div);
+  });
+
+  // MR preview
+  const mrParts = currentLegs.map(l => l.mrCode || '?').join(',');
+  mrWrap.style.display = 'block';
+  document.getElementById('mrPreviewBox').textContent = mrParts;
+}
+
+function removeLeg(idx) {
+  currentLegs.splice(idx, 1);
+  renderBuilder();
+}
+
+function clearBuilder() {
+  currentLegs = [];
+  document.getElementById('comboName').value = '';
+  clearValidation();
+  renderBuilder();
+}
+
+// ============================================================
+// SAVE COMBO
+// ============================================================
+function saveCombo() {
+  const name = document.getElementById('comboName').value.trim();
+  const errors = [];
+  if (!name) errors.push('On-Site Name is required.');
+  if (currentLegs.length < 2) errors.push('At least 2 legs are required.');
+  if (currentLegs.length > 6) errors.push('Maximum 6 legs allowed.');
+  if (savedCombos.length >= 50) errors.push('Maximum 50 combos already saved.');
+
+  if (errors.length > 0) {
+    showValidation(errors.join(' '));
+    return;
+  }
+
+  savedCombos.push({
+    id: Date.now(),
+    name,
+    legs: JSON.parse(JSON.stringify(currentLegs)),
+    savedAt: new Date().toISOString(),
+  });
+
+  persistCombos();
+  updateSavedBadge();
+  clearBuilder();
+  showValidation('✓ Combo saved!', true);
+}
+
+function updateSavedBadge() {
+  document.getElementById('savedBadge').textContent = savedCombos.length;
+}
+
+function showValidation(msg, isSuccess = false) {
+  const el = document.getElementById('validationMsg');
+  el.textContent = msg;
+  el.style.color = isSuccess ? 'var(--teal)' : 'var(--red)';
+  if (isSuccess) setTimeout(clearValidation, 2500);
+}
+function clearValidation() {
+  document.getElementById('validationMsg').textContent = '';
+}
+
+// ============================================================
+// SAVED COMBOS
+// ============================================================
+function renderSavedCombos() {
+  document.getElementById('savedCountLabel').textContent = `${savedCombos.length} / 50 combos`;
+  const container = document.getElementById('savedCombosContainer');
+
+  if (savedCombos.length === 0) {
+    container.innerHTML = '<div class="no-combos">No combos saved yet. Build one in the Builder tab.</div>';
+    return;
+  }
+
+  let html = `<table class="saved-table">
+    <thead><tr>
+      <th>On-Site Name</th><th>Legs</th><th>Sports</th><th>Date(s)</th><th>Actions</th>
+    </tr></thead><tbody>`;
+
+  for (const combo of savedCombos) {
+    const sports = [...new Set(combo.legs.map(l => l.sport))];
+    const dates = [...new Set(combo.legs.map(l => l.gameDate))].sort();
+    const legsPreview = combo.legs.map(l => esc(l.onSiteLabel)).join(', ');
+
+    html += `<tr>
+      <td>
+        <div class="combo-name-cell">${esc(combo.name)}</div>
+        <div class="combo-legs-preview">${legsPreview}</div>
+      </td>
+      <td>${combo.legs.length}</td>
+      <td><div class="combo-sports">${sports.map(s => `<span class="sport-badge sport-${s.toLowerCase()}">${s}</span>`).join('')}</div></td>
+      <td style="font-size:11px;">${dates.map(isoToDisplay).join('<br>')}</td>
+      <td><div class="actions-cell">
+        <button class="btn btn-ghost btn-sm" onclick="editCombo(${combo.id})">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteCombo(${combo.id})">Delete</button>
+      </div></td>
+    </tr>`;
+  }
+
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+}
+
+function editCombo(id) {
+  const combo = savedCombos.find(c => c.id === id);
+  if (!combo) return;
+  currentLegs = JSON.parse(JSON.stringify(combo.legs));
+  document.getElementById('comboName').value = combo.name;
+  // Switch to builder tab
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelector('[data-tab="builder"]').classList.add('active');
+  document.getElementById('tab-builder').classList.add('active');
+  renderBuilder();
+}
+
+function clearAllCombos() {
+  if (!confirm('Delete all saved combos? This cannot be undone.')) return;
+  savedCombos = [];
+  persistCombos();
+  updateSavedBadge();
+  renderSavedCombos();
+}
+
+function deleteCombo(id) {
+  if (!confirm('Delete this combo?')) return;
+  savedCombos = savedCombos.filter(c => c.id !== id);
+  persistCombos();
+  updateSavedBadge();
+  renderSavedCombos();
+}
+
+// ============================================================
+// EXCEL EXPORT
+// ============================================================
+function formatStartTimeET(legs) {
+  // Find the earliest UTC game time among all legs, format as ET
+  const utcTimes = legs.map(l => l.gameTimeUTC).filter(Boolean);
+  if (utcTimes.length === 0) return '';
+  const earliest = utcTimes.map(t => new Date(t)).sort((a, b) => a - b)[0];
+  const formatted = earliest.toLocaleTimeString('en-US', {
+    hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York',
+  });
+  // "6:40 PM" → "6:40pm ET"
+  return formatted.replace(/\s?(AM|PM)/, m => m.trim().toLowerCase()) + ' ET';
+}
+
+function exportToExcel() {
+  if (savedCombos.length === 0) { alert('No combos to export.'); return; }
+
+  const aoa = []; // array of arrays for vertical layout
+
+  savedCombos.forEach((combo, idx) => {
+    const startTime = formatStartTimeET(combo.legs);
+    const onSiteSelections = combo.legs.map(l => l.onSiteLabel).join(',');
+    const mrSelections = combo.legs.map(l => l.mrCode || '').join(',');
+
+    if (idx > 0) aoa.push([]); // blank separator between combos
+
+    aoa.push(['Start Time', startTime]);
+    aoa.push(['Machine Readable', mrSelections]);
+    aoa.push(['On-Site', onSiteSelections]);
+    aoa.push(['On-Site Name', combo.name]);
+  });
+
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+
+  // Bold the label column (col A) for every label row
+  const labelRows = [];
+  let row = 0;
+  savedCombos.forEach((_, idx) => {
+    if (idx > 0) row++; // blank separator
+    labelRows.push(row, row + 1, row + 2, row + 3);
+    row += 4;
+  });
+  labelRows.forEach(r => {
+    const cellRef = XLSX.utils.encode_cell({ r, c: 0 });
+    if (ws[cellRef]) {
+      ws[cellRef].s = { font: { bold: true } };
+    }
+  });
+
+  // Column widths
+  ws['!cols'] = [{ wch: 20 }, { wch: 90 }];
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Combos');
+
+  const dateStr = formatDateESPN(new Date());
+  XLSX.writeFile(wb, `predicts-combos-${dateStr}.xlsx`);
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function capitalize(s) {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+</script>
+</body>
+</html>
